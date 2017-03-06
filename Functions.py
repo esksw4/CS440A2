@@ -69,7 +69,7 @@ class Functions():
 		return driver
 
 	def userInputAssign(userInfo):
-		global lastName, emailAddress
+		global firstName, lastName, emailAddress
 		global poBox, costCenter, coLor, positionNum, favNum, msgConsultant, msgPersonalized
 		global alsoNotify
 
@@ -86,9 +86,9 @@ class Functions():
 
 		alsoNotify = "Young Kim"
 
-		if firstname == "":
-			return True
-		return False
+		if firstName == "" or lastName == "" or emailAddress == "" or poBox == "" or costCenter == "" or coLor == "" or positionNum == "" or favNum == "" or msgConsultant == "" or msgPersonalized == "":
+			return False
+		return True
 
 
 
