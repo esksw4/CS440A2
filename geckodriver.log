@@ -1,0 +1,28 @@
+1488824517874	geckodriver	INFO	Listening on 127.0.0.1:56664
+1488824519892	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.g22ILuDOPxQ4
+1488824519900	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488824519922	geckodriver::marionette	INFO	Connecting to Marionette on localhost:56670
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488824522924 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488825525918	geckodriver	INFO	Listening on 127.0.0.1:57229
+1488825527972	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ITqVrJvKfhjn
+1488825527976	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488825527989	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57235
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488825530833 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488828109683	geckodriver	INFO	Listening on 127.0.0.1:59164
+1488828111692	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.hqH8Ix8AX0XY
+1488828111697	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488828111713	geckodriver::marionette	INFO	Connecting to Marionette on localhost:59170
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488828114512 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488828610288	geckodriver	INFO	Listening on 127.0.0.1:59667
+1488828612315	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.tecCOyBIHcAe
+1488828612320	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488828612334	geckodriver::marionette	INFO	Connecting to Marionette on localhost:59673
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488828615337 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
