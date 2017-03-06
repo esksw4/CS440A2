@@ -22,19 +22,27 @@ def mainTab():
 	hiringStatus_Page = tkinter.Button(main, text='Hiring Status', command = hiringStatus).pack()
 	order_newReport = tkinter.Button(main, text='Order New Report', command = ordernewReport).pack()
 
-def eachFrame():
-	txtConsole = Text(master=top, height=10, width=40, background ='black', fg='white')
-	#txtConsole.pack(side=LEFT)
+def eachFrame(whichInfo):
+	# txtConsole = Text(master=top, height=10, width=40, background ='black', fg='white')
+	# #txtConsole.pack(side=LEFT)
 
-	txtConsoleScrollBar = Scrollbar(top, command=txtConsole.xview)
-	txtConsole.config(yscrollcommand=txtConsoleScrollBar.set)
+	# txtConsoleScrollBar = Scrollbar(top, command=txtConsole.xview)
+	# txtConsole.config(yscrollcommand=txtConsoleScrollBar.set)
 
 
-	txtConsole.pack(side=LEFT)
-	txtConsoleScrollBar.pack(side=RIGHT)
+	# txtConsole.pack(side=LEFT)
+	# txtConsoleScrollBar.pack(side=RIGHT)
 	
-
 	#txtConsoleScrollBar.config(command=txtConsole.yview)
+	global inputFrame
+	inputFrame = Frame()
+	inputFrame.pack(side=LEFT)
+
+	global inputs
+	inputs = makeForm(inputFrame, whichInfo)
+	# inputFrame.bind('<Return>', getUserInputSendFunction)
+	b = Button (inputFrame, text="Enter", command=getUserInputSendFunction)
+	b.pack(side=RIGHT)
 
 def makeForm(root, entries):
 	fields = []
@@ -48,14 +56,27 @@ def makeForm(root, entries):
 		fields.append(ent)
 	return fields
 
-def getUserInputSendFunction(asdf):
+# def userInfo(inputFrame, whichInfo):
+# 	checkEmpty = True
+# 	print(checkEmpty)
+# 	checkEmpty = Functions.Functions.userInputAssign(text)
+# 	# while checkEmpty == True:
+# 	# 	inputs = makeForm(inputFrame, whichInfo)
+# 	# 	top.bind('<Return>', getUserInputSendFunction(inputs))
+# 	# 	print(text)
+# 	# 	checkEmpty = Functions.Functions.userInputAssign(text)
+		
+#################################################FIX HERE
+def getUserInputSendFunction(*args):
 	text = []
-	for i in asdf:
+	for i in inputs:
 		text.append(i.get())
-	checkEmpty = Functions.Functions.userInputAssign(text)
-	while checkEmpty == True:
-		inputs = makeForm(inputFrame, whichInfo)
-		top.bind('<Return>', (lambda event, e=inputs: getUserInputSendFunction(e)))
+	if (Functions.Functions.userInputAssign(text) == False): # and (allFieldError.winfo_exists() == 0): # if input is not empty
+			allFieldError = Label(inputFrame, text="Please Enter all fields", fg='red', anchor='nw').pack(side=TOP)
+			allFieldError.destroy()
+	else:
+		print("idk")
+
 
 
 def loginSecurity():
@@ -70,21 +91,15 @@ def dashBoard():
 def hiringStatus():
 	suite = unittest.TestLoader().loadTestsFromTestCase(HiringStatusPage.HiringStatusPage)
 	unittest.TextTestRunner(verbosity=2).run(suite)
-	# else:
-	# 	pass
 
 def ordernewReport():
-	inputFrame = Frame()
-	inputFrame.pack(side=LEFT)
-
-	global whichInfo
 	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Mewwage to Consultant', 'Message to Assessee', ]
 
-	inputs = makeForm(inputFrame, whichInfo)
-	top.bind('<Return>', (lambda event, e=inputs: getUserInputSendFunction(e)))
+	eachFrame(whichInfo)
 
-	suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
-	unittest.TextTestRunner(verbosity=2).run(suite)
+	print("whatever")
+	# suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport)
+	# unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 
