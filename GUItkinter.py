@@ -12,6 +12,7 @@ import tkinter.messagebox as msg
 import tkinter.simpledialog as dlg
 
 global top
+global allFieldError #Label that shows Error message everytime "ENter" is pressed and there are fields that are blank
 
 def mainTab():
 	main = Frame()
@@ -34,6 +35,9 @@ def eachFrame(whichInfo):
 	# txtConsoleScrollBar.pack(side=RIGHT)
 	
 	#txtConsoleScrollBar.config(command=txtConsole.yview)
+	global allFieldError
+	allFieldError = None
+
 	global inputFrame
 	inputFrame = Frame()
 	inputFrame.pack(side=LEFT)
@@ -41,6 +45,8 @@ def eachFrame(whichInfo):
 	global inputs
 	inputs = makeForm(inputFrame, whichInfo)
 	# inputFrame.bind('<Return>', getUserInputSendFunction)
+
+	global b
 	b = Button (inputFrame, text="Enter", command=getUserInputSendFunction)
 	b.pack(side=RIGHT)
 
@@ -71,13 +77,16 @@ def getUserInputSendFunction(*args):
 	text = []
 	for i in inputs:
 		text.append(i.get())
+
 	if (Functions.Functions.userInputAssign(text) == False): # and (allFieldError.winfo_exists() == 0): # if input is not empty
-			allFieldError = Label(inputFrame, text="Please Enter all fields", fg='red', anchor='nw').pack(side=TOP)
-			allFieldError.destroy()
-	else:
-		print("idk")
-
-
+		print(allFieldError)
+		if allFieldError == None:
+			global allFieldError
+			allFieldError = Label(inputFrame, text="Please Enter all fields", fg='red', anchor='nw')
+			allFieldError.pack(side=TOP)
+		else:
+			allFieldError.pack_forget()
+			allFieldError.pack(side=TOP)
 
 def loginSecurity():
 	suite = unittest.TestLoader().loadTestsFromTestCase(Login_Security.Login_Security)
@@ -93,7 +102,9 @@ def hiringStatus():
 	unittest.TextTestRunner(verbosity=2).run(suite)
 
 def ordernewReport():
+
 	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Mewwage to Consultant', 'Message to Assessee', ]
+
 
 	eachFrame(whichInfo)
 
