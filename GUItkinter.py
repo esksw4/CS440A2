@@ -12,10 +12,11 @@ import tkinter.messagebox as msg
 import tkinter.simpledialog as dlg
 
 global top
-global allFieldError #Label that shows Error message everytime "ENter" is pressed and there are fields that are blank
+global allFieldError, inputFrame 
+global text, whichInfo
 
 def mainTab():
-	main = Frame()
+	main = Frame(top)
 	main.pack(side = LEFT)
 	login_Security = tkinter.Button(main, text='Login_Security', command = loginSecurity).pack()
 	# db = OnButtonClick()
@@ -23,36 +24,32 @@ def mainTab():
 	hiringStatus_Page = tkinter.Button(main, text='Hiring Status', command = hiringStatus).pack()
 	order_newReport = tkinter.Button(main, text='Order New Report', command = ordernewReport).pack()
 
-def eachFrame(whichInfo):
-	# txtConsole = Text(master=top, height=10, width=40, background ='black', fg='white')
-	# #txtConsole.pack(side=LEFT)
+def eachFrame():
+	if inputFrame == None: # if there is no initial inputFrame, initializer the frame
+		global inputFrame
+		inputFrame = Frame(top)
+	else:  # if there IS inital inputFrame, then remove previous one and create new one
+		inputFrame.destroy()
+		inputFrame = Frame(top)
 
-	# txtConsoleScrollBar = Scrollbar(top, command=txtConsole.xview)
-	# txtConsole.config(yscrollcommand=txtConsoleScrollBar.set)
-
-
-	# txtConsole.pack(side=LEFT)
-	# txtConsoleScrollBar.pack(side=RIGHT)
-	
-	#txtConsoleScrollBar.config(command=txtConsole.yview)
-	global allFieldError
+	global allFieldError # To check If Error Message is existing: Label that shows Error message everytime "ENter" is pressed and there are fields that are blank
 	allFieldError = None
 
-	global inputFrame
-	inputFrame = Frame()
 	inputFrame.pack(side=LEFT)
 
 	global inputs
-	inputs = makeForm(inputFrame, whichInfo)
-	# inputFrame.bind('<Return>', getUserInputSendFunction)
+	inputs = makeForm(inputFrame)
+
+	global text
+	text = []
 
 	global b
-	b = Button (inputFrame, text="Enter", command=getUserInputSendFunction)
+	b = Button(inputFrame, text="Enter", command=getUserInputSendFunction)
 	b.pack(side=RIGHT)
 
-def makeForm(root, entries):
+def makeForm(root):
 	fields = []
-	for entry in entries:
+	for entry in whichInfo:
 		row = Frame(root)
 		lab = Label(row, width=20, text=entry, anchor='center')
 		ent = Entry(row)
@@ -62,23 +59,12 @@ def makeForm(root, entries):
 		fields.append(ent)
 	return fields
 
-# def userInfo(inputFrame, whichInfo):
-# 	checkEmpty = True
-# 	print(checkEmpty)
-# 	checkEmpty = Functions.Functions.userInputAssign(text)
-# 	# while checkEmpty == True:
-# 	# 	inputs = makeForm(inputFrame, whichInfo)
-# 	# 	top.bind('<Return>', getUserInputSendFunction(inputs))
-# 	# 	print(text)
-# 	# 	checkEmpty = Functions.Functions.userInputAssign(text)
-		
-#################################################FIX HERE
 def getUserInputSendFunction(*args):
 	text = []
 	for i in inputs:
 		text.append(i.get())
-
-	if (Functions.Functions.userInputAssign(text) == False): # and (allFieldError.winfo_exists() == 0): # if input is not empty
+	print("getUserInputSendFUnction", text)
+	if (Functions.Functions.userInputAssign(whichInfo, text) == False): # and (allFieldError.winfo_exists() == 0): # if input is not empty
 		print(allFieldError)
 		if allFieldError == None:
 			global allFieldError
@@ -87,6 +73,10 @@ def getUserInputSendFunction(*args):
 		else:
 			allFieldError.pack_forget()
 			allFieldError.pack(side=TOP)
+	else:
+		suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+		unittest.TextTestRunner(verbosity=2).run(suite)
+
 
 def loginSecurity():
 	suite = unittest.TestLoader().loadTestsFromTestCase(Login_Security.Login_Security)
@@ -102,15 +92,16 @@ def hiringStatus():
 	unittest.TextTestRunner(verbosity=2).run(suite)
 
 def ordernewReport():
+	global whichInfo
+	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
 
-	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Mewwage to Consultant', 'Message to Assessee', ]
 
 
-	eachFrame(whichInfo)
+	eachFrame()
+	if Functions.Functions.userInputAssign(whichInfo, text) == True:
+		print("whatever")
+		print(text)
 
-	print("whatever")
-	# suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport)
-	# unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 
@@ -121,7 +112,37 @@ top = Tk()
 top.geometry('450x500')
 top.title('Automated QA Testing')
 
+global inputFrame
+inputFrame = None
+
 mainTab()
 
 
 top.mainloop()
+
+
+
+########################SCROLL BAR
+# txtConsole = Text(master=top, height=10, width=40, background ='black', fg='white')
+# #txtConsole.pack(side=LEFT)
+
+# txtConsoleScrollBar = Scrollbar(top, command=txtConsole.xview)
+# txtConsole.config(yscrollcommand=txtConsoleScrollBar.set)
+
+
+# txtConsole.pack(side=LEFT)
+# txtConsoleScrollBar.pack(side=RIGHT)
+
+#txtConsoleScrollBar.config(command=txtConsole.yview)
+
+########################def userInfo(inputFrame, whichInfo):
+# 	checkEmpty = True
+# 	print(checkEmpty)
+# 	checkEmpty = Functions.Functions.userInputAssign(text)
+# 	# while checkEmpty == True:
+# 	# 	inputs = makeForm(inputFrame, whichInfo)
+# 	# 	top.bind('<Return>', getUserInputSendFunction(inputs))
+# 	# 	print(text)
+# 	# 	checkEmpty = Functions.Functions.userInputAssign(text)
+		
+

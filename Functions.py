@@ -15,6 +15,8 @@ import time as time1
 
 class Functions():
 	global timeAfterLogin
+	global result
+	result = {}
 	timeAfterLogin = 7
 
 	def checkForError(checkNumError, testName):
@@ -68,27 +70,37 @@ class Functions():
 
 		return driver
 
-	def userInputAssign(userInfo):
-		global firstName, lastName, emailAddress
-		global poBox, costCenter, coLor, positionNum, favNum, msgConsultant, msgPersonalized
-		global alsoNotify
+	def userInputAssign(key, value):
+		#global result
+		result = dict(zip(key,value))
 
-		firstName = userInfo[0]
-		lastName = userInfo[1]
-		emailAddress = userInfo[2]
-		poBox = userInfo[3]
-		costCenter = userInfo[4]
-		coLor = userInfo[5]
-		positionNum = userInfo[6]
-		favNum = userInfo[7]
-		msgConsultant = userInfo[8]
-		msgPersonalized = userInfo[9]
-
-		alsoNotify = "Young Kim"
-
-		if firstName == "" or lastName == "" or emailAddress == "" or poBox == "" or costCenter == "" or coLor == "" or positionNum == "" or favNum == "" or msgConsultant == "" or msgPersonalized == "":
+		if len([v for v in result.values() if v == '']) > 0:
 			return False
 		return True
+		#print ("dictionary: ",  result)
+
+		#print("empty values: ", len([v for v in result.values() if v == '']))
+		# global firstName, lastName, emailAddres
+		# global poBox, costCenter, coLor, positionNum, favNum, msgConsultant, msgPersonalized
+		# global alsoNotify
+
+		# if userInfo is no
+		# firstName = userInfo[0]
+		# lastName = userInfo[1]
+		# emailAddress = userInfo[2]
+		# poBox = userInfo[3]
+		# costCenter = userInfo[4]
+		# coLor = userInfo[5]
+		# positionNum = userInfo[6]
+		# favNum = userInfo[7]
+		# msgConsultant = userInfo[8]
+		# msgPersonalized = userInfo[9]
+
+		# alsoNotify = "Young Kim"
+
+		# if firstName == "" or lastName == "" or emailAddress == "" or poBox == "" or costCenter == "" or coLor == "" or positionNum == "" or favNum == "" or msgConsultant == "" or msgPersonalized == "":
+		# 	return False
+		# return True
 
 
 

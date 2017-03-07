@@ -35,3 +35,72 @@ JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11
 JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
 1488906675094	geckodriver::marionette	ERROR	Failed to kill browser process
 1488906675185	geckodriver	INFO	Listening on 127.0.0.1:51789
+1488910390550	geckodriver	INFO	Listening on 127.0.0.1:55003
+1488910392579	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.XSilSaAEemk2
+1488910392583	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488910392597	geckodriver::marionette	INFO	Connecting to Marionette on localhost:55009
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488910395406 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488914950645	geckodriver	INFO	Listening on 127.0.0.1:57588
+1488914952674	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.D1ho3vx1YFvg
+1488914952679	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488914952693	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57594
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488914955328 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488914972220	geckodriver	INFO	Listening on 127.0.0.1:57626
+1488914974250	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.anMoAC2EpGJ7
+1488914974254	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488914974260	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57633
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488914976892 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488915089962	geckodriver	INFO	Listening on 127.0.0.1:57713
+1488915092020	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.aO6igGNEB2jF
+1488915092024	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915092037	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57719
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488915094915 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488915154733	geckodriver	INFO	Listening on 127.0.0.1:57761
+1488915156783	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.4FPxQCaRZrHQ
+1488915156787	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915156800	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57767
+1488915189240	geckodriver	INFO	Listening on 127.0.0.1:57780
+1488915191288	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.Vb6EuPcHUc6d
+1488915191292	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915191304	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57786
+1488915229977	geckodriver	INFO	Listening on 127.0.0.1:57815
+1488915232006	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.4LBEaA1E6XNG
+1488915232010	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915232025	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57821
+1488915304159	geckodriver	INFO	Listening on 127.0.0.1:57845
+1488915306202	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.tz7eCA79M7lI
+1488915306207	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915306219	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57851
+1488915338662	geckodriver	INFO	Listening on 127.0.0.1:57880
+1488915340682	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.xO7uhZyntO5D
+1488915340686	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915340697	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57886
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488915343266 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: http://portal.qa.calipercorp.com/assets/application-050acd11ff8f5fc06a977fc6a2f1073e.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1488915357751	geckodriver	INFO	Listening on 127.0.0.1:57918
+1488915359802	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.asA6IyekkJLJ
+1488915359807	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915359814	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57924
+1488915401829	geckodriver	INFO	Listening on 127.0.0.1:57947
+1488915403871	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.kgOf4brqKXC8
+1488915403877	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915403883	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57956
+1488915621968	geckodriver	INFO	Listening on 127.0.0.1:58145
+1488915624017	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.yr3p0NNme2rq
+1488915624023	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915624029	geckodriver::marionette	INFO	Connecting to Marionette on localhost:58151
+1488915644056	geckodriver	INFO	Listening on 127.0.0.1:58161
+1488915646100	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.z5wEBktqckZJ
+1488915646104	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1488915646110	geckodriver::marionette	INFO	Connecting to Marionette on localhost:58168
