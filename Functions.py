@@ -70,13 +70,12 @@ class Functions():
 
 		return driver
 
-	def userInputAssign(key, value):
-		#global result
-		result = dict(zip(key,value))
-
+	def userInputAssign():
 		if len([v for v in result.values() if v == '']) > 0:
 			return False
-		return True
+		else:
+			print("Functions.userInputAssign", result)
+			return True
 		#print ("dictionary: ",  result)
 
 		#print("empty values: ", len([v for v in result.values() if v == '']))

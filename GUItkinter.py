@@ -11,7 +11,7 @@ import tkinter
 import tkinter.messagebox as msg
 import tkinter.simpledialog as dlg
 
-global top
+global top, inputFrame
 global allFieldError, inputFrame 
 global text, whichInfo
 
@@ -63,8 +63,10 @@ def getUserInputSendFunction(*args):
 	text = []
 	for i in inputs:
 		text.append(i.get())
-	print("getUserInputSendFUnction", text)
-	if (Functions.Functions.userInputAssign(whichInfo, text) == False): # and (allFieldError.winfo_exists() == 0): # if input is not empty
+
+	Functions.Functions.result = dict(zip(whichInfo, text))
+	Functions.Functions.result['Also Notify'] = 'Young Kim'
+	while Functions.Functions.userInputAssign() == False:
 		print(allFieldError)
 		if allFieldError == None:
 			global allFieldError
@@ -73,9 +75,9 @@ def getUserInputSendFunction(*args):
 		else:
 			allFieldError.pack_forget()
 			allFieldError.pack(side=TOP)
-	else:
-		suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
-		unittest.TextTestRunner(verbosity=2).run(suite)
+
+	suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+	unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 def loginSecurity():
@@ -95,12 +97,10 @@ def ordernewReport():
 	global whichInfo
 	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
 
-
-
 	eachFrame()
-	if Functions.Functions.userInputAssign(whichInfo, text) == True:
-		print("whatever")
-		print(text)
+	# if Functions.Functions.userInputAssign(whichInfo, text) == True:
+	# 	print("whatever")
+	# 	print(text)
 
 
 
@@ -118,7 +118,7 @@ inputFrame = None
 mainTab()
 
 
-top.mainloop()
+top.mainloop(
 
 
 
