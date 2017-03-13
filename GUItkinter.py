@@ -12,8 +12,9 @@ import tkinter.messagebox as msg
 import tkinter.simpledialog as dlg
 
 global top, inputFrame
-global allFieldError, inputFrame 
+global allFieldError 
 global text, whichInfo
+global enterButton
 
 def mainTab():
 	main = Frame(top)
@@ -35,7 +36,7 @@ def eachFrame():
 	global allFieldError # To check If Error Message is existing: Label that shows Error message everytime "ENter" is pressed and there are fields that are blank
 	allFieldError = None
 
-	inputFrame.pack(side=LEFT)
+	inputFrame.pack(side=LEFT, fill='x')
 
 	global inputs
 	inputs = makeForm(inputFrame)
@@ -43,9 +44,12 @@ def eachFrame():
 	global text
 	text = []
 
-	global b
-	b = Button(inputFrame, text="Enter", command=getUserInputSendFunction)
-	b.pack(side=RIGHT)
+	global enterButton, enterRow
+	enterRow = Frame(inputFrame)
+	enterRow.pack(side=TOP, fill=X)
+	Functions.toDisplayAssesseeFillInError = enterRow
+	enterButton = Button(enterRow, text="Enter", command=getUserInputSendFunction)
+	enterButton.pack(side=RIGHT)
 
 def makeForm(root):
 	fields = []
@@ -64,28 +68,30 @@ def getUserInputSendFunction(*args):
 	for i in inputs:
 		text.append(i.get())
 
-	Functions.Functions.result = dict(zip(whichInfo, text))
-	Functions.Functions.result['Also Notify'] = 'Young Kim'
-	while Functions.Functions.userInputAssign() == False:
-		print(allFieldError)
+	Functions.result = dict(zip(whichInfo, text))
+	Functions.result['Also Notify'] = 'Young Kim'
+	# print("inGUItkinter: ", enterRow)
+	
+	allFieldCheck = Functions.Functions.orderNewReportuserInputAssign()
+	# print("allFieldCheck: " , allFieldCheck)
+	if  allFieldCheck == False:
+		#print("AllFieldError: " ,allFieldError)
 		if allFieldError == None:
 			global allFieldError
-			allFieldError = Label(inputFrame, text="Please Enter all fields", fg='red', anchor='nw')
+			allFieldError = Label(enterRow, text="Please Enter all fields", fg='red', anchor='nw')
 			allFieldError.pack(side=TOP)
 		else:
 			allFieldError.pack_forget()
 			allFieldError.pack(side=TOP)
-
-	suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
-	unittest.TextTestRunner(verbosity=2).run(suite)
-
+	else:
+		suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+		unittest.TextTestRunner(verbosity=2).run(suite)
 
 def loginSecurity():
 	suite = unittest.TestLoader().loadTestsFromTestCase(Login_Security.Login_Security)
 	unittest.TextTestRunner(verbosity=2).run(suite)
 	
 def dashBoard():
-	# if button_id == 2:
 	suite = unittest.TestLoader().loadTestsFromTestCase(DashBoardPage.DashBoardPage)
 	unittest.TextTestRunner(verbosity=2).run(suite)
 
@@ -98,12 +104,6 @@ def ordernewReport():
 	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
 
 	eachFrame()
-	# if Functions.Functions.userInputAssign(whichInfo, text) == True:
-	# 	print("whatever")
-	# 	print(text)
-
-
-
 
 
 top = Tk()
@@ -117,8 +117,7 @@ inputFrame = None
 
 mainTab()
 
-
-top.mainloop(
+top.mainloop()
 
 
 

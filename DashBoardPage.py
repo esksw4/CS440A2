@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-import Functions
+import Functions.Functions
 
 class DashBoardPage(unittest.TestCase):
     def setUp(self):

@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
 import color_console as color
-import Functions
+import Functions.Functions
 
 # def doTest():
 class Login_Security(unittest.TestCase):
