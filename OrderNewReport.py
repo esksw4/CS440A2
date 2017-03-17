@@ -7,7 +7,6 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, re, string, sys
 import time as time1
-import Functions.Functions
 
 
 class OrderNewReport(unittest.TestCase):
@@ -51,7 +50,6 @@ class OrderNewReport(unittest.TestCase):
 
 
   def test_order_Exist_Job_Title(self):
-    import Functions
 
     checkNumError = 0
     testName = "'Order for existing job title'"
@@ -102,7 +100,7 @@ class OrderNewReport(unittest.TestCase):
       alsoNotifyLocation = "//div[@id='deliverToDiv']/div[1]/span[1]/input[1]"
       checkAlsoNotify = OrderNewReport.is_element_present(self, By.XPATH, alsoNotifyLocation)
       if (checkAlsoNotify):
-        driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.result['Also Notify'])
+        driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.Functions.result['Also Notify'])
         driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ARROW_DOWN)
         driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ENTER)
       

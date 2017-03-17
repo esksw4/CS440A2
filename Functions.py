@@ -8,11 +8,11 @@ import re, string, sys
 import colorama
 import time as time1
 
-import Login_Security
+# simport Login_Security
 # import DashBoardPage
 # import HiringStatusPage
-# import OrderNewReport
-# import unittest, time, re
+import OrderNewReport
+import unittest, time, re
 # import webbrowser
 
 import tkinter
@@ -33,70 +33,72 @@ result = {}
 # toDisplayAssesseeFillInError = []
 # result = {}
 
-# class Functions:
-# 	global timeAfterLogin
-# 	timeAfterLogin = 7
+class Functions:
+	global timeAfterLogin
+	timeAfterLogin = 7
 
-# 	def checkForError(checkNumError, testName):
-# 		colorama.init(autoreset=True)
-# 		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
+	def checkForError(checkNumError, testName):
+		colorama.init(autoreset=True)
+		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
 
-# 	def hiringOPL(self, testName):
-# 		print('Testing ', testName)
-# 		driver = self.driver
-# 		driver.get(self.base_url)
-# 		# type | id=user_password | 1234567899s
-# 		driver.find_element_by_id("user_password").clear()
-# 		driver.find_element_by_id("user_password").send_keys("123456789")
-# 		# type | id=user_email | ekim+abc1@calipercorp.com
-# 		driver.find_element_by_id("user_email").clear()
-# 		driver.find_element_by_id("user_email").send_keys("ekim+abc1@calipercorp.com")
-# 		# click | name=commit |
-# 		driver.find_element_by_id("login-btn").click()
-# 		time1.sleep(timeAfterLogin)
+	def hiringOPL(self, testName):
+		print('Testing ', testName)
+		driver = self.driver
+		driver.get(self.base_url)
+		# type | id=user_password | 1234567899s
+		driver.find_element_by_id("user_password").clear()
+		driver.find_element_by_id("user_password").send_keys("123456789")
+		# type | id=user_email | ekim+abc1@calipercorp.com
+		driver.find_element_by_id("user_email").clear()
+		driver.find_element_by_id("user_email").send_keys("ekim+abc1@calipercorp.com")
+		# click | name=commit |
+		driver.find_element_by_id("login-btn").click()
+		time1.sleep(timeAfterLogin)
 
-# 		driver.find_element_by_link_text("Hiring Status").click()
-# 		time1.sleep(2)
+		driver.find_element_by_link_text("Hiring Status").click()
+		time1.sleep(2)
 
-# 		return driver
+		return driver
 
-# 	def hiringButtonCheck(checkNumError, filterStatus):
-# 		#print("checkNumError: " + str(checkNumError) + ",  FilterStatsu: " + filterStatus)
-# 		if checkNumError > 0:
-# 			colorama.init(autoreset=True)
-# 			print(colorama.Fore.RED + filterStatus + str(" button doesn't work"))
+	def hiringButtonCheck(checkNumError, filterStatus):
+		#print("checkNumError: " + str(checkNumError) + ",  FilterStatsu: " + filterStatus)
+		if checkNumError > 0:
+			colorama.init(autoreset=True)
+			print(colorama.Fore.RED + filterStatus + str(" button doesn't work"))
 
-# 	def hiringEmptyCheck(varToCheckIfEmpty,checkNumError):
-# 		if varToCheckIfEmpty == []:
-# 			checkNumError += 1
+	def hiringEmptyCheck(varToCheckIfEmpty,checkNumError):
+		if varToCheckIfEmpty == []:
+			checkNumError += 1
 		
-# 		return checkNumError
+		return checkNumError
 
-# 	def OPL(self, testName):
-# 		print('Testing ', testName)
-# 		driver = self.driver
+	def OPL(self, testName):
+		print('Testing ', testName)
+		driver = self.driver
 		
-# 		driver.get("http://portal.qa.calipercorp.com/users/sign_in")
-# 		driver.find_element_by_id("user_email").clear()
-# 		driver.find_element_by_id("user_email").send_keys("ekim+ABC1@calipercorp.com")
-# 		# type User Password
-# 		driver.find_element_by_id("user_password").clear()
-# 		driver.find_element_by_id("user_password").send_keys("123456789")
-# 		# click Ente
-# 		driver.find_element_by_id("login-btn").click()
-# 		time1.sleep(timeAfterLogin)
+		driver.get("http://portal.qa.calipercorp.com/users/sign_in")
+		driver.find_element_by_id("user_email").clear()
+		driver.find_element_by_id("user_email").send_keys("ekim+ABC1@calipercorp.com")
+		# type User Password
+		driver.find_element_by_id("user_password").clear()
+		driver.find_element_by_id("user_password").send_keys("123456789")
+		# click Ente
+		driver.find_element_by_id("login-btn").click()
+		time1.sleep(timeAfterLogin)
 
-# 		return driver
+		return driver
 
-# 	def orderNewReportuserInputAssign():
-# 		if len([v for v in result.values() if v == '']) > 0:
-# 			return False
-# 		else:
-# 			return True
+	def orderNewReportuserInputAssign():
+		if len([v for v in result.values() if v == '']) > 0:
+			print(result)
+			return False
+		else:
+			print(result)
+			return True
 		
-# 	def orderNewReportuserEntryNotValid():
-# 		enterValidFormat = Label(toDisplayAssesseeFillInError,text="Please Enter inputs in valid format", fg='red', anchor='w')
-# 		enterValidFormat.pack()
+	def orderNewReportuserEntryNotValid():
+		enterValidFormat = Label(toDisplayAssesseeFillInError,text="Please Enter inputs in valid format", fg='red', anchor='w')
+		enterValidFormat.pack()
 
 
 
@@ -105,6 +107,8 @@ result = {}
 class GUItkinter:
 	#global whichInfo
 	def __init__(self, Parent):
+
+		self.allFieldError = None
 		self.myParent = Parent
 		self.myParent.geometry('450x500')
 		self.myParent.title('Automated QA Testing')
@@ -146,14 +150,28 @@ class GUItkinter:
 			fields.append(self.userInputEntry_Entry)
 
 	def getUserInputSendFunction(self):
-		global dictValue
 		dictValue = []
 
 		for f in fields:
 			dictValue.append(f.get())
 
+		global result
 		result = dict(zip(whichInfo, dictValue))
 		result['Also Notify'] = 'Young Kim'
+
+		allFieldCheck = Functions.orderNewReportuserInputAssign()
+
+
+		if allFieldCheck == False:
+			if self.allFieldError == None:
+				self.allFieldError = Label(self.userInputEnterRow_Frame, text="Please Enter all fields", fg='red', anchor='nw')
+				self.allFieldError.pack(side=TOP)
+			else:
+				self.allFieldError.pack_forget()
+				self.allFieldError.pack(side=TOP)
+		else:
+			suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+			unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 	def eachFrame(self):
