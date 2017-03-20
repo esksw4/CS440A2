@@ -47,10 +47,11 @@ class OrderNewReport(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
 
-
-
   def test_order_Exist_Job_Title(self):
+    import Functions
+    import GUI
 
+    #import Functions.Variable as fv 
     checkNumError = 0
     testName = "'Order for existing job title'"
     driver = Functions.Functions.OPL(self, testName)
@@ -72,26 +73,26 @@ class OrderNewReport(unittest.TestCase):
     driver.find_element_by_id('assesseeBtn').click()
     time1.sleep(2)
 
-    driver.find_element_by_id('assesseeFirstName').send_keys(Functions.result['First Name'])
-    driver.find_element_by_id('assesseeLastName').send_keys(Functions.result['Last Name'])
-    driver.find_element_by_id('assesseeEmail').send_keys(Functions.result['Email Address'])
-    driver.find_element_by_xpath("//div[@class='row assesseePoNumberRow']/div[2]/input[@id='assesseePoNumber']").send_keys(Functions.result['PO Box'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCostCenterRow']/div[2]/input[@id='assesseeCostCenter']").send_keys(Functions.result['Cost Center'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow1']/div[2]/textarea[@id='assesseeCustomField1']").send_keys(Functions.result['Color'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow2']/div[2]/textarea[@id='assesseeCustomField2']").send_keys(Functions.result['Position Number'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow3']/div[2]/textarea[@id='assesseeCustomField3']").send_keys(Functions.result['Favorite Number'])
-    driver.find_element_by_xpath("//div[@class='row assesseeSpecialInstructionsRow']/div[2]/textarea[@id='assesseeSpecialInstructions']").send_keys(Functions.result['Message to Consultant'])
-    driver.find_element_by_xpath("//div[@class='row assesseeEmailMessageRow']/div[2]/textarea[@id='assesseeEmailMessage']").send_keys(Functions.result['Message to Assessee'])
+    driver.find_element_by_id('assesseeFirstName').send_keys(Functions.orderNewReportResult['First Name'])
+    driver.find_element_by_id('assesseeLastName').send_keys(Functions.orderNewReportResult['Last Name'])
+    driver.find_element_by_id('assesseeEmail').send_keys(Functions.orderNewReportResult['Email Address'])
+    driver.find_element_by_xpath("//div[@class='row assesseePoNumberRow']/div[2]/input[@id='assesseePoNumber']").send_keys(Functions.orderNewReportResult['PO Box'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCostCenterRow']/div[2]/input[@id='assesseeCostCenter']").send_keys(Functions.orderNewReportResult['Cost Center'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow1']/div[2]/textarea[@id='assesseeCustomField1']").send_keys(Functions.orderNewReportResult['Color'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow2']/div[2]/textarea[@id='assesseeCustomField2']").send_keys(Functions.orderNewReportResult['Position Number'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow3']/div[2]/textarea[@id='assesseeCustomField3']").send_keys(Functions.orderNewReportResult['Favorite Number'])
+    driver.find_element_by_xpath("//div[@class='row assesseeSpecialInstructionsRow']/div[2]/textarea[@id='assesseeSpecialInstructions']").send_keys(Functions.orderNewReportResult['Message to Consultant'])
+    driver.find_element_by_xpath("//div[@class='row assesseeEmailMessageRow']/div[2]/textarea[@id='assesseeEmailMessage']").send_keys(Functions.orderNewReportResult['Message to Assessee'])
     # click save
     driver.find_element_by_id('assesseeSaveButton').click()
     time1.sleep(10)
 
     #check if Error occurs
-    checkErrorMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
+    checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
     # print("ErrorMessage Exists? ", checkErrorMessage)
     # according to erro occurs, display error message in the tkinter file.
-    if (checkErrorMessage == True): #if alert exists,
-      Functions.Functions.orderNewReportuserEntryNotValid()
+    if (checkErrorMsg == True): #if alert exists,
+      GUI.GUIFunctions.orderNewReportErrorMessageCheck(False, "Please Enter inputs in valid format")
       # print(GUItkinter.py)
       # from GUItkinter import inputFrame
       # GUItkinter.getUserInputSendFunction
@@ -100,7 +101,7 @@ class OrderNewReport(unittest.TestCase):
       alsoNotifyLocation = "//div[@id='deliverToDiv']/div[1]/span[1]/input[1]"
       checkAlsoNotify = OrderNewReport.is_element_present(self, By.XPATH, alsoNotifyLocation)
       if (checkAlsoNotify):
-        driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.Functions.result['Also Notify'])
+        driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.orderNewReportResult['Also Notify'])
         driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ARROW_DOWN)
         driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ENTER)
       
@@ -125,4 +126,4 @@ class OrderNewReport(unittest.TestCase):
     #time1.sleep(5)
 
 if __name__ == "__main__":
-  unittest.main(warnings ='ignore')
+  unittest.main(failfast=True)
