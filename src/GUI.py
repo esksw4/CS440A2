@@ -55,17 +55,21 @@ class GUIFunctions:
 				Functions.GUIallFieldError.pack(side=TOP)
 			else:
 				Functions.GUIallFieldError.pack_forget()
+				Functions.GUIallFieldError.config(text=labelText)
 				Functions.GUIallFieldError.pack(side=TOP)
 		else:
-			suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
-			unittest.TextTestRunner(verbosity=2).run(suite) 
+			pass
+			# suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+			# unittest.TextTestRunner(verbosity=2).run(suite)
+
+
 
 class GUItkinter:
 	#global whichInfo
 	def __init__(self, Parent):
 		self.allFieldError = None
 		self.myParent = Parent
-		self.myParent.geometry('450x500')
+		self.myParent.geometry('700x500')
 		self.myParent.title('Automated QA Testing')
 
 		self.chooseTest_Frame = Frame(Parent)
@@ -76,9 +80,13 @@ class GUItkinter:
 		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text='Hiring Status', command = self.hiringStatus).pack()
 		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text='Order New Report', command = self.ordernewReport).pack()
 
-		self.userInput_Frame = tkinter.Frame(Parent)
-		self.userInput_Frame.pack(side=LEFT, fill=X)
-		self.userInput_Frame.existElement = False
+		Functions.GUIuserInputFrame = tkinter.Frame(Parent)
+		Functions.GUIuserInputFrame.pack(side=LEFT, fill=X)
+		Functions.GUIuserInputFrame.existElement = False
+
+		Functions.GUIconsoleFrame = tkinter.Frame(Parent)
+		Functions.GUIconsoleFrame.pack(side=LEFT, fill=BOTH)
+		Functions.GUIconsoleFrame.existElement = False
 
 	def loginSecurity(self):
 		suite = unittest.TestLoader().loadTestsFromTestCase(Login_Security.Login_Security)
@@ -92,19 +100,6 @@ class GUItkinter:
 		suite = unittest.TestLoader().loadTestsFromTestCase(HiringStatusPage.HiringStatusPage)
 		unittest.TextTestRunner(verbosity=2).run(suite)
 
-	def makeForm(self):
-		global fields
-		fields = []
-
-		for entry in whichInfo:	
-			self.userInputRow_Frame = tkinter.Frame(self.userInput_Frame)
-			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=20, text=entry, anchor='center')
-			self.userInputEntry_Entry = tkinter.Entry(self.userInputRow_Frame)
-			self.userInputRow_Frame.pack(side=TOP, fill=X)
-			self.userInputLabel_Label.pack(side=LEFT)
-			self.userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
-			fields.append(self.userInputEntry_Entry)
-
 	def getUserInputSendFunction(self):
 		dictValue = []
 
@@ -117,30 +112,53 @@ class GUItkinter:
 		allFieldCheck = GUIFunctions.orderNewReportuserInputFieldCheck()
 		GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck, "Please Enter all fields")
 
-	def eachFrame(self):
-		if (self.userInput_Frame.existElement == True):
-			self.userInput_Frame.destroy()
-			self.userInput_Frame = tkinter.Frame(self.Parent)
-			self.userInput_Frame.pack(side=LEFT, fill=X)
+	def makeUserInputForm(self):
+		global fields
+		fields = []
 
+		for entry in whichInfo:	
+			self.userInputRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
+			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=20, text=entry, anchor='center')
+			self.userInputEntry_Entry = tkinter.Entry(self.userInputRow_Frame)
+			self.userInputRow_Frame.pack(side=TOP, fill=X)
+			self.userInputLabel_Label.pack(side=LEFT)
+			self.userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+			fields.append(self.userInputEntry_Entry)
 
-		Functions.GUIuserInputErrorRow_Frame = tkinter.Frame(self.userInput_Frame)
+	def userInputFrame(self):
+		if (Functions.GUIuserInputFrame.existElement == True):
+			Functions.GUIuserInputFrame.destroy()
+			Functions.GUIuserInputFrame = tkinter.Frame(self.Parent)
+			Functions.GUIuserInputFrame.pack(side=LEFT, fill=X)
+
+		Functions.GUIuserInputErrorRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
 		Functions.GUIuserInputErrorRow_Frame.pack(side=TOP, fil=X)
-		self.makeForm()
-		self.userInputEnterRow_Frame = tkinter.Frame(self.userInput_Frame)
+		self.makeUserInputForm()
+		self.userInputEnterRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
 		self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
 		self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
 		self.userInputEnterButton_Button.pack(side=RIGHT)
+
+	def conSoleFrame(self):
+		if (Functions.GUIconsoleFrame.existElement == True):
+			Functions.GUIconsoleFrame.destroy()
+			Functions.GUIconsoleFrame = tkinter.Frame(self.Parent)
+			Functions.GUIconsoleFrame.pack(side=LEFT, fill=X)
+
+		self.console_Entry = tkinter.Entry(Functions.GUIconsoleFrame)
+		self.console_Entry.pack(expand=True, fill=BOTH)
 
 	def ordernewReport(self):
 		global whichInfo
 
 		whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
-		self.eachFrame()
+		self.userInputFrame()
+		self.conSoleFrame()
+
 
 if Functions.GUImainFrame == None:
 	Functions.GUImainFrame = Tk()
-	gui = GUItkinter(Functions.GUImainFrame)
+	GUIdisplay = GUItkinter(Functions.GUImainFrame)
 	Functions.GUImainFrame.mainloop()
 
 
@@ -161,7 +179,7 @@ if Functions.GUImainFrame == None:
 # 	inputFrame.pack(side=LEFT, fill='x')
 
 # 	global inputs
-# 	inputs = makeForm(inputFrame)
+# 	inputs = makeUserInputForm(inputFrame)
 
 # 	global text
 # 	text = []
@@ -173,7 +191,7 @@ if Functions.GUImainFrame == None:
 # 	enterButton = Button(enterRow, text="Enter", command=getUserInputSendFunction)
 # 	enterButton.pack(side=RIGHT)
 
-# def makeForm(root):
+# def makeUserInputForm(root):
 # 	fields = []
 # 	for entry in whichInfo:
 # 		row = Frame(root)
@@ -227,4 +245,10 @@ if Functions.GUImainFrame == None:
 # 	eachFrame()
 
 
+################ How to embed a terminal in a Tkinter application?
+# http://stackoverflow.com/questions/7253448/how-to-embed-a-terminal-in-a-tkinter-application
+
+
+################ Console in the TkinterFrame
+# http://tkinter.unpythonic.net/wiki/CmdTk
 
