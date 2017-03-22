@@ -237,9 +237,3 @@ if __name__ == "__main__":
 
 # if __name__ == "__main__":
 #       unittest.main(warnings ='ignore')
-#########################WAIT UNTIL THE DRIVER FIND THE ELEMENT
-# try:
-#     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "C29_W35_V37_V46_btresporg_struct.partner_no-btn")))
-#     driver.find_element_by_id("C29_W35_V37_V46_btresporg_struct.partner_no-btn").click()
-# except TimeoutException:
-#     print("C29_W35_V37_V46_btresporg_struct.partner_no-btn not found")
