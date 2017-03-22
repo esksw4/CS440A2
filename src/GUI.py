@@ -14,6 +14,7 @@ import time as time1
 import OrderNewReport
 import Functions
 import unittest, time, re
+import Tab
 # import webbrowser
 
 import tkinter
@@ -32,7 +33,6 @@ import tkinter.simpledialog as dlg
 # toDisplayAssesseeFillInError = []
 # result = {}
 
-
 class GUIFunctions:
 	def orderNewReportuserInputFieldCheck():
 		if len([v for v in Functions.orderNewReportResult.values() if v == '']) > 0:
@@ -44,25 +44,24 @@ class GUIFunctions:
 		
 	def orderNewReportuserEntryNotValid():
 		# unittest.TextTestRunner(verbosity=2).stop(suite)
-		enterValidFormat = Label(Functions.GUIuserInputErrorRow_Frame, text="Please Enter inputs in valid format", fg='red', anchor='w')
+		enterValidFormat = Label(Functions.GUIdisplay.GUIuserInputErrorRow_Frame, text="Please Enter inputs in valid format", fg='red', anchor='w')
 		enterValidFormat.pack()
-
 
 	def orderNewReportErrorMessageCheck(allFieldcheck, labelText):
 		if allFieldcheck == False:
 			if Functions.GUIallFieldError == None:
-				Functions.GUIallFieldError = Label(Functions.GUIuserInputErrorRow_Frame, text=labelText, fg='red', anchor='nw')
+				Functions.GUIallFieldError = Label(Functions.GUIdisplay.GUIuserInputErrorRow_Frame, text=labelText, fg='red', anchor='nw')
 				Functions.GUIallFieldError.pack(side=TOP)
 			else:
 				Functions.GUIallFieldError.pack_forget()
 				Functions.GUIallFieldError.config(text=labelText)
 				Functions.GUIallFieldError.pack(side=TOP)
 		else:
-			pass
-			# suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
-			# unittest.TextTestRunner(verbosity=2).run(suite)
+			suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
+			unittest.TextTestRunner(verbosity=2).run(suite)
 
-
+	def outputDisplayConsole(text):
+		Functions.GUIdisplay.tex.insert(END, text)
 
 class GUItkinter:
 	#global whichInfo
@@ -72,21 +71,20 @@ class GUItkinter:
 		self.myParent.geometry('700x500')
 		self.myParent.title('Automated QA Testing')
 
-		self.chooseTest_Frame = Frame(Parent)
+		self.chooseTest_Frame = Frame(self.myParent)
 		self.chooseTest_Frame.pack(side=LEFT)
-
 		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text='Login_Security', command = self.loginSecurity).pack()
 		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text='Dashboard', command = self.dashBoard).pack()
 		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text='Hiring Status', command = self.hiringStatus).pack()
 		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text='Order New Report', command = self.ordernewReport).pack()
 
-		Functions.GUIuserInputFrame = tkinter.Frame(Parent)
-		Functions.GUIuserInputFrame.pack(side=LEFT, fill=X)
-		Functions.GUIuserInputFrame.existElement = False
+		self.GUIuserInputFrame = tkinter.Frame(self.myParent)
+		self.GUIuserInputFrame.pack(side=LEFT, fill=X, padx=5)
+		self.GUIuserInputFrame.existElement = False
 
-		Functions.GUIconsoleFrame = tkinter.Frame(Parent)
-		Functions.GUIconsoleFrame.pack(side=LEFT, fill=BOTH)
-		Functions.GUIconsoleFrame.existElement = False
+		self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=50)
+		self.GUIconsoleFrame.pack(side=LEFT, fill=BOTH, padx=10, pady=5)
+		self.GUIconsoleFrame.existElement = False
 
 	def loginSecurity(self):
 		suite = unittest.TestLoader().loadTestsFromTestCase(Login_Security.Login_Security)
@@ -117,7 +115,7 @@ class GUItkinter:
 		fields = []
 
 		for entry in whichInfo:	
-			self.userInputRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
+			self.userInputRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
 			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=20, text=entry, anchor='center')
 			self.userInputEntry_Entry = tkinter.Entry(self.userInputRow_Frame)
 			self.userInputRow_Frame.pack(side=TOP, fill=X)
@@ -126,27 +124,33 @@ class GUItkinter:
 			fields.append(self.userInputEntry_Entry)
 
 	def userInputFrame(self):
-		if (Functions.GUIuserInputFrame.existElement == True):
-			Functions.GUIuserInputFrame.destroy()
-			Functions.GUIuserInputFrame = tkinter.Frame(self.Parent)
-			Functions.GUIuserInputFrame.pack(side=LEFT, fill=X)
+		if (self.GUIuserInputFrame.existElement == True):
+			self.GUIuserInputFrame.destroy()
+			self.GUIuserInputFrame = tkinter.Frame(self.myParent)
+			self.GUIuserInputFrame.pack(side=LEFT, fill=X)
 
-		Functions.GUIuserInputErrorRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
-		Functions.GUIuserInputErrorRow_Frame.pack(side=TOP, fil=X)
+		Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
+		Functions.GUIdisplay.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
 		self.makeUserInputForm()
-		self.userInputEnterRow_Frame = tkinter.Frame(Functions.GUIuserInputFrame)
+		self.userInputEnterRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
 		self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
 		self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
 		self.userInputEnterButton_Button.pack(side=RIGHT)
 
 	def conSoleFrame(self):
-		if (Functions.GUIconsoleFrame.existElement == True):
-			Functions.GUIconsoleFrame.destroy()
-			Functions.GUIconsoleFrame = tkinter.Frame(self.Parent)
-			Functions.GUIconsoleFrame.pack(side=LEFT, fill=X)
+		if (self.GUIconsoleFrame.existElement == True):
+			self.GUIconsoleFrame.forget()
+			self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=35)
+			self.GUIconsoleFrame.grid(row=0, column=1, sticky='sw') #side=LEFT, fill=BOTH
 
-		self.console_Entry = tkinter.Entry(Functions.GUIconsoleFrame)
-		self.console_Entry.pack(expand=True, fill=BOTH)
+		self.bar_TabBar = Tab.TabBar(self.GUIconsoleFrame, "Evaluation")
+		self.tab1_Tab = Tab.Tab(self.GUIconsoleFrame, "Console")
+		self.tab2_Tab = Tab.Tab(self.GUIconsoleFrame, "Evaluation")
+		self.bar_TabBar.add(self.tab1_Tab)
+		self.bar_TabBar.add(self.tab2_Tab)
+		self.bar_TabBar.show()
+		self.tex = Text(master=self.GUIconsoleFrame, width=35)
+		self.tex.grid(sticky='sw')
 
 	def ordernewReport(self):
 		global whichInfo
@@ -158,7 +162,7 @@ class GUItkinter:
 
 if Functions.GUImainFrame == None:
 	Functions.GUImainFrame = Tk()
-	GUIdisplay = GUItkinter(Functions.GUImainFrame)
+	Functions.GUIdisplay = GUItkinter(Functions.GUImainFrame)
 	Functions.GUImainFrame.mainloop()
 
 
@@ -252,3 +256,5 @@ if Functions.GUImainFrame == None:
 ################ Console in the TkinterFrame
 # http://tkinter.unpythonic.net/wiki/CmdTk
 
+################ combination of Grid and Pack
+# http://stackoverflow.com/questions/11257771/combining-grid-pack-tkinter

@@ -55,7 +55,7 @@ class OrderNewReport(unittest.TestCase):
     checkNumError = 0
     testName = "'Order for existing job title'"
     driver = Functions.Functions.OPL(self, testName)
-    driver.get(self.base_url + "/")
+    #driver.get(self.base_url + "/")
 
     # print("Print result with key called first Name: ". Functions.result.keys() == "firstName")
 
@@ -93,8 +93,9 @@ class OrderNewReport(unittest.TestCase):
     # print("ErrorMessage Exists? ", checkErrorMessage)
     # according to erro occurs, display error message in the tkinter file.
     if (checkErrorMsg == True):
-    	Functions.Functions.orderNewStopTest()
-    	GUI.GUIFunctions.orderNewReportErrorMessageCheck(False, "Please Enter inputs in valid format")
+      driver.quit()
+      # Functions.Functions.orderNewStopTest()
+      GUI.GUIFunctions.orderNewReportErrorMessageCheck(False, "Please Enter inputs in valid format")
       # print(GUItkinter.py)
       # from GUItkinter import inputFrame
       # GUItkinter.getUserInputSendFunction
@@ -118,6 +119,9 @@ class OrderNewReport(unittest.TestCase):
     	driver.find_element_by_xpath("//div[@id='sendToMeDiv']/input[@id='sendToMe']").click()
     	#Click "Place Order"
     except:
+      driver.quit()
+      GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox")
+
     	# If those are not clickable, then show Error on the consoleFrame saying "Please manually test the proctored"
     	# GUI: 62-63 commented -> not coming to ORderNewReports
 
@@ -144,4 +148,4 @@ class OrderNewReport(unittest.TestCase):
     #time1.sleep(5)
 
 if __name__ == "__main__":
-  unittest.main(failfast=True)
+  unittest.main(warnings='ignore')

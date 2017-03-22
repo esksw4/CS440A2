@@ -2,6 +2,9 @@ import re, string, sys
 import colorama
 import time as time1
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
 class Functions:
 	global timeAfterLogin
 	timeAfterLogin = 7
@@ -9,20 +12,23 @@ class Functions:
 	global orderNewReportResult
 	orderNewReportResult = {}
 
-	global orderNewReportCheckErrorMsg
-	orderNewReportCheckErrorMsg = None
+	# global orderNewReportCheckErrorMsg
+	# orderNewReportCheckErrorMsg = None
 
-	global GUIuserInputErrorRow_Frame
-	GUIuserInputErrorRow_Frame = None
+	# global GUIuserInputErrorRow_Frame
+	# GUIuserInputErrorRow_Frame = None
 
 	global GUImainFrame
 	GUImainFrame = None
 
-	global GUIuserInputFrame
-	GUImainFrame = None
+	global GUIdisplay
+	GUIdisplay = None
 
-	global GUIconsoleFrame
-	GUIconsoleFrame = None
+	# global GUIuserInputFrame
+	# GUIuserInputFrame = None
+
+	# global GUIconsoleFrame
+	# GUIconsoleFrame = None
 
 	global GUIallFieldError
 	GUIallFieldError = None
@@ -67,21 +73,27 @@ class Functions:
 	def OPL(self, testName):
 		print('Testing ', testName)
 		driver = self.driver
+
+		## can use it after zoom out
+		# driver.set_window_size(600,400)
+
+		## NEED TO ZOOM OUT!
+		# html = driver.find_element(By.TAG_NAME,'html');
+		# html.send_keys(Keys.Chord(Keys.CONTROL, Keys.ADD))
 		
-		driver.get("http://portal.qa.calipercorp.com/users/sign_in")
+		driver.get("https://portal.calipercorp.com/users/sign_in")
+
 		driver.find_element_by_id("user_email").clear()
 		driver.find_element_by_id("user_email").send_keys("ekim+ABC1@calipercorp.com")
 		# type User Password
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys("12345678")
+		driver.find_element_by_id("user_password").send_keys("123456789")
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
 
 		return driver
 
-	def orderNewStopTest():
-		return None
 
 
 #########################WAIT UNTIL THE DRIVER FIND THE ELEMENT
