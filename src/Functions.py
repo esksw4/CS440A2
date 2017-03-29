@@ -33,8 +33,6 @@ class Functions:
 	global GUIallFieldError
 	GUIallFieldError = None
 
-
-
 	def checkForError(checkNumError, testName):
 		colorama.init(autoreset=True)
 		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")

@@ -47,7 +47,7 @@ class OrderNewReport(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
 
-  def test_order_Exist_Job_Title(self):
+  def test_order_Exist_Job_Title(self):    
     import Functions
     import GUI
 
@@ -119,23 +119,20 @@ class OrderNewReport(unittest.TestCase):
     	driver.find_element_by_xpath("//div[@id='sendToMeDiv']/input[@id='sendToMe']").click()
     	#Click "Place Order"
     except:
-      driver.quit()
       GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox")
+      driver.find_element_by_id("newOrderBtn").click()
+
+    checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
+    print(checkErrorMsg)
+    if checkErrorMsg == True:
+      errorMsg = driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text
+      print(errorMsg)
+
 
     	# If those are not clickable, then show Error on the consoleFrame saying "Please manually test the proctored"
     	# GUI: 62-63 commented -> not coming to ORderNewReports
 
-    driver.find_element_by_id("newOrderBtn").click()
-    #check if Error occurs
-    checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
-    errorMsg = driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text
-    print(errorMsg)
-
-
-
-
-
-    # # Check if assessee exists
+    # Check if assessee exists
     # errorAlertLocation = "//div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']"
     # checkExistingAssessee = OrderNewReport.is_element_present(self, By.XPATH, errorAlertLocation)
 

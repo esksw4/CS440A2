@@ -61,7 +61,13 @@ class GUIFunctions:
 			unittest.TextTestRunner(verbosity=2).run(suite)
 
 	def outputDisplayConsole(text):
-		Functions.GUIdisplay.tex.insert(END, text)
+		print(Functions.GUIdisplay.tex.get("0.0","2.0"))
+		if Functions.GUIdisplay.tex.get("0.0") is not '':
+			Functions.GUIdisplay.tex.delete("0.0", "2.0")
+
+		Functions.GUIdisplay.tex.insert(INSERT, text)
+		Functions.GUIdisplay.tex.tag_add("insert", "0.0", "2.0")
+		Functions.GUIdisplay.tex.tag_config("insert", background="white", foreground ="red")
 
 class GUItkinter:
 	#global whichInfo
@@ -140,7 +146,7 @@ class GUItkinter:
 	def conSoleFrame(self):
 		if (self.GUIconsoleFrame.existElement == True):
 			self.GUIconsoleFrame.forget()
-			self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=35)
+			self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=40)
 			self.GUIconsoleFrame.grid(row=0, column=1, sticky='sw') #side=LEFT, fill=BOTH
 
 		self.bar_TabBar = Tab.TabBar(self.GUIconsoleFrame, "Evaluation")
@@ -149,7 +155,7 @@ class GUItkinter:
 		self.bar_TabBar.add(self.tab1_Tab)
 		self.bar_TabBar.add(self.tab2_Tab)
 		self.bar_TabBar.show()
-		self.tex = Text(master=self.GUIconsoleFrame, width=35)
+		self.tex = Text(master=self.GUIconsoleFrame, width=40)
 		self.tex.grid(sticky='sw')
 
 	def ordernewReport(self):
