@@ -62,7 +62,7 @@ class GUIFunctions:
 
 	def outputDisplayConsole(text):
 		print(Functions.GUIdisplay.tex.get("0.0","2.0"))
-		if Functions.GUIdisplay.tex.get("0.0") is not '':
+		if Functions.GUIdisplay.tex.get("0.0","2.0") is not '':
 			Functions.GUIdisplay.tex.delete("0.0", "2.0")
 
 		Functions.GUIdisplay.tex.insert(INSERT, text)
@@ -155,7 +155,7 @@ class GUItkinter:
 		self.bar_TabBar.add(self.tab1_Tab)
 		self.bar_TabBar.add(self.tab2_Tab)
 		self.bar_TabBar.show()
-		self.tex = Text(master=self.GUIconsoleFrame, width=40)
+		self.tex = Text(master=self.GUIconsoleFrame, width=40, wrap=WORD)
 		self.tex.grid(sticky='sw')
 
 	def ordernewReport(self):

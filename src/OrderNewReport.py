@@ -106,11 +106,11 @@ class OrderNewReport(unittest.TestCase):
     print("checkAlsoNotify: ", checkAlsoNotify)
     if checkAlsoNotify == True:
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.orderNewReportResult['Also Notify'])
-    	time1.sleep(4)
+    	time1.sleep(2)
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ARROW_DOWN)
-    	time1.sleep(4)
+    	time1.sleep(2)
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ENTER)
-    	time1.sleep(4)
+    	time1.sleep(2)
 
 
     # Click Prodctored Assessment
@@ -121,16 +121,60 @@ class OrderNewReport(unittest.TestCase):
     except:
       GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox")
       driver.find_element_by_id("newOrderBtn").click()
+      time1.sleep(3)
 
+    ############################CHECK FORMAT HERE. Try-Except and If-Else
     checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
-    print(checkErrorMsg)
     if checkErrorMsg == True:
-      errorMsg = driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text
-      print(errorMsg)
+      driver.quit()
+      GUI.GUIFunctions.outputDisplayConsole("Please choose different email for assessee. That email address already exists in the system.")
+
+    else:
+      #click OK on order confirmation dlg box
+      driver.find_element_by_id("okButton").click()
+      time1.sleep(3)
+      if 'reports' in driver.current_url:
+        fullName = Functions.orderNewReportResult['First Name'] + " " + Functions.orderNewReportResult['Last Name']
+        print(fullName)
+        checkfullName = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]/div[@class='main-text assessee-name']").text
+        try: 
+          if fullName == checkfullName:
+            # click the dropdown
+            driver.find_element_by_xpath("//tbody/tr[1]/td[1]/div[1]/a[1]").click()
+            time1.sleep(1)
+            # test "Copy assessment URL"
+            assessmentURL =  driver.find_element_by_xpath("//tbody/tr[1]/td[1]/div[1]/ul[1]/li[5]").get_attribute('data-clipboard-text')
+            # click "Copy assessment URL"
+            driver.find_element_by_xpath("//tbody/tr[1]/td[1]/div[1]/ul[1]/li[5]").click()
+            tab_before = driver.window_handles[0]
+            driver.find_element_by_css_selector("body").send_keys(Keys.CONTROL +"t")
+            tab_after = driver.window_handles[1]
+            driver.switch_to.window(tab_after)
+            driver.get(assessmentURL)
+            time1.sleep(3)
+            registerCheck = driver.find_element_by_xpath("//div[@class='container container-min-height']/div[2]/legend[1]/h4[1]").text
+            if "Register" == registerCheck:
+              print(registerCheck)
+              driver.find_element_by_css_selector("body").send_keys(Keys.CONTROL + Keys.F4)
+              driver.switch_to.window(tab_before)
+              # Cancel It
+              driver.find_element_by_xpath("//tbody/tr[1]/td[1]/div[1]/ul[1]/li[3]").click()
+              driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[1]").click()
+              try:
+                checkConfirmationMessage = driver.find_element(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable").text
+                if fullName in checkConfirmationMessage:
+                  print("Does it come here")
+                  driver.close()
+                  GUI.GUIFunctions.outputDisplayConsole("CHECKED!")
+              except:
 
 
-    	# If those are not clickable, then show Error on the consoleFrame saying "Please manually test the proctored"
-    	# GUI: 62-63 commented -> not coming to ORderNewReports
+
+
+
+
+
+
 
     # Check if assessee exists
     # errorAlertLocation = "//div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']"
