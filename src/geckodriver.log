@@ -1994,3 +1994,18 @@ JavaScript warning: https://portal.calipercorp.com/assets/application-0f09ba3dac
 1491247500573 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
 1491247501749 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
 1491247510347 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1491247666121	geckodriver	INFO	Listening on 127.0.0.1:62642
+1491247668141	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.h0Uiy4eCduvk
+1491247668145	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491247668151	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62648
+JavaScript warning: https://portal.calipercorp.com/assets/application-0f09ba3dac5b2373538eeda0ce7e6051.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491247671586 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://portal.calipercorp.com/assets/application-0f09ba3dac5b2373538eeda0ce7e6051.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: https://portal.calipercorp.com/assets/application-0f09ba3dac5b2373538eeda0ce7e6051.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+Performance warning: Async animation disabled because frame size (642, 1142) is bigger than the viewport (1607, 871) or the visual rectangle (642, 1142) is larger than the max allowable value (17895698) [div]
+1491247685619 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeSaveButton, tagName: BUTTON, className: btn btn-primary
+1491247757355 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: okButton, tagName: BUTTON, className: btn btn-primary
+JavaScript warning: https://portal.calipercorp.com/assets/application-0f09ba3dac5b2373538eeda0ce7e6051.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491247763684 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
+1491247764877 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1491247773066 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
