@@ -68,6 +68,71 @@ class Functions:
 		
 		return checkNumError
 
+	def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
+	    checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
+	    checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+	    checkdateinRange = checkdateinRange.date()
+
+	    if listAssessee == 1 and checkdateinRange >= fromthis and checkdateinRange <= tothis:
+	      pass
+
+	    elif listAssessee == 1 and (checkdateinRange <= fromthis or checkdateinRange >= tothis):
+	      checkNumError += 1
+
+	    else:
+	      for i in range(1, listAssessee+1):
+	        time1.sleep(1)
+	        #print("i: " + str(i))
+	        checkdateinRange = driver.find_element_by_xpath("//tbody/tr[%d]/td[3]//div[@class='second-line']" % (i)).text
+	        checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+	        checkdateinRange = checkdateinRange.date()
+
+	        if checkdateinRange < fromthis or checkdateinRange > tothis :
+	          checkNumError += 2
+	      return checkNumError
+
+	def checkStatusList(driver, checkNumError, listAssessee, filterStatus):
+	    whatStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]//div[@class='matchText status']").text
+
+	    if listAssessee == 1 and (whatStatus is filterStatus):
+	      return checkNumError
+
+	    elif listAssessee == 1 and (whatStatus is not filterStatus):
+	      checkNumError += 1
+	      return checkNumError
+
+	    else:
+	      for i in range(1, listAssessee+1):
+	        whatStatus = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]//div[@class='matchText status']" % (i)).text
+	        if whatStatus != filterStatus:
+	          checkNumError += 1
+	          return checkNumError
+	      return checkNumError
+
+	def findWhichRow(driver, byWhat, findValue, listAssessee):
+		if byWhat == "Name": 
+			row = 1
+			check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+			while check != findValue and  row < listAssessee:
+				row += 1
+				check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+				if row == listAssessee and check != findValue:
+					row = 9999
+
+			return row 
+
+
+
+
+
+
+	def howmanyAssesseeListSystem(tableText):
+	    tableText = re.split('\s+', tableText)
+	    global systemAssessee, listAssessee
+	    systemAssessee = int(tableText[5])
+	    listAssessee = int(tableText[3]) - int(tableText[1]) + 1
+	    return systemAssessee, listAssessee
+
 	def OPL(self, testName):
 		print('Testing ', testName)
 		driver = self.driver

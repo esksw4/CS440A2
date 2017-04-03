@@ -49,46 +49,46 @@ class HiringStatusPage(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
     
-  def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
-    checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
-    checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
-    checkdateinRange = checkdateinRange.date()
+  # def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
+  #   checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
+  #   checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+  #   checkdateinRange = checkdateinRange.date()
 
-    if listAssessee == 1 and checkdateinRange >= fromthis and checkdateinRange <= tothis:
-      pass
+  #   if listAssessee == 1 and checkdateinRange >= fromthis and checkdateinRange <= tothis:
+  #     pass
 
-    elif listAssessee == 1 and (checkdateinRange <= fromthis or checkdateinRange >= tothis):
-      checkNumError += 1
+  #   elif listAssessee == 1 and (checkdateinRange <= fromthis or checkdateinRange >= tothis):
+  #     checkNumError += 1
 
-    else:
-      for i in range(1, listAssessee+1):
-        time1.sleep(1)
-        #print("i: " + str(i))
-        checkdateinRange = driver.find_element_by_xpath("//tbody/tr[%d]/td[3]//div[@class='second-line']" % (i)).text
-        checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
-        checkdateinRange = checkdateinRange.date()
+  #   else:
+  #     for i in range(1, listAssessee+1):
+  #       time1.sleep(1)
+  #       #print("i: " + str(i))
+  #       checkdateinRange = driver.find_element_by_xpath("//tbody/tr[%d]/td[3]//div[@class='second-line']" % (i)).text
+  #       checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+  #       checkdateinRange = checkdateinRange.date()
 
-        if checkdateinRange < fromthis or checkdateinRange > tothis :
-          checkNumError += 2
-      return checkNumError
+  #       if checkdateinRange < fromthis or checkdateinRange > tothis :
+  #         checkNumError += 2
+  #     return checkNumError
 
-  def checkStatusList(driver, checkNumError, listAssessee, filterStatus):
-    whatStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]//div[@class='matchText status']").text
+  # def checkStatusList(driver, checkNumError, listAssessee, filterStatus):
+  #   whatStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]//div[@class='matchText status']").text
 
-    if listAssessee == 1 and (whatStatus is filterStatus):
-      return checkNumError
+  #   if listAssessee == 1 and (whatStatus is filterStatus):
+  #     return checkNumError
 
-    elif listAssessee == 1 and (whatStatus is not filterStatus):
-      checkNumError += 1
-      return checkNumError
+  #   elif listAssessee == 1 and (whatStatus is not filterStatus):
+  #     checkNumError += 1
+  #     return checkNumError
 
-    else:
-      for i in range(1, listAssessee+1):
-        whatStatus = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]//div[@class='matchText status']" % (i)).text
-        if whatStatus != filterStatus:
-          checkNumError += 1
-          return checkNumError
-      return checkNumError
+  #   else:
+  #     for i in range(1, listAssessee+1):
+  #       whatStatus = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]//div[@class='matchText status']" % (i)).text
+  #       if whatStatus != filterStatus:
+  #         checkNumError += 1
+  #         return checkNumError
+  #     return checkNumError
 
   def compareAlphabeticorer(f, l, mustbesmaller, mustbelarger):
     # 1 is true
@@ -141,12 +141,12 @@ class HiringStatusPage(unittest.TestCase):
     #print('10')
     return returnthis
 
-  def howmanyAssesseeListSystem(tableText):
-    tableText = re.split('\s+', tableText)
-    global systemAssessee, listAssessee
-    systemAssessee = int(tableText[5])
-    listAssessee = int(tableText[3]) - int(tableText[1]) + 1
-    return systemAssessee, listAssessee
+  # def howmanyAssesseeListSystem(tableText):
+  #   tableText = re.split('\s+', tableText)
+  #   global systemAssessee, listAssessee
+  #   systemAssessee = int(tableText[5])
+  #   listAssessee = int(tableText[3]) - int(tableText[1]) + 1
+  #   return systemAssessee, listAssessee
 
   def sortingCheck(driver, whatToSort, listAssessee, checkNumError):
     i = 1
@@ -204,7 +204,7 @@ class HiringStatusPage(unittest.TestCase):
       str1 = str("//tbody/tr[")
       str3 = str("]/td[3]//span[@class='dt-supervisor-name']")
       tableText = driver.find_element_by_id("table_info").text
-      systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+      systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
       
       if listAssessee != 100:
         driver.find_element_by_xpath("//select[@name='table_length']").click()
@@ -216,7 +216,7 @@ class HiringStatusPage(unittest.TestCase):
         driver.find_element_by_xpath("//select[@name='table_length']").send_keys(Keys.ENTER)
         time1.sleep(2)
         tableText = driver.find_element_by_id("table_info").text
-        systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+        systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
         
         if (listAssessee != 100):
           checkNumError += 1
@@ -280,8 +280,8 @@ class HiringStatusPage(unittest.TestCase):
     try: 
       if checkEmpty == False:
         tableText = driver.find_element_by_id("table_info").text
-        systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
-        checkNumError = HiringStatusPage.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
+        systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+        checkNumError = Functions.Functions.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
       else:
         print("There are no " + buttonStatus + " assessees.")
     except AssertionError as e:
@@ -300,8 +300,8 @@ class HiringStatusPage(unittest.TestCase):
     try: 
       if checkEmpty == False:
         tableText = driver.find_element_by_id("table_info").text
-        systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
-        checkNumError = HiringStatusPage.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
+        systemAssessee, listAssessee =Functions.Functions.howmanyAssesseeListSystem(tableText)
+        checkNumError = Functions.Functions.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
       else:
         print("There are no " + buttonStatus + " assessees.")
     except AssertionError as e:
@@ -320,8 +320,8 @@ class HiringStatusPage(unittest.TestCase):
     try: 
       if checkEmpty == False:
         tableText = driver.find_element_by_id("table_info").text
-        systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
-        checkNumError = HiringStatusPage.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
+        systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+        checkNumError = Functions.Functions.checkStatusList(driver,checkNumError, listAssessee, buttonStatus)
       else:
         print("There are no " + buttonStatus + " assessees.")
     except AssertionError as e:
@@ -344,7 +344,7 @@ class HiringStatusPage(unittest.TestCase):
 
     time1.sleep(7)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
 
     # check if filter has the specific duration of the month
     # click "select Date Range"
@@ -356,7 +356,7 @@ class HiringStatusPage(unittest.TestCase):
     fromthis = tothis + timedelta(-6)
     checkEmpty = HiringStatusPage.is_element_present(self, By.XPATH, '//div[@id="hiringStatusContainer"]/div/div[2]/div[4]//tbody/tr[1]/td[@class="dataTables_empty"]')
     if checkEmpty == False:
-      checkNumError = HiringStatusPage.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
+      checkNumError = Functions.Functions.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
       Functions.Functions.hiringButtonCheck(checkNumError, buttonStatus)
 
     #############################################testing 'Last 30 Days'
@@ -369,7 +369,7 @@ class HiringStatusPage(unittest.TestCase):
 
     time1.sleep(7)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
 
     # check if filter has the specific duration of the month
     # click "select Date Range"
@@ -381,7 +381,7 @@ class HiringStatusPage(unittest.TestCase):
     fromthis = tothis + timedelta(-29)
     checkEmpty = HiringStatusPage.is_element_present(self, By.XPATH, '//div[@id="hiringStatusContainer"]/div/div[2]/div[4]//tbody/tr[1]/td[@class="dataTables_empty"]')
     if checkEmpty == False:
-      checkNumError = HiringStatusPage.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
+      checkNumError = Functions.Functions.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
       Functions.Functions.hiringButtonCheck(checkNumError, buttonStatus)
 
     ############################################## testing 'this Month'
@@ -394,7 +394,7 @@ class HiringStatusPage(unittest.TestCase):
 
     time1.sleep(7)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
 
     # check if filter has the specific duration of the month
     # click "select Date Range"
@@ -413,7 +413,7 @@ class HiringStatusPage(unittest.TestCase):
     fromthis = fromthis.date()
     checkEmpty = HiringStatusPage.is_element_present(self, By.XPATH, '//div[@id="hiringStatusContainer"]/div/div[2]/div[4]//tbody/tr[1]/td[@class="dataTables_empty"]')
     if checkEmpty == False:
-      checkNumError = HiringStatusPage.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
+      checkNumError = Functions.Functions.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
       Functions.Functions.hiringButtonCheck(checkNumError, buttonStatus)
 
     ############################################## testing 'last 6 months'
@@ -427,7 +427,7 @@ class HiringStatusPage(unittest.TestCase):
 
     time1.sleep(7)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
 
     # check if filter has the specific duration of the month
     # click "select Date Range"
@@ -452,7 +452,7 @@ class HiringStatusPage(unittest.TestCase):
     fromthis = fromthis.date()
     checkEmpty = HiringStatusPage.is_element_present(self, By.XPATH, '//div[@id="hiringStatusContainer"]/div/div[2]/div[4]//tbody/tr[1]/td[@class="dataTables_empty"]')
     if checkEmpty == False:
-      checkNumError = HiringStatusPage.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
+      checkNumError = Functions.Functions.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
       Functions.Functions.hiringButtonCheck(checkNumError, buttonStatus)
 
     ############################################# testing 'Custom Range'
@@ -491,7 +491,7 @@ class HiringStatusPage(unittest.TestCase):
     checkEmpty = HiringStatusPage.is_element_present(self, By.XPATH, '//div[@id="hiringStatusContainer"]/div/div[2]/div[4]//tbody/tr[1]/td[@class="dataTables_empty"]')
 
     if checkEmpty == False:
-      checkNumError = HiringStatusPage.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
+      checkNumError = Functions.Functions.checkDateList(driver, checkNumError, listAssessee, tothis, fromthis)
       Functions.Functions.hiringButtonCheck(checkNumError, buttonStatus)
 
     Functions.Functions.checkForError(checkNumError, testName)
@@ -512,7 +512,7 @@ class HiringStatusPage(unittest.TestCase):
       time1.sleep(2)
 
       tableText = driver.find_element_by_id("table_info").text
-      systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+      systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
 
       str1 = str("//tbody/tr[")
       str3 = str("]/td[3]//span[@class='dt-supervisor-name']")
@@ -618,7 +618,7 @@ class HiringStatusPage(unittest.TestCase):
     time1.sleep(2)
     # how many assessees are in list?
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
     i = 1
 
     # open 1st assessee  frame
@@ -687,7 +687,7 @@ class HiringStatusPage(unittest.TestCase):
     time1.sleep(2)
 
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
     time1.sleep(1)
     for j in range(1, listAssessee+1):
       str2 = str(j)
@@ -712,7 +712,7 @@ class HiringStatusPage(unittest.TestCase):
     driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
     time1.sleep(5)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
     time1.sleep(2)
     checkNumError = HiringStatusPage.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
     if checkNumError != 0:
@@ -727,7 +727,7 @@ class HiringStatusPage(unittest.TestCase):
     time1.sleep(1)
     driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
     time1.sleep(2)
     checkNumError = HiringStatusPage.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
     if checkNumError != 0:
@@ -744,7 +744,7 @@ class HiringStatusPage(unittest.TestCase):
     driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
     time1.sleep(3)
     tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = HiringStatusPage.howmanyAssesseeListSystem(tableText)
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
     time1.sleep(5)
     
     checkNumError = HiringStatusPage.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
