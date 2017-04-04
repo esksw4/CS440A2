@@ -125,7 +125,7 @@ class OrderNewReport(unittest.TestCase):
     	#Click "Place Order"
     except:
       # if any of proctored checkbox is not working, then display the error message on the GUI
-      GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox")
+      GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", 'e')
 
     #################################################SELECT TAG:: Make extra input for the NEW TAG name on the GUI. TAG ON THE NEW TAG
     
@@ -141,7 +141,7 @@ class OrderNewReport(unittest.TestCase):
 
     if checkErrorMsg == True:
       driver.quit()
-      GUI.GUIFunctions.outputDisplayConsole("Please choose different email for assessee. That email address already exists in the system.")
+      GUI.GUIFunctions.outputDisplayConsole("Please choose different email for assessee. That email address already exists in the system.", 'e')
 
     else:
       #click OK on order confirmation dlg box
@@ -164,10 +164,10 @@ class OrderNewReport(unittest.TestCase):
           assessmentURL =  driver.find_element_by_xpath("//tbody/tr[%d]/td[1]/div[1]/ul[1]/li[5]" % whichRow).get_attribute('data-clipboard-text')
           # click "Copy assessment URL"
           driver.find_element_by_xpath("//tbody/tr[%d]/td[1]/div[1]/ul[1]/li[5]" % whichRow).click()
-          window_before = driver.window_handles[0]
-          driver.find_element_by_css_selector("body").send_keys(Keys.CONTROL, "n")
-          window_after = driver.window_handles[1]
-          driver.switch_to.window(window_after)
+          tab0 = driver.window_handles[0]
+          driver.find_element_by_tag_name("body").send_keys(Keys.CONTROL + 'T')
+          tab1 = driver.window_handles[1]
+          driver.switch_to.window(tab1)
           driver.get(assessmentURL)
           time1.sleep(3)
           registerCheck = driver.find_element_by_xpath("//div[@class='container container-min-height']/div[2]/legend[1]/h4[1]").text
@@ -180,12 +180,9 @@ class OrderNewReport(unittest.TestCase):
           if "Register" == registerCheck and Functions.orderNewReportResult['Email Address'] == emailCheck:
             print("4")
             print(registerCheck + ", " + emailCheck)
-            time1.sleep(3)
-            driver.switch_to.window(window_after)
-            driver.find_element_by_css_selector("body").send_keys(Keys.CONTROL, Keys.F4)
             
-            driver.switch_to.window(window_before)
-            time1.sleep(2)
+            driver.switch_to.window(tab0)
+            driver.find_element_by_tag_name('body').click()
             # Cancel It
             driver.find_element_by_xpath("//tbody/tr[%d]/td[1]/div[1]/a[1]" % whichRow).click()
             time1.sleep(1)
@@ -194,36 +191,34 @@ class OrderNewReport(unittest.TestCase):
             driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[@id='cancelOrderBtn']").click()
             try:
               print("5")
-              time1.sleep(7)
-              checkConfirmationMessage = driver.find_element_by_class_name("alert.alert-success.alert-dismissable").text
+              checkConfirmationMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
               print(checkConfirmationMessage)
-              
-              if fullName in checkConfirmationMessage:
+              if checkConfirmationMessage == True:
                 print("6")
                 print("Cancelled Succesfully")
                 driver.close()
-                GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully")
+                GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
             except:
               print("7")
               print("Cancellation Failed")
-              GUI.GUIFunctions.outputDisplayConsole("Cancellation Failed")
+              GUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
           else:
             print("8")
             print(len(Functions.orderNewReportResult['Email Address']))
             print(Functions.orderNewReportResult['Email Address'])
             print(len(emailCheck))
             print(emailCheck + " 123124123")
-            GUI.GUIFunctions.outputDisplayConsole("Email address is not same as user input email address")
+            GUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", 'e')
             print("Email address is not same as user input email address")
         else:
           print("9")
-          GUI.GUIFunctions.outputDisplayConsole("Name does not match")
+          GUI.GUIFunctions.outputDisplayConsole("Name does not match", 'e')
           print("Name does not match")
 
       else:
         print("10")
         print("The page is not directed to 'View Reports' page")
-        GUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page")
+        GUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page" , 'e')
 
 
 

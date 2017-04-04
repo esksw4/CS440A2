@@ -34,6 +34,8 @@ class Tab(Frame):
 		Frame.__init__(self, master)
 		self.tab_name = name
 
+
+
 # the bulk of the logic is in the actual tab bar
 class TabBar(Frame):
 	def __init__(self, master=None, init_name=None):
@@ -41,6 +43,7 @@ class TabBar(Frame):
 		self.tabs = {}
 		self.buttons = {}
 		self.current_tab = None
+		self.txtBox = {}
 		self.init_name = init_name
 	
 	def show(self):
@@ -53,8 +56,12 @@ class TabBar(Frame):
 		self.tabs[tab.tab_name] = tab						# add it to the list of tabs
 		b = Button(self, text=tab.tab_name, relief=BASE,	# basic button stuff
 			command=(lambda name=tab.tab_name: self.switch_tab(name)))	# set the command to switch tabs
-		b.pack(side=LEFT)												# pack the buttont to the left mose of self
-		self.buttons[tab.tab_name] = b											# add it to the list of buttons
+		b.pack(side=LEFT)
+		txt = Text(master=self.tabs[tab.tab_name], width=40, wrap=WORD)    # pack the buttont to the left mose of self
+		txt.focus()
+		txt.grid(sticky='sw')
+		self.buttons[tab.tab_name] = b
+		self.txtBox = txt											# add it to the list of buttons
 	
 	def delete(self, tabname):
 		
@@ -73,8 +80,10 @@ class TabBar(Frame):
 	def switch_tab(self, name):
 		if self.current_tab:
 			self.buttons[self.current_tab].config(relief=BASE)
-			self.tabs[self.current_tab].pack_forget()			# hide the current tab
+			self.tabs[self.current_tab].pack_forget()			# hide the current tab\
+			self.txtBox.grid_forget()
 		self.tabs[name].pack(side=BOTTOM)							# add the new tab to the display
+		self.txtBox.grid(sticky='sw')
 		self.current_tab = name									# set the current tab to itself
 		
 		self.buttons[name].config(relief=SELECTED)					# set it to the selected style

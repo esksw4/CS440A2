@@ -23,10 +23,11 @@ __doc__ = info = '''
 # '''
 
 import tkinter
+import Functions
 from tkinter import *
 
 BASE = RAISED
-SELECTED = FLAT
+SELECTED = SUNKEN
 
 # a base tab class
 class Tab(Frame):
@@ -49,23 +50,46 @@ class TabBar(Frame):
 		self.switch_tab(self.init_name or self.tabs.keys()[-1])# switch the tab to the first tab
 	
 	def add(self, tab):
-		tab.pack_forget()									# hide the tab on init
+		tab.grid_forget()									# hide the tab on init
 		
 		self.tabs[tab.tab_name] = tab						# add it to the list of tabs
 		b = Button(self, text=tab.tab_name, relief=BASE,	# basic button stuff
 			command=(lambda name=tab.tab_name: self.switch_tab(name)))	# set the command to switch tabs
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
-		self.buttons[tab.tab_name] = b											# add it to the list of buttons
+
+		if tab.tab_name == "Console":
+			Functions.GUIdisplay.textConsole_Text = Text(master=self.tabs[tab.tab_name], width=40, wrap=WORD)   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.textConsole_Text.focus()
+			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
+		elif tab.tab_name == "Evaluation":
+			Functions.GUIdisplay.textEvaluation_Text = Text(master=self.tabs[tab.tab_name], width=40, wrap=WORD)   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.textEvaluation_Text.focus()
+			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
+
+		self.buttons[tab.tab_name] = b									# add it to the list of buttons
+
 	
 	def delete(self, tabname):
-		
 		if tabname == self.current_tab:
 			self.current_tab = None
 			self.tabs[tabname].pack_forget()
 			del self.tabs[tabname]
+
+			if tabname == "Console":
+				Functions.GUIdisplay.textConsole_Text .grid_forget()
+				del Functions.GUIdisplay.textConsole_Text
+			elif tab_name == "Evaluation":
+				Functions.GUIdisplay.textEvaluation_Text.grid_forget()
+				del Functions.GUIdisplay.textEvaluation_Text
+
 			self.switch_tab(self.tabs.keys()[0])
 		
-		else: del self.tabs[tabname]
+		else:
+			del self.tabs[tabname]
+			if tabname == "Console":
+				del Functions.GUIdisplay.textConsole_Text
+			elif tab_name == "Evaluation":
+				del Functions.GUIdisplay.textEvaluation_Text
 		
 		self.buttons[tabname].pack_forget()
 		del self.buttons[tabname] 
@@ -74,13 +98,24 @@ class TabBar(Frame):
 	def switch_tab(self, name):
 		if self.current_tab:
 			self.buttons[self.current_tab].config(relief=BASE)
-			# self.tabs[self.current_tab].pack_forget()			# hide the current tab
-			self.tabs[self.current_tab].forget()
+			self.tabs[self.current_tab].grid_forget()			# hide the current tab
+			# self.tabs[self.current_tab].forget()
+			if name == "Console":
+				Functions.GUIdisplay.textConsole_Text.grid_forget()
+			elif name == "Evaluation":
+				Functions.GUIdisplay.textEvaluation_Text.grid_forget()
+
 		# self.tabs[name].pack(side=BOTTOM)							# add the new tab to the display
 		self.tabs[name].grid(sticky='w')
+
+		if name == "Console":
+			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
+		elif name == "Evaluation":
+			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
+
 		self.current_tab = name									# set the current tab to itself
 		
-		self.buttons[name].config(relief=BASE)					# set it to the selected style
+		self.buttons[name].config(relief=SELECTED)					# set it to the selected style
 			
 # if __name__ == '__main__':
 # 	def write(x):

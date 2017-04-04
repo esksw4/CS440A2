@@ -1,0 +1,97 @@
+1491319386365	geckodriver	INFO	Listening on 127.0.0.1:50196
+1491319388382	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.xjNIGUmb0ns4
+1491319388386	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491319388409	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50202
+1491319392264 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491319397103 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: en en-US crs_open
+1491319400350 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: en en-US crs_open
+1491319423565	geckodriver	INFO	Listening on 127.0.0.1:50252
+1491319425619	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.rnv83jdEUoZK
+1491319425622	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491319425640	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50259
+1491319429508 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491319437276 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: en en-US crs_open
+1491319440420 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: en en-US crs_open
+1491319457711	geckodriver	INFO	Listening on 127.0.0.1:50325
+1491319459765	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.fCOe7pZB6gHT
+1491319459770	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491319459790	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50331
+1491319463656 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491319470367	geckodriver::marionette	ERROR	Failed to kill browser process
+1491319809353	geckodriver	INFO	Listening on 127.0.0.1:50682
+1491319811362	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.BbE2wRJxeD4n
+1491319811366	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491319811392	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50741
+1491319816498 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491319845945 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: pg pg-homepage pg-section domestic t-light multi-ads--complete jpnopadding
+[NPAPI 9856] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/rel-m-rel-w64_bld-000000000000/build/ipc/glue/MessageChannel.cpp, line 1861
+1491320892438	geckodriver	INFO	Listening on 127.0.0.1:52325
+1491320894461	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.vGANeAFpfc5K
+1491320894465	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491320894474	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52331
+1491320898693 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491320926265 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: pg pg-homepage pg-section domestic t-light multi-ads--complete jpnopadding
+[NPAPI 384] WARNING: pipe error: 109: file c:/builds/moz2_slave/rel-m-rel-w64_bld-000000000000/build/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 333
+1491321202759	geckodriver	INFO	Listening on 127.0.0.1:53031
+1491321204796	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.sjewhywlpZ2H
+1491321204800	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491321204806	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53037
+1491321209856 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript error: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 6: TypeError: t is null
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491321268611 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: pg pg-homepage pg-section domestic t-light multi-ads--complete jpnopadding
+1491321294063	geckodriver	INFO	Listening on 127.0.0.1:53336
+1491321296080	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.J5jJyANTt2Gt
+1491321296085	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491321296093	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53342
+1491321300777 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491321330668 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: pg pg-homepage pg-section domestic t-light multi-ads--complete jpnopadding
+[NPAPI 6776] WARNING: pipe error: 109: file c:/builds/moz2_slave/rel-m-rel-w64_bld-000000000000/build/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 333
+1491321370224	geckodriver	INFO	Listening on 127.0.0.1:53619
+1491321372237	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.HAKAFHyvXS6l
+1491321372242	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491321372248	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53625
+1491321376410 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+[NPAPI 12328] WARNING: pipe error: 109: file c:/builds/moz2_slave/rel-m-rel-w64_bld-000000000000/build/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 333
+JavaScript error: https://ads.jetpackdigital.com/lineitems/35348/jpdunit.js?u=https://adclick.g.doubleclick.net/pcs/click%253Fxai%253DAKAOjsvYPj9bQTIzfrD5yzPA6uDTX0XJC1-ZUr9TR3YEyU5bUVeb8Snz8ISbzor6eYNsxhxXJ1T-c_2jqEPr2gaJW416ws9O7HgvCKmi1m0nR9LVhv9T5sIdcPqqm6i2zDo4qeULv6rls5amNnp0oHGvjIjvFZTypNyGzOJZn1VnOtk1Uksa1bDf25vietYeqi2IbRdgKyMZqjKMBCKWEdBhbY92ySVkbsFW4d54gbu6t6302cciGVsCtNQ6Vg%2526sig%253DCg0ArKJSzGFBvXR5XkOBEAE%2526urlfix%253D1%2526adurl%253Dhttps://ad.doubleclick.net/ddm/trackclk/N6096.146TURNERNETWORKCNN.COM/B10754225.149241232;dc_trk_aid=320366733;dc_trk_cid=81083194;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=, line 727: Error: Permission denied to access property "document"
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491321459308 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: pg pg-homepage pg-section domestic t-light multi-ads--complete jpnopadding
+1491321940081	geckodriver	INFO	Listening on 127.0.0.1:54835
+1491321942099	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.njXBSe95mhTl
+1491321942103	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491321942109	geckodriver::marionette	INFO	Connecting to Marionette on localhost:54841
+1491321946790 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491321991206 Marionette: Element does not have an accessible object -> id: body, tagName: BODY, className:   ltr  gecko gecko-45  exp-responsive exp-scrollable-guide exp-search-big-thumbs   site-center-aligned site-as-giant-card guide-pinning-enabled    visibility-logging-enabled   not-nirvana-dogfood  not-yt-legacy-css    flex-width-enabled      flex-width-enabled-snap page-loaded
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474d2f7d4608ec, line 7: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491322013849	addons.productaddons	WARN	File download failed: 0x80004004
+1491322034237	geckodriver	INFO	Listening on 127.0.0.1:55198
+1491322036260	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.DFq0LQPA42wC
+1491322036263	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491322036270	geckodriver::marionette	INFO	Connecting to Marionette on localhost:55204
+1491322040391 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
+JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491322063265 Marionette: Element does not have an accessible object -> id: body, tagName: BODY, className:   ltr  gecko gecko-45  exp-responsive exp-scrollable-guide exp-search-big-thumbs   site-center-aligned site-as-giant-card guide-pinning-enabled    visibility-logging-enabled   not-nirvana-dogfood  not-yt-legacy-css    flex-width-enabled      flex-width-enabled-snap page-loaded

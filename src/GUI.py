@@ -60,21 +60,30 @@ class GUIFunctions:
 			suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
 			unittest.TextTestRunner(verbosity=2).run(suite)
 
-	def outputDisplayConsole(text):
-		print(Functions.GUIdisplay.tex.get("0.0","2.0"))
-		if Functions.GUIdisplay.tex.get("0.0","2.0") is not '':
-			Functions.GUIdisplay.tex.delete("0.0", "2.0")
-
-		Functions.GUIdisplay.tex.insert(INSERT, text)
-		Functions.GUIdisplay.tex.tag_add("insert", "0.0", "2.0")
-		Functions.GUIdisplay.tex.tag_config("insert", background="white", foreground ="red")
+	def outputDisplayConsole(text, displayType):
+		if displayType == 'e': # 'e' == console
+			print(Functions.GUIdisplay.textConsole_Text.get("0.0","100.0"))
+			# if Tab.TabBar.txtBox[Console].get("0.0","2.0") is not '':
+			# 	Functions.GUIdisplay.tex.delete("0.0", "2.0")
+			Functions.GUIdisplay.textConsole_Text.insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="red")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
+		else:
+			print(Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0"))
+			if Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0") is not '':
+				Functions.GUIdisplay.textEvaluation_Text.delete("0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n")
+			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
 class GUItkinter:
 	#global whichInfo
 	def __init__(self, Parent):
 		self.allFieldError = None
 		self.myParent = Parent
-		self.myParent.geometry('700x500')
+		self.myParent.geometry('750x400')
 		self.myParent.title('Automated QA Testing')
 
 		self.chooseTest_Frame = Frame(self.myParent)
@@ -150,13 +159,16 @@ class GUItkinter:
 			self.GUIconsoleFrame.grid(row=0, column=1, sticky='sw') #side=LEFT, fill=BOTH
 
 		self.bar_TabBar = Tab.TabBar(self.GUIconsoleFrame, "Evaluation")
-		self.tab1_Tab = Tab.Tab(self.GUIconsoleFrame, "Console")
-		self.tab2_Tab = Tab.Tab(self.GUIconsoleFrame, "Evaluation")
+
+		self.tab1_Tab = Tab.Tab(self.GUIconsoleFrame, "Evaluation")
+		self.tab2_Tab = Tab.Tab(self.GUIconsoleFrame, "Console")
+		# self.textConsole_Text = Text(master=self.tab2_Tab, width=40, wrap=WORD)
+		# self.textConsole_Text.focus()
+		# self.textConsole_Text.grid(sticky='sw')
+
 		self.bar_TabBar.add(self.tab1_Tab)
 		self.bar_TabBar.add(self.tab2_Tab)
 		self.bar_TabBar.show()
-		self.tex = Text(master=self.GUIconsoleFrame, width=40, wrap=WORD)
-		self.tex.grid(sticky='sw')
 
 	def ordernewReport(self):
 		global whichInfo

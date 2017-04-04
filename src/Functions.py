@@ -21,8 +21,14 @@ class Functions:
 	global GUImainFrame
 	GUImainFrame = None
 
-	global GUIdisplay
-	GUIdisplay = None
+	# global GUIdisplay
+	# GUIdisplay = None
+
+	# global GUIConsoleText
+	# GUIConsoleText = None
+
+	global GUIEvaluationText
+	GUIEvaluationText = None
 
 	# global GUIuserInputFrame
 	# GUIuserInputFrame = None
