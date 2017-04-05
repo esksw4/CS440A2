@@ -58,11 +58,11 @@ class TabBar(Frame):
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
 
 		if tab.tab_name == "Console":
-			Functions.GUIdisplay.textConsole_Text = Text(master=self.tabs[tab.tab_name], width=40, wrap=WORD)   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.textConsole_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, wrap=WORD)   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.textConsole_Text.focus()
 			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
 		elif tab.tab_name == "Evaluation":
-			Functions.GUIdisplay.textEvaluation_Text = Text(master=self.tabs[tab.tab_name], width=40, wrap=WORD)   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.textEvaluation_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, wrap=WORD)   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.textEvaluation_Text.focus()
 			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
 

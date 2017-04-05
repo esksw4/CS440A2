@@ -81,24 +81,34 @@ class GUIFunctions:
 class GUItkinter:
 	#global whichInfo
 	def __init__(self, Parent):
+		self.userInputWidth = 23
+		self.consoleWidth = 60
+		self.consoleTextWidth = 55
+		self.betweeenFrame = 5
+
+		self.default_Color = Parent.cget('bg')
+		self.background_Color = 'White'
+
 		self.allFieldError = None
 		self.myParent = Parent
-		self.myParent.geometry('750x400')
+		self.myParent.geometry('850x450')
 		self.myParent.title('Automated QA Testing')
 
-		self.chooseTest_Frame = Frame(self.myParent)
-		self.chooseTest_Frame.pack(side=LEFT)
-		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text='Login_Security', command = self.loginSecurity).pack()
-		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text='Dashboard', command = self.dashBoard).pack()
-		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text='Hiring Status', command = self.hiringStatus).pack()
-		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text='Order New Report', command = self.ordernewReport).pack()
+		self.chooseTest_Frame = Frame(self.myParent, bg=self.default_Color)
+		self.chooseTest_Frame.pack(side=LEFT, fill=Y)#, pady=155)
+		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text='Login_Security', command = self.loginSecurity, bg=self.default_Color)
+		self.loginSecurity_Button.place(bordermode=OUTSIDE, anchor='')
+		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text='Dashboard', command = self.dashBoard, bg=self.default_Color)
+		self.dashBoardPage_Button.place(bordermode=OUTSIDE, anchor='e')
+		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text='Hiring Status', command = self.hiringStatus, bg=self.default_Color)
+		self.hiringStatusPage_Button.place(bordermode=OUTSIDE, anchor='e')
+		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text='Order New Report', relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
+		self.orderNewReport_Button.place(bordermode=OUTSIDE, anchor='e')
 
-		self.GUIuserInputFrame = tkinter.Frame(self.myParent)
-		self.GUIuserInputFrame.pack(side=LEFT, fill=X, padx=5)
-		self.GUIuserInputFrame.existElement = False
+		self.GUIuserInput_Frame = tkinter.Frame(self.myParent)
+		self.GUIuserInput_Frame.existElement = False
 
-		self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=50)
-		self.GUIconsoleFrame.pack(side=LEFT, fill=BOTH, padx=10, pady=5)
+		self.GUIconsoleFrame = tkinter.Frame(self.myParent)
 		self.GUIconsoleFrame.existElement = False
 
 	def loginSecurity(self):
@@ -130,8 +140,8 @@ class GUItkinter:
 		fields = []
 
 		for entry in whichInfo:	
-			self.userInputRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
-			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=20, text=entry, anchor='center')
+			self.userInputRow_Frame = tkinter.Frame(self.GUIuserInput_Frame)
+			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=self.userInputWidth, text=entry, anchor='center', bg=self.background_Color)
 			self.userInputEntry_Entry = tkinter.Entry(self.userInputRow_Frame)
 			self.userInputRow_Frame.pack(side=TOP, fill=X)
 			self.userInputLabel_Label.pack(side=LEFT)
@@ -139,15 +149,18 @@ class GUItkinter:
 			fields.append(self.userInputEntry_Entry)
 
 	def userInputFrame(self):
-		if (self.GUIuserInputFrame.existElement == True):
-			self.GUIuserInputFrame.destroy()
-			self.GUIuserInputFrame = tkinter.Frame(self.myParent)
-			self.GUIuserInputFrame.pack(side=LEFT, fill=X)
+		if (self.GUIuserInput_Frame.existElement == True):
+			self.GUIuserInput_Frame.destroy()
+			self.GUIuserInput_Frame = tkinter.Frame(self.myParent)
+		
+		self.GUIuserInput_Frame.config(bg=self.background_Color)
+		self.GUIuserInput_Frame.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
 
-		Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
+		Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(self.GUIuserInput_Frame, bg=self.background_Color)
 		Functions.GUIdisplay.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
+
 		self.makeUserInputForm()
-		self.userInputEnterRow_Frame = tkinter.Frame(self.GUIuserInputFrame)
+		self.userInputEnterRow_Frame = tkinter.Frame(self.GUIuserInput_Frame, bg=self.background_Color)
 		self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
 		self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
 		self.userInputEnterButton_Button.pack(side=RIGHT)
@@ -155,8 +168,10 @@ class GUItkinter:
 	def conSoleFrame(self):
 		if (self.GUIconsoleFrame.existElement == True):
 			self.GUIconsoleFrame.forget()
-			self.GUIconsoleFrame = tkinter.Frame(self.myParent, width=40)
-			self.GUIconsoleFrame.grid(row=0, column=1, sticky='sw') #side=LEFT, fill=BOTH
+			self.GUIconsoleFrame = tkinter.Frame(self.myParent)
+
+		self.GUIconsoleFrame.config(bg=self.background_Color)
+		self.GUIconsoleFrame.pack(side=LEFT, fill=BOTH, padx=self.betweeenFrame, pady=5)
 
 		self.bar_TabBar = Tab.TabBar(self.GUIconsoleFrame, "Evaluation")
 
@@ -172,6 +187,9 @@ class GUItkinter:
 
 	def ordernewReport(self):
 		global whichInfo
+		self.background_Color = 'light grey'
+		self.myParent.config(bg=self.background_Color)
+		self.orderNewReport_Button.config(bg=self.background_Color, relief=SUNKEN)
 
 		whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
 		self.userInputFrame()
