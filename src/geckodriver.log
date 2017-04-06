@@ -2639,3 +2639,14 @@ JavaScript error: https://awsportal.calipercorp.com/assets/application-0df7204a8
 Performance warning: Async animation disabled because frame size (13290, 237) is bigger than the viewport (1607, 871) or the visual rectangle (13290, 237) is larger than the max allowable value (17895698) [div]
 1491510276558 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: Passwd, tagName: INPUT, className: 
 1491510301307 Marionette: Element does not have an accessible object -> id: , tagName: DIV, className: y6
+1491510305475	geckodriver	INFO	Listening on 127.0.0.1:52322
+1491510307504	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.TME7yhhiQ2Zo
+1491510307511	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1491510307520	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52328
+JavaScript warning: https://awsportal.calipercorp.com/assets/application-0df7204a80ec784c363dbba3ca1c8dea.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1491510310640 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://awsportal.calipercorp.com/assets/application-0df7204a80ec784c363dbba3ca1c8dea.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: https://awsportal.calipercorp.com/assets/application-0df7204a80ec784c363dbba3ca1c8dea.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript error: https://awsportal.calipercorp.com/assets/application-0df7204a80ec784c363dbba3ca1c8dea.js, line 14: ReferenceError: submit is not defined
+Performance warning: Async animation disabled because frame size (13290, 237) is bigger than the viewport (1607, 871) or the visual rectangle (13290, 237) is larger than the max allowable value (17895698) [div]
+1491510316175 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: Passwd, tagName: INPUT, className: 
