@@ -39,6 +39,9 @@ class Functions:
 	global GUIallFieldError
 	GUIallFieldError = None
 
+	global URL
+	URL = 'https://awsportal.calipercorp.com/users/sign_in'
+
 	def checkForError(checkNumError, testName):
 		colorama.init(autoreset=True)
 		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
@@ -46,7 +49,7 @@ class Functions:
 	def hiringOPL(self, testName):
 		print('Testing ', testName)
 		driver = self.driver
-		driver.get(self.base_url)
+		driver.get(URL)
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
 		driver.find_element_by_id("user_password").send_keys("123456789")
@@ -127,11 +130,6 @@ class Functions:
 
 			return row 
 
-
-
-
-
-
 	def howmanyAssesseeListSystem(tableText):
 	    tableText = re.split('\s+', tableText)
 	    global systemAssessee, listAssessee
@@ -150,7 +148,7 @@ class Functions:
 		# html = driver.find_element(By.TAG_NAME,'html');
 		# html.send_keys(Keys.Chord(Keys.CONTROL, Keys.ADD))
 		
-		driver.get("https://portal.calipercorp.com/users/sign_in")
+		driver.get(URL)
 
 		driver.find_element_by_id("user_email").clear()
 		driver.find_element_by_id("user_email").send_keys("ekim+ABC1@calipercorp.com")

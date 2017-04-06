@@ -48,11 +48,11 @@ class OrderNewReport(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_order_Exist_Job_Title(self):
-  # Existing Title
-  # New Assessee
-  # Added Also Notify Contact
-  # New TAG
-  # NO PROCTORED:: I THINK,.,.,    
+    # Existing Title
+    # New Assessee
+    # Added Also Notify Contact
+    # New TAG
+    # NO PROCTORED:: I THINK,.,.,    
     import Functions
     import GUI
 
@@ -189,16 +189,18 @@ class OrderNewReport(unittest.TestCase):
             driver.find_element_by_xpath("//tbody/tr[%d]/td[1]/div[1]/ul[1]/li[3]" % whichRow).click()
             time1.sleep(1)
             driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[@id='cancelOrderBtn']").click()
-            try:
-              print("5")
-              checkConfirmationMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
-              print(checkConfirmationMessage)
-              if checkConfirmationMessage == True:
-                print("6")
-                print("Cancelled Succesfully")
-                driver.close()
-                GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
-            except:
+
+            print("5")
+            checkConfirmationMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
+            print(checkConfirmationMessage)
+
+            if checkConfirmationMessage == True:
+              print("6")
+              print("Cancelled Succesfully")
+              driver.close()
+              GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
+
+            else:
               print("7")
               print("Cancellation Failed")
               GUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
@@ -238,6 +240,7 @@ class OrderNewReport(unittest.TestCase):
 
 
     #time1.sleep(5)
+    
 
 if __name__ == "__main__":
   unittest.main(warnings='ignore')

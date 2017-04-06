@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-import Functions.Functions
+import Functions
 
 # def doTest():
 class Login_Security(unittest.TestCase):
@@ -50,19 +50,7 @@ class Login_Security(unittest.TestCase):
   def test_log_inlog_out(self):
     checkNumError = 0
     testName = "'Login and Logout'"
-    driver = self.driver
-    # open | http://portal.qa.qa.calipercorp.com/users/sign_in |
-    Ori_correct_PortalLink = "http://portal.qa.calipercorp.com/#"
-    driver.get(Ori_correct_PortalLink)
-    # type | id=user_password | 1234567899
-    driver.find_element_by_id("user_password").clear()
-    driver.find_element_by_id("user_password").send_keys("123456789")
-    # type | id=user_email | ekim+abc1@calipercorp.com
-    driver.find_element_by_id("user_email").clear()
-    driver.find_element_by_id("user_email").send_keys("ekim+abc1@calipercorp.com")
-    # click | name=commit |
-    driver.find_element_by_id("login-btn").click()
-    time.sleep(3)
+    driver = Functions.Functions.OPL(self, testName)
     # click | link=Log out |
     driver.find_element_by_link_text("Log out").click()
     # verifyTitle | exact:Caliper: Login |
@@ -86,7 +74,7 @@ class Login_Security(unittest.TestCase):
       Ori_correct_GoogleLink = "https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default&service=mail&sacu=1&scc=1&passive=1209600&ignoreShadow=0&acui=0#Email=ekim%40calipercorp.com"
 
       # open | /users/sign_in |
-      driver.get(self.base_url)
+      driver.get(Functions.URL)
       # click | link=exact:Forgot your password? |
       driver.find_element_by_link_text("Forgot your password?").click()
       # type | id=user_email | ekim+ABC2@calipercorp.com
@@ -163,10 +151,10 @@ class Login_Security(unittest.TestCase):
       while i < 2:
         originalLocked = "Your account is locked."
         if i == 0:
-          driver.get("http://portal.qa.calipercorp.com/users/sign_in")
+          driver.get(Functions.URL)
         if i == 1:
           driver = webdriver.Firefox()
-          driver.get("http://portal.qa.calipercorp.com/users/sign_in")
+          driver.get(Functions.URL)
         driver.find_element_by_id("user_email").send_keys("ekim+ABC2@calipercorp.com")
         driver.find_element_by_id("user_password").clear()
         driver.find_element_by_id("user_password").send_keys("1")
