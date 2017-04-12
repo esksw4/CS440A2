@@ -95,10 +95,10 @@ class Login_Security(unittest.TestCase):
       # storeLocation | TestingGoogleLink |
       TestingGoogleLink = driver.current_url
 
-      driver.find_element_by_id("Email").send_keys("ekim@calipercorp.com")
+      driver.find_element_by_id("Email").send_keys(Functions.emailUserName)
       driver.find_element_by_id("next").click()
       time.sleep(2)
-      driver.find_element_by_id("Passwd").send_keys("01696502330ESk")
+      driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
       remember = driver.find_element_by_id("PersistentCookie")
       if remember.get_attribute("value") == "true":
          driver.find_element_by_class_name("remember").click()
@@ -185,14 +185,14 @@ class Login_Security(unittest.TestCase):
           TestingGoogleLink = driver.current_url
 
           if TestingGoogleLink != Ori_correct_GoogleLink:
-            driver.find_element_by_id("Email").send_keys("ekim@calipercorp.com")
+            driver.find_element_by_id("Email").send_keys(Functions.emailUserName)
             driver.find_element_by_id("next").click()
             time.sleep(1)
             if i == 0:
-              driver.find_element_by_id("Passwd").send_keys("01696502330ESk")
+              driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
               driver.find_element_by_id("signIn").click()
             if i == 1:
-              driver.find_element_by_id("Passwd").send_keys("01696502330ESk")
+              driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
               driver.find_element_by_id("signIn").click()
 
           time.sleep(3)

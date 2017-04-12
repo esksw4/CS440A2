@@ -42,6 +42,12 @@ class Functions:
 	global URL
 	URL = 'https://awsportal.calipercorp.com/users/sign_in'
 
+	global emailUserName
+	emailUserName = "ekim@calipercorp.com"
+
+	global emailPassword
+	emailPassword = "Rladmsthf0411"
+
 	def checkForError(checkNumError, testName):
 		colorama.init(autoreset=True)
 		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
