@@ -1,6 +1,7 @@
 import re, string, sys
 import colorama
 import time as time1
+import collections
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -10,7 +11,7 @@ class Functions:
 	timeAfterLogin = 7
 
 	global orderNewReportResult
-	orderNewReportResult = {}
+	orderNewReportResult = collections.OrderedDict()
 
 	# global orderNewReportCheckErrorMsg
 	# orderNewReportCheckErrorMsg = None
@@ -40,7 +41,13 @@ class Functions:
 	GUIallFieldError = None
 
 	global URL
-	URL = 'https://awsportal.calipercorp.com/users/sign_in'
+	URL = 'https://portal.caliperqaaws.com/users/sign_in'
+
+	global portalUserName
+	portalUserName = "ekim+ABC1@calipercorp.com"
+
+	global portalPassword
+	portalPassword = "123456789!"
 
 	global emailUserName
 	emailUserName = "ekim@calipercorp.com"
@@ -58,10 +65,10 @@ class Functions:
 		driver.get(URL)
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys("123456789")
+		driver.find_element_by_id("user_password").send_keys(portalPassword)
 		# type | id=user_email | ekim+abc1@calipercorp.com
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys("ekim+abc1@calipercorp.com")
+		driver.find_element_by_id("user_email").send_keys(portalUserName)
 		# click | name=commit |
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
@@ -157,10 +164,10 @@ class Functions:
 		driver.get(URL)
 
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys("ekim+ABC1@calipercorp.com")
+		driver.find_element_by_id("user_email").send_keys(portalUserName)
 		# type User Password
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys("123456789")
+		driver.find_element_by_id("user_password").send_keys(portalPassword)
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)

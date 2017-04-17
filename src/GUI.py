@@ -1,6 +1,7 @@
 
 import re, string, sys
 import colorama
+import collections
 import time as time1
 
 # simport Login_Security
@@ -44,7 +45,13 @@ class GUIFunctions:
 			suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
 			unittest.TextTestRunner(verbosity=2).run(suite)
 
-
+	def orderNewReportCheckThis():
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "\n Please Check these following information in the pivotal")
+		temp = list(Functions.orderNewReportResult.keys())
+		for i in temp:
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, i + ": " +Functions.orderNewReportResult[i] + "\n")
+			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
 
 	def outputDisplayConsole(text, displayType):
 		if displayType == 'e': # 'e' == console
@@ -62,6 +69,7 @@ class GUIFunctions:
 			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n")
 			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+			GUIFunctions.orderNewReportCheckThis()
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
 	def buttonPressCheck():
@@ -101,6 +109,9 @@ class GUIFunctions:
 				# # Functions.GUIdisplay.userInputEnterRow_Frame.config(bg=Functions.GUIdisplay.default_Color)
 				# Functions.GUIdisplay.GUIconsoleFrame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.current_Button = None
+
+
+
 
 class GUItkinter:
 	#global whichInfo
@@ -160,7 +171,7 @@ class GUItkinter:
 		for f in fields:
 			dictValue.append(f.get())
 
-		Functions.orderNewReportResult = dict(zip(whichInfo, dictValue))
+		Functions.orderNewReportResult = collections.OrderedDict(zip(whichInfo, dictValue))
 		Functions.orderNewReportResult['Also Notify'] = 'Young Kim'
 
 		allFieldCheck = GUIFunctions.orderNewReportuserInputFieldCheck()
