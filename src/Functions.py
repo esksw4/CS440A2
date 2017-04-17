@@ -10,6 +10,9 @@ class Functions:
 	global timeAfterLogin
 	timeAfterLogin = 7
 
+	global OPLINfo
+	OPLInfo = collections.OrderedDict()
+
 	global orderNewReportResult
 	orderNewReportResult = collections.OrderedDict()
 
@@ -21,6 +24,9 @@ class Functions:
 
 	global GUImainFrame
 	GUImainFrame = None
+
+	global GUIOPLFrame
+	GUIOPLFrame = None
 
 	# global GUIdisplay
 	# GUIdisplay = None
@@ -39,6 +45,7 @@ class Functions:
 
 	global GUIallFieldError
 	GUIallFieldError = None
+
 
 	global URL
 	URL = 'https://portal.caliperqaaws.com/users/sign_in'
