@@ -7,6 +7,39 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 class Functions:
+	# global orderNewReportCheckErrorMsg
+	# orderNewReportCheckErrorMsg = None
+
+	# global GUIuserInputErrorRow_Frame
+	# GUIuserInputErrorRow_Frame = None
+
+	# global GUIdisplay
+	# GUIdisplay = None
+
+	# global GUIConsoleText
+	# GUIConsoleText = None	
+
+	# global GUIuserInputFrame
+	# GUIuserInputFrame = None
+
+	# global GUIconsoleFrame
+	# GUIconsoleFrame = None
+
+	# global URL
+	# URL = 'https://portal.caliperqaaws.com/users/sign_in'
+
+	# global portalUserName
+	# portalUserName = "ekim+ABC1@calipercorp.com"
+
+	# global portalPassword
+	# portalPassword = "123456789!"
+
+	# global emailUserName
+	# emailUserName = "ekim@calipercorp.com"
+
+	# global emailPassword
+	# emailPassword = "Rladmsthf0411"
+
 	global timeAfterLogin
 	timeAfterLogin = 7
 
@@ -16,51 +49,17 @@ class Functions:
 	global orderNewReportResult
 	orderNewReportResult = collections.OrderedDict()
 
-	# global orderNewReportCheckErrorMsg
-	# orderNewReportCheckErrorMsg = None
-
-	# global GUIuserInputErrorRow_Frame
-	# GUIuserInputErrorRow_Frame = None
-
 	global GUImainFrame
 	GUImainFrame = None
 
 	global GUIOPLFrame
 	GUIOPLFrame = None
 
-	# global GUIdisplay
-	# GUIdisplay = None
-
-	# global GUIConsoleText
-	# GUIConsoleText = None
-
 	global GUIEvaluationText
 	GUIEvaluationText = None
 
-	# global GUIuserInputFrame
-	# GUIuserInputFrame = None
-
-	# global GUIconsoleFrame
-	# GUIconsoleFrame = None
-
 	global GUIallFieldError
 	GUIallFieldError = None
-
-
-	global URL
-	URL = 'https://portal.caliperqaaws.com/users/sign_in'
-
-	global portalUserName
-	portalUserName = "ekim+ABC1@calipercorp.com"
-
-	global portalPassword
-	portalPassword = "123456789!"
-
-	global emailUserName
-	emailUserName = "ekim@calipercorp.com"
-
-	global emailPassword
-	emailPassword = "Rladmsthf0411"
 
 	def checkForError(checkNumError, testName):
 		colorama.init(autoreset=True)
@@ -72,10 +71,10 @@ class Functions:
 		driver.get(URL)
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(portalPassword)
+		driver.find_element_by_id("user_password").send_keys(Functions.OPLINfo['Portal Password'])
 		# type | id=user_email | ekim+abc1@calipercorp.com
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(portalUserName)
+		driver.find_element_by_id("user_email").send_keys(Functions.OPLINfo['Portal Username'])
 		# click | name=commit |
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
@@ -168,13 +167,13 @@ class Functions:
 		# html = driver.find_element(By.TAG_NAME,'html');
 		# html.send_keys(Keys.Chord(Keys.CONTROL, Keys.ADD))
 		
-		driver.get(URL)
+		driver.get(OPLINfo['URL to test'])
 
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(portalUserName)
+		driver.find_element_by_id("user_email").send_keys(Functions.OPLINfo['Portal Username'])
 		# type User Password
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(portalPassword)
+		driver.find_element_by_id("user_password").send_keys(Functions.OPLINfo['Portal Password'])
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)

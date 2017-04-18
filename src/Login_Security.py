@@ -13,7 +13,6 @@ class Login_Security(unittest.TestCase):
   def setUp(self):
       self.driver = webdriver.Firefox()
       self.driver.implicitly_wait(30)
-      self.base_url = "http://portal.qa.calipercorp.com/users/sign_in"
       self.verificationErrors = []
       self.accept_next_alert = True
 
@@ -95,10 +94,10 @@ class Login_Security(unittest.TestCase):
       # storeLocation | TestingGoogleLink |
       TestingGoogleLink = driver.current_url
 
-      driver.find_element_by_id("Email").send_keys(Functions.emailUserName)
+      driver.find_element_by_id("Email").send_keys(Functions.OPLINfo['Email Address'])
       driver.find_element_by_id("next").click()
       time.sleep(2)
-      driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
+      driver.find_element_by_id("Passwd").send_keys(Functions.OPLINfo['Email Password'])
       remember = driver.find_element_by_id("PersistentCookie")
       if remember.get_attribute("value") == "true":
          driver.find_element_by_class_name("remember").click()
@@ -127,9 +126,9 @@ class Login_Security(unittest.TestCase):
       try:
         if "reset_password_token" not in driver.current_url:
           driver.switch_to.window(window_after)
-          driver.find_element_by_id("user_password").send_keys("123456789")
+          driver.find_element_by_id("user_password").send_keys("123456789!")
           time.sleep(1)
-          driver.find_element_by_id("user_password_confirmation").send_keys("123456789")
+          driver.find_element_by_id("user_password_confirmation").send_keys("123456789!")
           time.sleep(1)
           driver.find_element_by_name("commit").click()
           time.sleep(1)
@@ -185,14 +184,14 @@ class Login_Security(unittest.TestCase):
           TestingGoogleLink = driver.current_url
 
           if TestingGoogleLink != Ori_correct_GoogleLink:
-            driver.find_element_by_id("Email").send_keys(Functions.emailUserName)
+            driver.find_element_by_id("Email").send_keys(Functions.OPLINfo['Email Address'])
             driver.find_element_by_id("next").click()
             time.sleep(1)
             if i == 0:
-              driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
+              driver.find_element_by_id("Passwd").send_keys(Functions.OPLINfo['Email Password'])
               driver.find_element_by_id("signIn").click()
             if i == 1:
-              driver.find_element_by_id("Passwd").send_keys(Functions.emailPassword)
+              driver.find_element_by_id("Passwd").send_keys(Functions.OPLINfo['Email Password'])
               driver.find_element_by_id("signIn").click()
 
           time.sleep(3)
