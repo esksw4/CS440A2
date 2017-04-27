@@ -69,7 +69,7 @@ class OrderNewReport(unittest.TestCase):
     time1.sleep(2)
     
     # Enter existing JobTitle
-    driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys("QA engineer")
+    driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Functions.orderNewReportResult['Job Title'])
     time1.sleep(1)
     driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Keys.ARROW_DOWN)
     driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Keys.ENTER)
@@ -128,10 +128,33 @@ class OrderNewReport(unittest.TestCase):
       GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", 'e')
 
     #################################################SELECT TAG:: Make extra input for the NEW TAG name on the GUI. TAG ON THE NEW TAG
-    
+    # Click Tags -> Edit
+    time1.sleep(2)
+    driver.find_element_by_id("allAssesseeGroupsBtn").click()
+    time1.sleep(2)
+    driver.find_element_by_id("aga_assesseeGroupName").send_keys(Functions.orderNewReportResult['New Tag Name'])
+    time1.sleep(2)
+    driver.find_element_by_id("aga_assesseeGroupDesc").send_keys('Smoke Test')
+    time1.sleep(2)
+    driver.find_element_by_id("assesseeGroupAssesseeSaveBtn").click()
+    time1.sleep(2)
+
+    ####################################################NEED TO FIGURE OUT This Try-except Statement.
+    try:
+      OrderNewReport.is_element_present(self, By.XPATH, "//div[@id='assesseeGroupsAssesseeAlertMsg']")
+      driver.quit()
+      GUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
+    except:
+      try:
+        time1.sleep(2)
+        OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable")
+      except:
+        GUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creating Tag' functionality.", 'e')
+
     # click "Place Order"
+    time1.sleep(2)
     driver.find_element_by_id("newOrderBtn").click()
-    time1.sleep(3)
+    time1.sleep(10)
 
     # if there is any error msg during creating order, quit the test and display error message to GUI
     # if not, click OK on order confirmation dlg box

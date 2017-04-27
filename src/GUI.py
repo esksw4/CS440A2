@@ -269,7 +269,6 @@ class GUItkinter:
 				dictValue.append(f.get())
 
 			Functions.orderNewReportResult = collections.OrderedDict(zip(whichInfo, dictValue))
-			Functions.orderNewReportResult['Also Notify'] = 'Young Kim'
 			allFieldCheck = GUIFunctions.userInputFieldCheck('orderNewReport')
 			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,'orderNewReport', "Please Enter all fields")
 
@@ -362,7 +361,7 @@ class GUItkinter:
 		
 
 		global whichInfo
-		whichInfo = ['First Name','Last Name', 'Email Address', 'Job Title', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
+		whichInfo = ['First Name','Last Name', 'Email Address', 'Job Title', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee', 'Also Notify', 'New Tag Name']
 		self.userInputFrame()
 		self.conSoleFrame()
 

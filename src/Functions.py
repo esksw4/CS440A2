@@ -71,10 +71,10 @@ class Functions:
 		driver.get(URL)
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(Functions.OPLINfo['Portal Password'])
+		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
 		# type | id=user_email | ekim+abc1@calipercorp.com
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(Functions.OPLINfo['Portal Username'])
+		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
 		# click | name=commit |
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
@@ -170,10 +170,10 @@ class Functions:
 		driver.get(OPLINfo['URL to test'])
 
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(Functions.OPLINfo['Portal Username'])
+		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
 		# type User Password
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(Functions.OPLINfo['Portal Password'])
+		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
