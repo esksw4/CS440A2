@@ -65,60 +65,6 @@ class Functions:
 		colorama.init(autoreset=True)
 		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
 
-	def hiringOPL(self, testName):
-		print('Testing ', testName)
-		driver = self.driver
-		driver.get(URL)
-		# type | id=user_password | 1234567899s
-		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
-		# type | id=user_email | ekim+abc1@calipercorp.com
-		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
-		# click | name=commit |
-		driver.find_element_by_id("login-btn").click()
-		time1.sleep(timeAfterLogin)
-
-		driver.find_element_by_link_text("Hiring Status").click()
-		time1.sleep(2)
-
-		return driver
-
-	def hiringButtonCheck(checkNumError, filterStatus):
-		#print("checkNumError: " + str(checkNumError) + ",  FilterStatsu: " + filterStatus)
-		if checkNumError > 0:
-			colorama.init(autoreset=True)
-			print(colorama.Fore.RED + filterStatus + str(" button doesn't work"))
-
-	def hiringEmptyCheck(varToCheckIfEmpty,checkNumError):
-		if varToCheckIfEmpty == []:
-			checkNumError += 1
-		
-		return checkNumError
-
-	def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
-	    checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
-	    checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
-	    checkdateinRange = checkdateinRange.date()
-
-	    if listAssessee == 1 and checkdateinRange >= fromthis and checkdateinRange <= tothis:
-	      pass
-
-	    elif listAssessee == 1 and (checkdateinRange <= fromthis or checkdateinRange >= tothis):
-	      checkNumError += 1
-
-	    else:
-	      for i in range(1, listAssessee+1):
-	        time1.sleep(1)
-	        #print("i: " + str(i))
-	        checkdateinRange = driver.find_element_by_xpath("//tbody/tr[%d]/td[3]//div[@class='second-line']" % (i)).text
-	        checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
-	        checkdateinRange = checkdateinRange.date()
-
-	        if checkdateinRange < fromthis or checkdateinRange > tothis :
-	          checkNumError += 2
-	      return checkNumError
-
 	def checkStatusList(driver, checkNumError, listAssessee, filterStatus):
 	    whatStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]//div[@class='matchText status']").text
 
@@ -155,6 +101,60 @@ class Functions:
 	    systemAssessee = int(tableText[5])
 	    listAssessee = int(tableText[3]) - int(tableText[1]) + 1
 	    return systemAssessee, listAssessee
+
+	def hiringButtonCheck(checkNumError, filterStatus):
+		#print("checkNumError: " + str(checkNumError) + ",  FilterStatsu: " + filterStatus)
+		if checkNumError > 0:
+			colorama.init(autoreset=True)
+			print(colorama.Fore.RED + filterStatus + str(" button doesn't work"))
+
+	def hiringEmptyCheck(varToCheckIfEmpty,checkNumError):
+		if varToCheckIfEmpty == []:
+			checkNumError += 1
+		
+		return checkNumError
+
+	def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
+	    checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
+	    checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+	    checkdateinRange = checkdateinRange.date()
+
+	    if listAssessee == 1 and checkdateinRange >= fromthis and checkdateinRange <= tothis:
+	      pass
+
+	    elif listAssessee == 1 and (checkdateinRange <= fromthis or checkdateinRange >= tothis):
+	      checkNumError += 1
+
+	    else:
+	      for i in range(1, listAssessee+1):
+	        time1.sleep(1)
+	        #print("i: " + str(i))
+	        checkdateinRange = driver.find_element_by_xpath("//tbody/tr[%d]/td[3]//div[@class='second-line']" % (i)).text
+	        checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
+	        checkdateinRange = checkdateinRange.date()
+
+	        if checkdateinRange < fromthis or checkdateinRange > tothis :
+	          checkNumError += 2
+	      return checkNumError
+
+	def hiringOPL(self, testName):
+		print('Testing ', testName)
+		driver = self.driver
+		driver.get(URL)
+		# type | id=user_password | 1234567899s
+		driver.find_element_by_id("user_password").clear()
+		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
+		# type | id=user_email | ekim+abc1@calipercorp.com
+		driver.find_element_by_id("user_email").clear()
+		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
+		# click | name=commit |
+		driver.find_element_by_id("login-btn").click()
+		time1.sleep(timeAfterLogin)
+
+		driver.find_element_by_link_text("Hiring Status").click()
+		time1.sleep(2)
+
+		return driver
 
 	def OPL(self, testName):
 		print('Testing ', testName)

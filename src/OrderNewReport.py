@@ -56,7 +56,6 @@ class OrderNewReport(unittest.TestCase):
     import Functions
     import GUI
 
-    #import Functions.Variable as fv 
     checkNumError = 0
     testName = "'Order for existing job title, new assessee, also notify with new tag.'"
     driver = Functions.Functions.OPL(self, testName)
@@ -108,7 +107,7 @@ class OrderNewReport(unittest.TestCase):
     	# check if also notify present and if it does, then put the user in there.
     alsoNotifyLocation = "//div[@id='deliverToDiv']/div[1]/span[1]/input[1]"
     checkAlsoNotify = OrderNewReport.is_element_present(self, By.XPATH, alsoNotifyLocation)
-    print("checkAlsoNotify: ", checkAlsoNotify)
+    # print("checkAlsoNotify: ", checkAlsoNotify)
     if checkAlsoNotify == True:
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.orderNewReportResult['Also Notify'])
     	time1.sleep(2)
@@ -116,7 +115,6 @@ class OrderNewReport(unittest.TestCase):
     	time1.sleep(2)
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ENTER)
     	time1.sleep(2)
-
 
     # Click Prodctored Assessment
     try: 
@@ -127,7 +125,6 @@ class OrderNewReport(unittest.TestCase):
       # if any of proctored checkbox is not working, then display the error message on the GUI
       GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", 'e')
 
-    #################################################SELECT TAG:: Make extra input for the NEW TAG name on the GUI. TAG ON THE NEW TAG
     # Click Tags -> Edit
     time1.sleep(2)
     driver.find_element_by_id("allAssesseeGroupsBtn").click()
@@ -139,20 +136,22 @@ class OrderNewReport(unittest.TestCase):
     driver.find_element_by_id("assesseeGroupAssesseeSaveBtn").click()
     time1.sleep(2)
 
-    ####################################################NEED TO FIGURE OUT This Try-except Statement.
     try:
-      OrderNewReport.is_element_present(self, By.XPATH, "//div[@id='assesseeGroupsAssesseeAlertMsg']")
-      driver.quit()
-      GUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
+      # print(driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text)
+      if OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable"):
+      	driver.quit()
+      	GUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
     except:
       try:
         time1.sleep(2)
-        OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable")
+        # print(driver.find_element_by_class_name("alert alert-info.alert-dismissable").text)
+        if OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable"):
+        	pass
       except:
-        GUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creating Tag' functionality.", 'e')
+      	GUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", 'e')
 
     # click "Place Order"
-    time1.sleep(2)
+    time1.sleep(4)
     driver.find_element_by_id("newOrderBtn").click()
     time1.sleep(10)
 
@@ -172,14 +171,14 @@ class OrderNewReport(unittest.TestCase):
       time1.sleep(5)
 
       if 'reports' in driver.current_url:
-        print("1")
+        # print("1")
         fullName = Functions.orderNewReportResult['First Name'] + " " + Functions.orderNewReportResult['Last Name']
         tableText = driver.find_element_by_id("table_info").text
         systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
         whichRow = Functions.Functions.findWhichRow(driver,"Name", fullName, listAssessee)
         
         if whichRow != 9999:
-          print("3")
+          # print("3")
           # click the dropdown
           driver.find_element_by_xpath("//tbody/tr[%d]/td[1]/div[1]/a[1]" % whichRow).click()
           time1.sleep(1)
@@ -198,11 +197,11 @@ class OrderNewReport(unittest.TestCase):
 
           if len(emailCheck) != len(Functions.orderNewReportResult['Email Address']):
             Functions.orderNewReportResult['Email Address'] = Functions.orderNewReportResult['Email Address'][:len(emailCheck)]
-            print(Functions.orderNewReportResult['Email Address'])
+            # print(Functions.orderNewReportResult['Email Address'])
 
           if "Register" == registerCheck and Functions.orderNewReportResult['Email Address'] == emailCheck:
-            print("4")
-            print(registerCheck + ", " + emailCheck)
+            # print("4")
+            # print(registerCheck + ", " + emailCheck)
             
             driver.switch_to.window(tab0)
             driver.find_element_by_tag_name('body').click()
@@ -213,57 +212,37 @@ class OrderNewReport(unittest.TestCase):
             time1.sleep(1)
             driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[@id='cancelOrderBtn']").click()
 
-            print("5")
+            # print("5")
             checkConfirmationMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
-            print(checkConfirmationMessage)
+            # print(checkConfirmationMessage)
 
             if checkConfirmationMessage == True:
-              print("6")
-              print("Cancelled Succesfully")
+              # print("6")
+              # print("Cancelled Succesfully")
               driver.close()
               GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
 
             else:
-              print("7")
-              print("Cancellation Failed")
+              # print("7")
+              # print("Cancellation Failed")
               GUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
           else:
-            print("8")
-            print(len(Functions.orderNewReportResult['Email Address']))
-            print(Functions.orderNewReportResult['Email Address'])
-            print(len(emailCheck))
-            print(emailCheck + " 123124123")
+            # print("8")
+            # print(len(Functions.orderNewReportResult['Email Address']))
+            # print(Functions.orderNewReportResult['Email Address'])
+            # print(len(emailCheck))
+            # print(emailCheck + " 123124123")
             GUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", 'e')
-            print("Email address is not same as user input email address")
+            # print("Email address is not same as user input email address")
         else:
-          print("9")
+          # print("9")
           GUI.GUIFunctions.outputDisplayConsole("Name does not match", 'e')
-          print("Name does not match")
+          # print("Name does not match")
 
       else:
-        print("10")
-        print("The page is not directed to 'View Reports' page")
+        # print("10")
+        # print("The page is not directed to 'View Reports' page")
         GUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page" , 'e')
-
-
-
-
-
-
-
-
-    # Check if assessee exists
-    # errorAlertLocation = "//div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']"
-    # checkExistingAssessee = OrderNewReport.is_element_present(self, By.XPATH, errorAlertLocation)
-
-
-
-
-
-
-
-    #time1.sleep(5)
-    
 
 if __name__ == "__main__":
   unittest.main(warnings='ignore')
