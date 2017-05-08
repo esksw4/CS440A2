@@ -3355,3 +3355,17 @@ JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f5
 1493657913569 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
 1493657914717 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
 1493657915834 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: cancelOrderBtn, tagName: BUTTON, className: btn btn-primary
+1494259721706	geckodriver	INFO	Listening on 127.0.0.1:60931
+1494259723716	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.2kce4DE4PNU9
+1494259723721	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494259723751	geckodriver::marionette	INFO	Connecting to Marionette on localhost:60938
+JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_FILE_NOT_FOUND: 
+1494260119302	geckodriver	INFO	Listening on 127.0.0.1:62801
+1494260121355	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.Xxud9YAiOhpH
+1494260121359	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494260121382	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62811
+1494260167307	geckodriver	INFO	Listening on 127.0.0.1:62973
+1494260169350	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ptAEURZHZ4T4
+1494260169354	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494260169376	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62979
+JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_FILE_NOT_FOUND: 

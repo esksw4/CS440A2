@@ -162,27 +162,39 @@ class GUItkinter:
 		self.myParent = Parent
 		self.myParent.geometry(self.OPLFrame_Dimension)
 		self.myParent.title('Automated QA Testing')
-
-		self.OPLInfoLabelName = ['URL to test', 'Email Address', 'Email Password', 'Portal Username', 'Portal Password']
+		
+		self.OPLInfoLabelName = ['Email Address', 'Email Password', 'Portal Username', 'Portal Password']
 		self.OPLINfoEntry = []
 		self.askUserOPLInfo_Frame = Frame(self.myParent)
 		self.askUserOPLInfo_Frame.pack()
 		self.askUserOPLInfo_Frame.existElement = True
 
-		self.GUIOPLErrorRow_Frame = tkinter.Frame(self.askUserOPLInfo_Frame)#, bg=self.background_Color)
-		self.GUIOPLErrorRow_Frame.pack(side=TOP, fill=X)
-
 		self.TestInfo_Label = Label(self.askUserOPLInfo_Frame, text="Test Information: ")
 		self.TestInfo_Label.pack()
 
+		self.GUIOPLErrorRow_Frame = tkinter.Frame(self.askUserOPLInfo_Frame)#, bg=self.background_Color)
+		self.GUIOPLErrorRow_Frame.pack(side=TOP, fill=X)
+
+		self.URL=StringVar(value="1")
+
+		self.Row_Frame = tkinter.Frame(self.askUserOPLInfo_Frame, width=self.OPLInfoWidth_Width)
+		self.Row_Frame.pack(side=TOP, fill=X)
+		self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text="Server", anchor='w')
+		self.Label_Label.pack(side=LEFT)
+		self.serverQA_RadioButton = Radiobutton(self.Row_Frame, text="QA", variable=self.URL, value="https://portal.caliperqaaws.com/")
+		self.serverQA_RadioButton.pack(side=LEFT)
+		self.serverProd_RadioButton = Radiobutton(self.Row_Frame, text="Production", variable=self.URL, value="https://portal.calipercorp.com/")
+		self.serverProd_RadioButton.pack(side=LEFT)
+
 		for info in self.OPLInfoLabelName:
 			self.Row_Frame = tkinter.Frame(self.askUserOPLInfo_Frame, width=self.OPLInfoWidth_Width)
-			self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
-			self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
 			self.Row_Frame.pack(side=TOP, fill=X)
-			self.Label_Label.pack(side=LEFT)
-			self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
-			self.OPLINfoEntry.append(self.Entry_Entry)
+			if info != "Server":
+				self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
+				self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
+				self.Label_Label.pack(side=LEFT)
+				self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+				self.OPLINfoEntry.append(self.Entry_Entry)
 
 		self.OPLINfoLabelSave_Button = tkinter.Button(self.askUserOPLInfo_Frame, text='Continue', command=self.getUserInputSendFunction)#, bg=self.default_Color)
 		self.OPLINfoLabelSave_Button.pack(side=RIGHT)
@@ -226,6 +238,7 @@ class GUItkinter:
 		self.GUIconsoleFrame.existElement = False
 
 	def getUserInputSendFunction(self):
+		print(self.URL.get())
 		if Functions.GUIallFieldError != None:
 			Functions.GUIallFieldError.pack_forget()
 

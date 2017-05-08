@@ -95,3 +95,24 @@ JavaScript warning: http://cdn.krxd.net/ctjs/controltag.js.714934d71ca8a8cd8c474
 1491322040391 Marionette: Element does not have an accessible object -> id: gsr, tagName: BODY, className: hp vasq
 JavaScript warning: http://www.bing.com/rms/AutoSug/cj,nj/a12fc40d/3df7fc61.js?bu=rms+answers+AutoSuggest+Service%2cWeb%24Utils%2cWeb%24EventRegisterer%2cWeb%24EventRegistration%2cEmpty%2cEmpty%2cEmpty%2cWeb%24WebCore%2cWeb%24DataProvider%2cEmpty%2cEmpty%2cWeb%24Canvas%2cWeb%24Layout%2cWeb%24SearchForm%2cWeb%24Ghosting%2cEmpty%2cWeb%24PrefixThrottling%2cEmpty%2cEmpty%2cWeb%24Init, line 1: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
 1491322063265 Marionette: Element does not have an accessible object -> id: body, tagName: BODY, className:   ltr  gecko gecko-45  exp-responsive exp-scrollable-guide exp-search-big-thumbs   site-center-aligned site-as-giant-card guide-pinning-enabled    visibility-logging-enabled   not-nirvana-dogfood  not-yt-legacy-css    flex-width-enabled      flex-width-enabled-snap page-loaded
+1494260501679	geckodriver	INFO	Listening on 127.0.0.1:63987
+1494260503729	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ZZrjF5sSFvaf
+1494260503733	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494260503754	geckodriver::marionette	INFO	Connecting to Marionette on localhost:63994
+1494260517956	geckodriver	INFO	Listening on 127.0.0.1:64026
+1494260520013	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ur4K218hp1vl
+1494260520016	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494260520028	geckodriver::marionette	INFO	Connecting to Marionette on localhost:64032
+JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_FILE_NOT_FOUND: 
+1494260643262	geckodriver	INFO	Listening on 127.0.0.1:64354
+1494260645297	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.fDztUwWyX4zH
+1494260645297	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494260645313	geckodriver::marionette	INFO	Connecting to Marionette on localhost:64366
+1494261647709	geckodriver	INFO	Listening on 127.0.0.1:51320
+1494261649735	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.vHMtpiiFqoo6
+1494261649740	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494261649757	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51326
+1494261914652	geckodriver	INFO	Listening on 127.0.0.1:51900
+1494261916682	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ERUEeemvGbMa
+1494261916688	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494261916708	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51910
