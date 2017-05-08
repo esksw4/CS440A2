@@ -52,7 +52,7 @@ class Functions:
 	global GUImainFrame
 	GUImainFrame = None
 
-	global GUIOPLFrame
+	global GUIOPrLFrame
 	GUIOPLFrame = None
 
 	global GUIEvaluationText
