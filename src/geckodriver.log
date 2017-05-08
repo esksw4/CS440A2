@@ -3369,3 +3369,7 @@ JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_F
 1494260169354	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
 1494260169376	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62979
 JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_FILE_NOT_FOUND: 
+1494267291740	geckodriver	INFO	Listening on 127.0.0.1:50670
+1494267293759	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.x0fpuxGvuEaM
+1494267293762	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1494267293800	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50687

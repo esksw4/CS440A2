@@ -19,16 +19,16 @@ import tkinter.simpledialog as dlg
 
 class GUIFunctions:
 	def userInputFieldCheck(typeName):
-		if typeName == 'OPL':
-			if len([v for v in Functions.OPLINfo.values() if v == '']) > 0:
+		if typeName == "OPL":
+			if len([v for v in Functions.OPLINfo.values() if v == '']) > 0 or (Functions.GUIdisplay.URL.get() == "empty"):
 				# print(Functions.OPLINfo)
 				return False
 			else:
 				# print(Functions.OPLINfo)
 				return True
 
-		elif typeName == 'orderNewReport':
-			if len([v for v in Functions.orderNewReportResult.values() if v == '']) > 0:
+		elif typeName == "orderNewReport":
+			if (len([v for v in Functions.orderNewReportResult.values() if v == '']) > 0):
 				# print(Functions.orderNewReportResult)
 				return False
 			else:
@@ -42,7 +42,7 @@ class GUIFunctions:
 
 	def orderNewReportErrorMessageCheck(allFieldcheck, typeName, labelText):
 		if allFieldcheck == False:
-			if typeName == 'OPL':
+			if typeName == "OPL":
 				if Functions.GUIallFieldError == None:
 					Functions.GUIallFieldError = Label(Functions.GUIdisplay.GUIOPLErrorRow_Frame, text=labelText, fg='red', anchor='nw')#, bg=Functions.GUIdisplay.background_Color)
 					Functions.GUIallFieldError.pack(side=TOP)
@@ -50,7 +50,7 @@ class GUIFunctions:
 					Functions.GUIallFieldError.pack_forget()
 					Functions.GUIallFieldError.config(text=labelText)#, bg=Functions.GUIdisplay.background_Color)
 					Functions.GUIallFieldError.pack(side=TOP)
-			elif typeName == 'orderNewReport':
+			elif typeName == "orderNewReport":
 				if Functions.GUIallFieldError == None:
 					Functions.GUIallFieldError = Label(Functions.GUIdisplay.GUIuserInputErrorRow_Frame, text=labelText, fg='red', bg=Functions.GUIdisplay.background_Color, anchor='nw')
 					Functions.GUIallFieldError.pack(side=TOP)
@@ -59,13 +59,13 @@ class GUIFunctions:
 					Functions.GUIallFieldError.config(text=labelText, bg=Functions.GUIdisplay.background_Color)
 					Functions.GUIallFieldError.pack(side=TOP)
 		else:
-			if typeName == 'OPL':
+			if typeName == "OPL":
 				Functions.GUIdisplay.askUserOPLInfo_Frame.destroy()
 				Functions.GUIallFieldError = None
 				Functions.GUIdisplay.askUserOPLInfo_Frame.existElement = False
 				Functions.GUIdisplay.mainTestingFrame()
 
-			elif typeName == 'orderNewReport':
+			elif typeName == "orderNewReport":
 				suite = unittest.TestLoader().loadTestsFromTestCase(OrderNewReport.OrderNewReport)
 				unittest.TextTestRunner(verbosity=2).run(suite)
 
@@ -104,8 +104,8 @@ class GUIFunctions:
 			if Functions.GUIdisplay.current_Button == 'Order New Report':
 				Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.ONR_userInput_Frame.destroy()
-				Functions.GUIdisplay.GUIconsoleFrame.destroy()
+				Functions.GUIdisplay.ONR_userInput_Frame.pack_forget()
+				Functions.GUIdisplay.GUIconsoleFrame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 
 			elif Functions.GUIdisplay.current_Button == 'Hiring Status':
@@ -120,9 +120,9 @@ class GUIFunctions:
 			elif Functions.GUIdisplay.current_Button == 'Login_Security':
 				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_LL_Frame.destroy()#config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_PR_Frame.destroy()
-				Functions.GUIdisplay.LS_PU_Frame.destroy()
+				Functions.GUIdisplay.LS_LL_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
+				Functions.GUIdisplay.LS_PR_Frame.pack_forget()
+				Functions.GUIdisplay.LS_PU_Frame.pack_forget()
 				# Functions.GUIdisplay.userInputLabel_Label.config(bg=Functions.GUIdisplay.default_Color)
 				# Functions.GUIdisplay.userInputEnterRow_Frame.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.GUIconsoleFrame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
@@ -162,7 +162,7 @@ class GUItkinter:
 		self.myParent = Parent
 		self.myParent.geometry(self.OPLFrame_Dimension)
 		self.myParent.title('Automated QA Testing')
-		
+
 		self.OPLInfoLabelName = ['Email Address', 'Email Password', 'Portal Username', 'Portal Password']
 		self.OPLINfoEntry = []
 		self.askUserOPLInfo_Frame = Frame(self.myParent)
@@ -175,7 +175,7 @@ class GUItkinter:
 		self.GUIOPLErrorRow_Frame = tkinter.Frame(self.askUserOPLInfo_Frame)#, bg=self.background_Color)
 		self.GUIOPLErrorRow_Frame.pack(side=TOP, fill=X)
 
-		self.URL=StringVar(value="1")
+		self.URL=StringVar(value="empty")
 
 		self.Row_Frame = tkinter.Frame(self.askUserOPLInfo_Frame, width=self.OPLInfoWidth_Width)
 		self.Row_Frame.pack(side=TOP, fill=X)
@@ -188,13 +188,12 @@ class GUItkinter:
 
 		for info in self.OPLInfoLabelName:
 			self.Row_Frame = tkinter.Frame(self.askUserOPLInfo_Frame, width=self.OPLInfoWidth_Width)
+			self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
+			self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
 			self.Row_Frame.pack(side=TOP, fill=X)
-			if info != "Server":
-				self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
-				self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
-				self.Label_Label.pack(side=LEFT)
-				self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
-				self.OPLINfoEntry.append(self.Entry_Entry)
+			self.Label_Label.pack(side=LEFT)
+			self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+			self.OPLINfoEntry.append(self.Entry_Entry)
 
 		self.OPLINfoLabelSave_Button = tkinter.Button(self.askUserOPLInfo_Frame, text='Continue', command=self.getUserInputSendFunction)#, bg=self.default_Color)
 		self.OPLINfoLabelSave_Button.pack(side=RIGHT)
@@ -238,7 +237,6 @@ class GUItkinter:
 		self.GUIconsoleFrame.existElement = False
 
 	def getUserInputSendFunction(self):
-		print(self.URL.get())
 		if Functions.GUIallFieldError != None:
 			Functions.GUIallFieldError.pack_forget()
 
@@ -250,16 +248,16 @@ class GUItkinter:
 
 			Functions.OPLINfo = collections.OrderedDict(zip(self.OPLInfoLabelName, dictValue))
 			# print(Functions.OPLINfo['URL to test'])
-			allFieldCheck = GUIFunctions.userInputFieldCheck('OPL')
-			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,'OPL', "Please Enter all fields")
+			allFieldCheck = GUIFunctions.userInputFieldCheck("OPL")
+			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"OPL", "Please Enter all fields")
 
 		elif self.chooseTest_Frame.existElement:
 			for f in self.fields:
 				dictValue.append(f.get())
 
 			Functions.orderNewReportResult = collections.OrderedDict(zip(whichInfo, dictValue))
-			allFieldCheck = GUIFunctions.userInputFieldCheck('orderNewReport')
-			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,'orderNewReport', "Please Enter all fields")
+			allFieldCheck = GUIFunctions.userInputFieldCheck("orderNewReport")
+			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"orderNewReport", "Please Enter all fields")
 
 	def makeUserInputForm(self, arg):
 		self.fields = []
@@ -273,28 +271,23 @@ class GUItkinter:
 			self.fields.append(self.userInputEntry_Entry)
 
 	def userInputFrame(self, arg):
-		print(arg)
-		print(arg.existElement)
-
-		if (arg.existElement == True):
-			arg.destroy()
-			arg = tkinter.Frame(self.myParent)
-		
+		print("arg: ", arg)
+		print("arg.existElement: ",arg.existElement)
 		arg.config(bg=self.background_Color)
 		if self.background_Color == 'light goldenrod yellow': 
 			arg.pack(side=LEFT, fill = Y, padx=self.betweeenFrame, expand=0)
+		else:
+			arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
 
-		arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
-		arg.existElement = True
-
-		Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-		Functions.GUIdisplay.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
-
-		self.makeUserInputForm(arg)
-		self.userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-		self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
-		self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
-		self.userInputEnterButton_Button.pack(side=RIGHT)
+		if (arg.existElement == False):
+			Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+			Functions.GUIdisplay.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
+			self.makeUserInputForm(arg)
+			arg.existElement = True
+			self.userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+			self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
+			self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
+			self.userInputEnterButton_Button.pack(side=RIGHT)
 
 	def conSoleFrame(self):
 		if (self.GUIconsoleFrame.existElement == True):
