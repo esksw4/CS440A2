@@ -52,7 +52,7 @@ class Functions:
 	global GUImainFrame
 	GUImainFrame = None
 
-	global GUIOPrLFrame
+	global GUIOPLFrame
 	GUIOPLFrame = None
 
 	global GUIEvaluationText
@@ -60,6 +60,181 @@ class Functions:
 
 	global GUIallFieldError
 	GUIallFieldError = None
+
+	def compareAlphabeticorder(f, l, mustbesmaller, mustbelarger):
+	    # 1 is true
+	    # 0 is false
+	    #print(mustbesmaller,'*', mustbesmaller[f][l],'*',mustbelarger, '*',mustbelarger[f][l],'*')
+	    if mustbesmaller == mustbelarger:
+	      returnthis = 1
+	      return returnthis
+	    if ord(mustbesmaller[f][l]) == ord(mustbelarger[f][l]):   
+	        while l < min(len(mustbesmaller[f]), len(mustbelarger[f]))-1:
+	          l += 1
+	          whatReturned = Functions.compareAlphabeticorder(f,l,mustbesmaller,mustbelarger)
+	          if whatReturned == 1:
+	            #print('1')
+	            returnthis = 1
+	            return returnthis
+	          else:
+	            #print('2')
+	            returnthis = 0
+	            return returnthis
+	        if len(mustbesmaller[f]) == len(mustbelarger[f]):
+	          if f == 0:
+	            #print('3')
+	            print('assessee names are same')
+	            returnthis = 1
+	            return returnthis
+	          else:
+	            #print('4')
+	            Functions.compareAlphabeticorder(f-1,0,mustbesmaller,mustbelarger)
+	        elif len(mustbesmaller[f]) < len(mustbelarger[f]):
+	          #print('5')
+	          returnthis = 1
+	          return returnthis
+	        else:
+	          #print('6')
+	          returnthis = 0
+	          return returnthis
+	    elif ord(mustbesmaller[f][l]) < ord(mustbelarger[f][l]):
+	      #print('7')
+	      returnthis = 1
+	      return returnthis
+	    elif ord(mustbesmaller[f][l]) > ord(mustbelarger[f][l]):
+	        #print('8')
+	        print('First Name is not sorted correctly')
+	    else:
+	      #print('9')
+	      print('Last Name is not sorted correctly')
+	      returnthis = 0
+	      return returnthis
+	    #print('10')
+	    return returnthis
+
+  # def howmanyAssesseeListSystem(tableText):
+  #   tableText = re.split('\s+', tableText)
+  #   global systemAssessee, listAssessee
+  #   systemAssessee = int(tableText[5])
+  #   listAssessee = int(tableText[3]) - int(tableText[1]) + 1
+  #   return systemAssessee, listAssessee
+
+  	def sortingCheck(driver, whatToSort, listAssessee, checkNumError):
+	    i = 1
+	    if (whatToSort == 'Name'):
+	      str1 = str("//tbody/tr[")
+	      str3 = str("]/td[2]/div/div")
+	      while i < listAssessee:
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbesmaller = driver.find_element_by_xpath(str_element).text.upper()
+	        # split the Firstname and Lastname
+	        # Firstname : mustbesmaller[0]
+	        # Lastname : mustbesmaller[1]
+	        mustbesmaller = re.split('\s+', mustbesmaller)
+	        
+	        i = i+1
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbelarger = driver.find_element_by_xpath(str_element).text.upper()
+	        # split the Firstname and Lastname
+	        # Firstname : mustbesmaller[0]
+	        # Lastname : mustbesmaller[1]
+	        mustbelarger = re.split('\s+', mustbelarger)
+
+	        alphabeticWorks = Functions.compareAlphabeticorder(1, 0, mustbesmaller, mustbelarger)
+
+	        if (alphabeticWorks == 'False'):
+	          checkNumError += 1
+	          colorama.init(autoreset=True)
+	          print(colorama.Fore.RED + 'The row ' + str(i-1) + ' and ' + str(i) + ' are not sorted correctly')
+	          return checkNumError
+	            
+	    elif (whatToSort == 'Date'):
+	      str1 = str("//tbody/tr[")
+	      str3 = str("]/td[3]//div[@class='second-line']")
+	      
+	      while i < listAssessee:
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbelarger = driver.find_element_by_xpath(str_element).text
+	        mustbelarger = datetime.strptime(mustbelarger, '%m/%d/%Y')
+	        i = i+1
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbesmaller = driver.find_element_by_xpath(str_element).text
+	        mustbesmaller = datetime.strptime(mustbesmaller, '%m/%d/%Y')
+	        
+	        if (mustbelarger < mustbesmaller):
+	          checkNumError += 1
+	          colorama.init(autoreset=True)
+	          print(colorama.Fore.RED + 'The row ' + str(i-1) + ' and ' + str(i) + ' are not sorted correctly')
+	          return checkNumError
+
+	    elif (whatToSort == 'Supervisor'):
+	      str1 = str("//tbody/tr[")
+	      str3 = str("]/td[3]//span[@class='dt-supervisor-name']")
+	      tableText = driver.find_element_by_id("table_info").text
+	      systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+	      
+	      if listAssessee != 100:
+	        driver.find_element_by_xpath("//select[@name='table_length']").click()
+	        time1.sleep(1)
+	        driver.find_element_by_xpath("//select[@name='table_length']").send_keys(Keys.ARROW_DOWN)
+	        driver.find_element_by_xpath("//select[@name='table_length']").send_keys(Keys.ARROW_DOWN)
+	        driver.find_element_by_xpath("//select[@name='table_length']").send_keys(Keys.ARROW_DOWN)
+	        time1.sleep(1)
+	        driver.find_element_by_xpath("//select[@name='table_length']").send_keys(Keys.ENTER)
+	        time1.sleep(2)
+	        tableText = driver.find_element_by_id("table_info").text
+	        systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+	        
+	        if (listAssessee != 100):
+	          checkNumError += 1
+	          colorama.init(autoreset=True)
+	          print(colorama.Fore.RED + 'The number of entries do not change.')
+	      
+	      while i < listAssessee:
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+
+	        while driver.find_element_by_xpath(str_element).text == 'Supervisor not available':
+	          #print(driver.find_element_by_xpath(str_element).text)
+	          i += 1
+	          str2 = str(i)
+	          str_element = str1 + str2 + str3
+	        i = i-1;
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbesmaller = driver.find_element_by_xpath(str_element).text.upper()
+	        # split the Firstname and Lastname
+	        # Firstname : mustbesmaller[0]
+	        # Lastname : mustbesmaller[1]
+	        mustbesmaller = re.split('\s+', mustbesmaller)
+	        
+	        if mustbesmaller[0] == 'SUPERVISOR':
+	          mustbesmaller.pop(1)
+	        
+	        i = i+1
+	        str2 = str(i)
+	        str_element = str1 + str2 + str3
+	        mustbelarger = driver.find_element_by_xpath(str_element).text.upper()
+	        # split the Firstname and Lastname
+	        # Firstname : mustbesmaller[0]
+	        # Lastname : mustbesmaller[1]
+	        mustbelarger = re.split('\s+', mustbelarger)
+
+	        #print('row ' + str(i-1) + ' vs ' + str(i))
+	        alphabeticWorks = Functions.compareAlphabeticorder(1, 0, mustbesmaller, mustbelarger)
+	        #print(alphabeticWorks)
+	        
+	        if alphabeticWorks == 0:
+	          checkNumError += 1
+	          return checkNumError
+	        else:
+	          i += 1
+	    
+	    return checkNumError
 
 	def checkForError(checkNumError, testName):
 		colorama.init(autoreset=True)

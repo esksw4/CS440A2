@@ -101,14 +101,14 @@ class GUIFunctions:
 		# print(Functions.GUIdisplay.background_Color)
 		if Functions.GUIdisplay.current_Button != None:
 			print(Functions.GUIdisplay.current_Button)
-			if Functions.GUIdisplay.current_Button == 'Order New Report':
+			if Functions.GUIdisplay.current_Button == "Order New Report":
 				Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.ONR_userInput_Frame.pack_forget()
 				Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == 'Hiring Status':
+			elif Functions.GUIdisplay.current_Button == "Hiring Status":
 				Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				# Functions.GUIdisplay.GUIuserInput_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
@@ -117,7 +117,7 @@ class GUIFunctions:
 				# Functions.GUIdisplay.GUIconsoleFrame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == 'Login_Security':
+			elif Functions.GUIdisplay.current_Button == "Login_Security":
 				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.LS_LL_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
@@ -130,7 +130,7 @@ class GUIFunctions:
 				Functions.GUIdisplay.LS_PU_console_Frame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == 'Dashboard':
+			elif Functions.GUIdisplay.current_Button == "Dashboard":
 				Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				# Functions.GUIdisplay.GUIuserInput_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
@@ -155,17 +155,17 @@ class GUItkinter:
 
 		Functions.GUIOPLFrame = Tk
 
-		self.default_Color = Parent.cget('bg')
-		self.background_Color = 'White'
+		self.default_Color = Parent.cget("bg")
+		self.background_Color = "White"
 
 		self.allFieldError = None
 		self.current_Button = None
 
 		self.myParent = Parent
 		self.myParent.geometry(self.OPLFrame_Dimension)
-		self.myParent.title('Automated QA Testing')
+		self.myParent.title("Automated Smoke Test")
 
-		self.OPLInfoLabelName = ['Email Address', 'Email Password', 'Portal Username', 'Portal Password']
+		self.OPLInfoLabelName = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
 		self.OPLINfoEntry = []
 		self.askUserOPLInfo_Frame = Frame(self.myParent)
 		self.askUserOPLInfo_Frame.pack()
@@ -197,7 +197,7 @@ class GUItkinter:
 			self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
 			self.OPLINfoEntry.append(self.Entry_Entry)
 
-		self.OPLINfoLabelSave_Button = tkinter.Button(self.askUserOPLInfo_Frame, text='Continue', command=self.getUserInputSendFunction)#, bg=self.default_Color)
+		self.OPLINfoLabelSave_Button = tkinter.Button(self.askUserOPLInfo_Frame, text="Continue", command=self.getUserInputSendFunction)#, bg=self.default_Color)
 		self.OPLINfoLabelSave_Button.pack(side=RIGHT)
 
 	def mainTestingFrame(self):
@@ -207,7 +207,7 @@ class GUItkinter:
 		self.chooseTest_Frame.pack(side=LEFT, fill=Y)
 		self.chooseTest_Frame.existElement = True
 
-		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text='Login_Security', command=self.loginSecurity, bg=self.default_Color)
+		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
 		self.loginSecurity_Button.pack()
 		self.loginSecurity_Button.place(y=self.chooseTestPlace_Yaxis, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
 
@@ -226,15 +226,15 @@ class GUItkinter:
 		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame)
 		self.LS_PU_console_Frame.existElement = False
 
-		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text='Dashboard', command =self.dashBoard, bg=self.default_Color)
+		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text="Dashboard", command =self.dashBoard, bg=self.default_Color)
 		self.dashBoardPage_Button.pack()
 		self.dashBoardPage_Button.place(y=self.chooseTestPlace_Yaxis+self.chooseTestButton_Height, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
 
-		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text='Hiring Status', command = self.hiringStatus, bg=self.default_Color)
+		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text="Hiring Status", command = self.hiringStatus, bg=self.default_Color)
 		self.hiringStatusPage_Button.pack()
 		self.hiringStatusPage_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*2), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
 
-		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text='Order New Report', relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
+		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text="Order New Report", relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
 		self.orderNewReport_Button.pack()
 		self.orderNewReport_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*3), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
 
@@ -282,7 +282,7 @@ class GUItkinter:
 		print("arg: ", arg)
 		print("arg.existElement: ",arg.existElement)
 		arg.config(bg=self.background_Color)
-		if self.background_Color == 'light goldenrod yellow': 
+		if self.background_Color == "light goldenrod yellow": 
 			arg.pack(side=LEFT, fill=Y, padx=self.betweeenFrame, expand=0)
 		else:
 			arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
@@ -306,7 +306,7 @@ class GUItkinter:
 
 		arg.config(bg=self.background_Color)
 		if testType == "LS":
-			arg.pack(side=RIGHT, fill=BOTH, padx=self.betweeenFrame, pady=5)
+			arg.pack(side=RIGHT, fill=BOTH, pady=5)
 		else: 
 			arg.pack(side=LEFT, fill=BOTH, padx=self.betweeenFrame, pady=5)
 
@@ -330,9 +330,9 @@ class GUItkinter:
 
 
 	def loginSecurity(self):
-		self.background_Color = 'light goldenrod yellow'
+		self.background_Color = "light goldenrod yellow"
 		GUIFunctions.buttonPressCheck()
-		self.current_Button = 'Login_Security'
+		self.current_Button = "Login_Security"
 		self.myParent.config(bg=self.background_Color)
 		self.loginSecurity_Button.config(bg=self.background_Color, relief=FLAT)
 
@@ -355,8 +355,8 @@ class GUItkinter:
 		
 	def dashBoard(self):
 		GUIFunctions.buttonPressCheck()
-		self.background_Color = 'peach puff'
-		self.current_Button = 'Dashboard'
+		self.background_Color = "peach puff"
+		self.current_Button = "Dashboard"
 		self.myParent.config(bg=self.background_Color)
 		self.dashBoardPage_Button.config(bg=self.background_Color, relief=FLAT)
 
@@ -365,8 +365,8 @@ class GUItkinter:
 
 	def hiringStatus(self):
 		GUIFunctions.buttonPressCheck()
-		self.background_Color = 'misty rose'
-		self.current_Button = 'Hiring Status'
+		self.background_Color = "misty rose"
+		self.current_Button = "Hiring Status"
 		self.myParent.config(bg=self.background_Color)
 		self.hiringStatusPage_Button.config(bg=self.background_Color, relief=FLAT)
 
@@ -374,14 +374,14 @@ class GUItkinter:
 		unittest.TextTestRunner(verbosity=2).run(suite)
 
 	def ordernewReport(self):
-		self.background_Color = 'lavender'
+		self.background_Color = "lavender"
 		GUIFunctions.buttonPressCheck()
-		self.current_Button = 'Order New Report'
+		self.current_Button = "Order New Report"
 		self.myParent.config(bg=self.background_Color)
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 		
 		global whichInfo
-		whichInfo = ['First Name','Last Name', 'Email Address', 'Job Title', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee', 'Also Notify', 'New Tag Name']
+		whichInfo = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
 		self.userInputFrame(self.ONR_userInput_Frame)#, self.ONR_userInput_Frame.existElement)
 		self.conSoleFrame(self.ONR_GUIconsoleFrame, "ONR")
 		whichInfo = []

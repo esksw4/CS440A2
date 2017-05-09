@@ -9,7 +9,7 @@ import unittest, time, re
 import Functions
 
 # def doTest():
-class Login_Security(unittest.TestCase):
+class Test_PasswordUnlock(unittest.TestCase):
   def setUp(self):
       self.driver = webdriver.Firefox()
       self.driver.implicitly_wait(30)
