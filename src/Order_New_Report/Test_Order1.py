@@ -92,9 +92,9 @@ class Test_Order1(unittest.TestCase):
     time1.sleep(2)
 
     #check if Error occurs
-    checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
+    checkErrorMsg = Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
     # print("ErrorMessage Exists? ", checkErrorMessage)
-    # according to erro occurs, display error message in the tkinter file.
+    # according to error occurs, display error message in the tkinter file.
     if (checkErrorMsg == True):
       driver.quit()
       # Functions.Functions.orderNewStopTest()
@@ -105,7 +105,7 @@ class Test_Order1(unittest.TestCase):
 
     	# check if also notify present and if it does, then put the user in there.
     alsoNotifyLocation = "//div[@id='deliverToDiv']/div[1]/span[1]/input[1]"
-    checkAlsoNotify = OrderNewReport.is_element_present(self, By.XPATH, alsoNotifyLocation)
+    checkAlsoNotify = Test_Order1.is_element_present(self, By.XPATH, alsoNotifyLocation)
     # print("checkAlsoNotify: ", checkAlsoNotify)
     if checkAlsoNotify == True:
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.orderNewReportResult['Also Notify'])
@@ -137,14 +137,14 @@ class Test_Order1(unittest.TestCase):
 
     try:
       # print(driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text)
-      if OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable"):
+      if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable"):
       	driver.quit()
       	GUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
     except:
       try:
         time1.sleep(2)
         # print(driver.find_element_by_class_name("alert alert-info.alert-dismissable").text)
-        if OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable"):
+        if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable"):
         	pass
       except:
       	GUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", 'e')
@@ -158,7 +158,7 @@ class Test_Order1(unittest.TestCase):
     # if not, click OK on order confirmation dlg box
     # then test the "Copy Assessment URL" -> by check the same email address and "register" page
     # if they are all same and good to go, cancel the order & check if its cancelled succesffully. 
-    checkErrorMsg = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
+    checkErrorMsg = Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable")
 
     if checkErrorMsg == True:
       driver.quit()
@@ -212,7 +212,7 @@ class Test_Order1(unittest.TestCase):
             driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[@id='cancelOrderBtn']").click()
 
             # print("5")
-            checkConfirmationMessage = OrderNewReport.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
+            checkConfirmationMessage = Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
             # print(checkConfirmationMessage)
 
             if checkConfirmationMessage == True:

@@ -7,39 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 class Functions:
-	# global orderNewReportCheckErrorMsg
-	# orderNewReportCheckErrorMsg = None
-
-	# global GUIuserInputErrorRow_Frame
-	# GUIuserInputErrorRow_Frame = None
-
-	# global GUIdisplay
-	# GUIdisplay = None
-
-	# global GUIConsoleText
-	# GUIConsoleText = None	
-
-	# global GUIuserInputFrame
-	# GUIuserInputFrame = None
-
-	# global GUIconsoleFrame
-	# GUIconsoleFrame = None
-
-	# global URL
-	# URL = 'https://portal.caliperqaaws.com/users/sign_in'
-
-	# global portalUserName
-	# portalUserName = "ekim+ABC1@calipercorp.com"
-
-	# global portalPassword
-	# portalPassword = "123456789!"
-
-	# global emailUserName
-	# emailUserName = "ekim@calipercorp.com"
-
-	# global emailPassword
-	# emailPassword = "Rladmsthf0411"
-
 	global timeAfterLogin
 	timeAfterLogin = 7
 
@@ -60,6 +27,13 @@ class Functions:
 
 	global GUIallFieldError
 	GUIallFieldError = None
+
+	# def howmanyAssesseeListSystem(tableText):
+  #   tableText = re.split('\s+', tableText)
+  #   global systemAssessee, listAssessee
+  #   systemAssessee = int(tableText[5])
+  #   listAssessee = int(tableText[3]) - int(tableText[1]) + 1
+  #   return systemAssessee, listAssessee
 
 	def compareAlphabeticorder(f, l, mustbesmaller, mustbelarger):
 	    # 1 is true
@@ -112,14 +86,7 @@ class Functions:
 	    #print('10')
 	    return returnthis
 
-  # def howmanyAssesseeListSystem(tableText):
-  #   tableText = re.split('\s+', tableText)
-  #   global systemAssessee, listAssessee
-  #   systemAssessee = int(tableText[5])
-  #   listAssessee = int(tableText[3]) - int(tableText[1]) + 1
-  #   return systemAssessee, listAssessee
-
-  	def sortingCheck(driver, whatToSort, listAssessee, checkNumError):
+	def sortingCheck(driver, whatToSort, listAssessee, checkNumError):
 	    i = 1
 	    if (whatToSort == 'Name'):
 	      str1 = str("//tbody/tr[")
@@ -312,10 +279,17 @@ class Functions:
 	          checkNumError += 2
 	      return checkNumError
 
+	def is_element_present(driver, how, what):
+	    try:
+	      driver.find_element(by=how, value=what)
+	    except NoSuchElementException as e:
+	      return False
+	    return True
+
 	def hiringOPL(self, testName):
 		print('Testing ', testName)
 		driver = self.driver
-		driver.get(URL)
+		driver.get(GUIdisplay.URL.get())
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
 		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
@@ -332,17 +306,13 @@ class Functions:
 		return driver
 
 	def OPL(self, testName):
+		import GUI
+
 		print('Testing ', testName)
+		print(GUIdisplay.URL.get())
 		driver = self.driver
-
-		## can use it after zoom out
-		# driver.set_window_size(600,400)
-
-		## NEED TO ZOOM OUT!
-		# html = driver.find_element(By.TAG_NAME,'html');
-		# html.send_keys(Keys.Chord(Keys.CONTROL, Keys.ADD))
 		
-		driver.get(OPLINfo['URL to test'])
+		driver.get(GUIdisplay.URL.get())
 
 		driver.find_element_by_id("user_email").clear()
 		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
@@ -352,8 +322,17 @@ class Functions:
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
+		
+		try: 
+			if Functions.is_element_present(driver, By.XPATH, "//div[@id='alertMsgContainer']/div[1]"):
+				driver.quit()
+				GUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
+				################ Need to construct messageBox Method. (Displays the messageBox that takes user Inputs of two fields: Email address and Password).
+				# Functions.GUIdisplay.messageBox()
+		except:
+			# print("hello")
+			return driver
 
-		return driver
 
 
 
