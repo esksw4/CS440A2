@@ -1,4 +1,4 @@
-###### THIS IS STILL BEING DEVELOPED AND NOT READY TO BEING USED.
+# THIS IS STILL BEING DEVELOPED AND IS NOT READY.
 # Automated Testing Application - Caliper
 An automated testing appliation evaluates the smoke test on the Caliper's QA/Production portal.
 
