@@ -125,7 +125,7 @@ class GUItkinter:
 
 		self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent)
 		self.ONR_GUIconsoleFrame.existElement = False
-		# self.conSoleFrame(self.ONR_GUIconsoleFrame, "ONR")
+		self.conSoleFrame(self.ONR_GUIconsoleFrame, "ONR")
 		
 		self.whichInfo = []
 
