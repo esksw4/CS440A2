@@ -19,33 +19,26 @@ class Functions:
 	global GUImainFrame
 	GUImainFrame = None
 
-	global GUIOPLFrame
-	GUIOPLFrame = None
-
 	global GUIEvaluationText
 	GUIEvaluationText = None
 
 	global GUIallFieldError
 	GUIallFieldError = None
 
-	# def howmanyAssesseeListSystem(tableText):
-  #   tableText = re.split('\s+', tableText)
-  #   global systemAssessee, listAssessee
-  #   systemAssessee = int(tableText[5])
-  #   listAssessee = int(tableText[3]) - int(tableText[1]) + 1
-  #   return systemAssessee, listAssessee
+	def checkForError(checkNumError, testName):
+		colorama.init(autoreset=True)
+		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
 
-	def compareAlphabeticorder(f, l, mustbesmaller, mustbelarger):
-	    # 1 is true
-	    # 0 is false
-	    #print(mustbesmaller,'*', mustbesmaller[f][l],'*',mustbelarger, '*',mustbelarger[f][l],'*')
+# Hiring Stauts
+	# Used inside of "sortingCheck" function
+	def compareAlphabeticOrder(f, l, mustbesmaller, mustbelarger):
 	    if mustbesmaller == mustbelarger:
 	      returnthis = 1
 	      return returnthis
 	    if ord(mustbesmaller[f][l]) == ord(mustbelarger[f][l]):   
 	        while l < min(len(mustbesmaller[f]), len(mustbelarger[f]))-1:
 	          l += 1
-	          whatReturned = Functions.compareAlphabeticorder(f,l,mustbesmaller,mustbelarger)
+	          whatReturned = Functions.compareAlphabeticOrder(f,l,mustbesmaller,mustbelarger)
 	          if whatReturned == 1:
 	            #print('1')
 	            returnthis = 1
@@ -62,7 +55,7 @@ class Functions:
 	            return returnthis
 	          else:
 	            #print('4')
-	            Functions.compareAlphabeticorder(f-1,0,mustbesmaller,mustbelarger)
+	            Functions.compareAlphabeticOrder(f-1,0,mustbesmaller,mustbelarger)
 	        elif len(mustbesmaller[f]) < len(mustbelarger[f]):
 	          #print('5')
 	          returnthis = 1
@@ -86,6 +79,15 @@ class Functions:
 	    #print('10')
 	    return returnthis
 
+	# Used inside of "sortingCheck" function, Test_SortingDropdown, Test_SearchForAssessee, Test_HiringFunction, Test_Filters
+	def howmanyAssesseeListSystem(tableText):
+	    tableText = re.split('\s+', tableText)
+	    global systemAssessee, listAssessee
+	    systemAssessee = int(tableText[5])
+	    listAssessee = int(tableText[3]) - int(tableText[1]) + 1
+	    return systemAssessee, listAssessee
+
+	# Used in Test_SortingDropdown
 	def sortingCheck(driver, whatToSort, listAssessee, checkNumError):
 	    i = 1
 	    if (whatToSort == 'Name'):
@@ -109,7 +111,7 @@ class Functions:
 	        # Lastname : mustbesmaller[1]
 	        mustbelarger = re.split('\s+', mustbelarger)
 
-	        alphabeticWorks = Functions.compareAlphabeticorder(1, 0, mustbesmaller, mustbelarger)
+	        alphabeticWorks = Functions.compareAlphabeticOrder(1, 0, mustbesmaller, mustbelarger)
 
 	        if (alphabeticWorks == 'False'):
 	          checkNumError += 1
@@ -192,7 +194,7 @@ class Functions:
 	        mustbelarger = re.split('\s+', mustbelarger)
 
 	        #print('row ' + str(i-1) + ' vs ' + str(i))
-	        alphabeticWorks = Functions.compareAlphabeticorder(1, 0, mustbesmaller, mustbelarger)
+	        alphabeticWorks = Functions.compareAlphabeticOrder(1, 0, mustbesmaller, mustbelarger)
 	        #print(alphabeticWorks)
 	        
 	        if alphabeticWorks == 0:
@@ -203,10 +205,7 @@ class Functions:
 	    
 	    return checkNumError
 
-	def checkForError(checkNumError, testName):
-		colorama.init(autoreset=True)
-		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
-
+	# Used in Test_Filters
 	def checkStatusList(driver, checkNumError, listAssessee, filterStatus):
 	    whatStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]/div[1]//div[@class='matchText status']").text
 
@@ -225,37 +224,20 @@ class Functions:
 	          return checkNumError
 	      return checkNumError
 
-	def findWhichRow(driver, byWhat, findValue, listAssessee):
-		if byWhat == "Name": 
-			row = 1
-			check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
-			while check != findValue and  row < listAssessee:
-				row += 1
-				check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
-				if row == listAssessee and check != findValue:
-					row = 9999
-
-			return row 
-
-	def howmanyAssesseeListSystem(tableText):
-	    tableText = re.split('\s+', tableText)
-	    global systemAssessee, listAssessee
-	    systemAssessee = int(tableText[5])
-	    listAssessee = int(tableText[3]) - int(tableText[1]) + 1
-	    return systemAssessee, listAssessee
-
+	# Used in Test_Filters
 	def hiringButtonCheck(checkNumError, filterStatus):
 		#print("checkNumError: " + str(checkNumError) + ",  FilterStatsu: " + filterStatus)
 		if checkNumError > 0:
 			colorama.init(autoreset=True)
 			print(colorama.Fore.RED + filterStatus + str(" button doesn't work"))
 
+	# Used in Test_Filters
 	def hiringEmptyCheck(varToCheckIfEmpty,checkNumError):
 		if varToCheckIfEmpty == []:
 			checkNumError += 1
-		
 		return checkNumError
 
+	# Used in Test_Filters
 	def checkDateList(driver, checkNumError, listAssessee, tothis, fromthis):
 	    checkdateinRange = driver.find_element_by_xpath("//tbody/tr[1]/td[3]//div[@class='second-line']").text
 	    checkdateinRange = datetime.strptime(checkdateinRange, '%m/%d/%Y')
@@ -279,13 +261,19 @@ class Functions:
 	          checkNumError += 2
 	      return checkNumError
 
-	def is_element_present(driver, how, what):
-	    try:
-	      driver.find_element(by=how, value=what)
-	    except NoSuchElementException as e:
-	      return False
-	    return True
+	def findWhichRow(driver, byWhat, findValue, listAssessee):
+		if byWhat == "Name": 
+			row = 1
+			check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+			while check != findValue and  row < listAssessee:
+				row += 1
+				check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+				if row == listAssessee and check != findValue:
+					row = 9999
 
+			return row 
+
+	# Used inside of "sortingCheck" function, Test_SortingDropdown, Test_SearchForAssessee, Test_HiringFunction, Test_Filters
 	def hiringOPL(self, testName):
 		print('Testing ', testName)
 		driver = self.driver
@@ -304,6 +292,14 @@ class Functions:
 		time1.sleep(2)
 
 		return driver
+
+	# Used inside of function "OPL"
+	def is_element_present(driver, how, what):
+	    try:
+	      driver.find_element(by=how, value=what)
+	    except NoSuchElementException as e:
+	      return False
+	    return True
 
 	def OPL(self, testName):
 		import GUI

@@ -37,7 +37,6 @@ class GUIFunctions:
 				return True
 		
 	def orderNewReportuserEntryNotValid():
-		# unittest.TextTestRunner(verbosity=2).stop(suite)
 		enterValidFormat = Label(Functions.GUIdisplay.GUIuserInputErrorRow_Frame, text="Please Enter inputs in valid format", fg='red', anchor='w')
 		enterValidFormat.pack()
 
@@ -45,11 +44,11 @@ class GUIFunctions:
 		if allFieldcheck == False:
 			if typeName == "OPL":
 				if Functions.GUIallFieldError == None:
-					Functions.GUIallFieldError = Label(Functions.GUIdisplay.GUIOPLErrorRow_Frame, text=labelText, fg='red', anchor='nw')#, bg=Functions.GUIdisplay.background_Color)
+					Functions.GUIallFieldError = Label(Functions.GUIdisplay.GUIOPLErrorRow_Frame, text=labelText, fg='red', anchor='nw')
 					Functions.GUIallFieldError.pack(side=TOP)
 				else:
 					Functions.GUIallFieldError.pack_forget()
-					Functions.GUIallFieldError.config(text=labelText)#, bg=Functions.GUIdisplay.background_Color)
+					Functions.GUIallFieldError.config(text=labelText)
 					Functions.GUIallFieldError.pack(side=TOP)
 			elif typeName == "orderNewReport":
 				if Functions.GUIallFieldError == None:
@@ -61,9 +60,9 @@ class GUIFunctions:
 					Functions.GUIallFieldError.pack(side=TOP)
 		else:
 			if typeName == "OPL":
-				Functions.GUIdisplay.askUserOPLInfo_Frame.destroy()
+				Functions.GUIdisplay.OPLInfo_Frame.destroy()
 				Functions.GUIallFieldError = None
-				Functions.GUIdisplay.askUserOPLInfo_Frame.existElement = False
+				Functions.GUIdisplay.OPLInfo_Frame.existElement = False
 				Functions.GUIdisplay.mainTestingFrame()
 
 			elif typeName == "orderNewReport":
@@ -79,16 +78,12 @@ class GUIFunctions:
 			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
 
 	def outputDisplayConsole(text, displayType):
-		if displayType == 'e': # 'e' == console
-			# print(Functions.GUIdisplay.textConsole_Text.get("0.0","100.0"))
-			# if Tab.TabBar.txtBox[Console].get("0.0","2.0") is not '':
-			# 	Functions.GUIdisplay.tex.delete("0.0", "2.0")
+		if displayType == 'e':
 			Functions.GUIdisplay.textConsole_Text.insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
 		else:
-			# print(Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0"))
 			if Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0") is not '':
 				Functions.GUIdisplay.textEvaluation_Text.delete("0.0", "100.0")
 			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n")
@@ -97,48 +92,34 @@ class GUIFunctions:
 			GUIFunctions.orderNewReportCheckThis()
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
-	def buttonPressCheck():
-		# print(Functions.GUIdisplay.current_Button)
-		# print(Functions.GUIdisplay.background_Color)
-		if Functions.GUIdisplay.current_Button != None:
-			print(Functions.GUIdisplay.current_Button)
-			if Functions.GUIdisplay.current_Button == "Order New Report":
-				Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.ONR_userInput_Frame.pack_forget()
-				Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
-				Functions.GUIdisplay.current_Button = None
+	# def buttonPressCheck():
+	# 	if Functions.GUIdisplay.current_Button != None:
+	# 		print(Functions.GUIdisplay.current_Button)
+	# 		if Functions.GUIdisplay.current_Button == "Order New Report":
+	# 			Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+	# 			Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
+	# 			Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
+	# 			Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == "Hiring Status":
-				Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				# Functions.GUIdisplay.GUIuserInput_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				# # Functions.GUIdisplay.userInputLabel_Label.config(bg=Functions.GUIdisplay.default_Color)
-				# # Functions.GUIdisplay.userInputEnterRow_Frame.config(bg=Functions.GUIdisplay.default_Color)
-				# Functions.GUIdisplay.GUIconsoleFrame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.current_Button = None
+	# 		elif Functions.GUIdisplay.current_Button == "Hiring Status":
+	# 			Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+	# 			Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
+	# 			Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == "Login_Security":
-				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				# Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_LL_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_PR_Frame.pack_forget()
-				Functions.GUIdisplay.LS_PU_Frame.pack_forget()
-				# Functions.GUIdisplay.userInputLabel_Label.config(bg=Functions.GUIdisplay.default_Color)
-				# Functions.GUIdisplay.userInputEnterRow_Frame.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_LL_console_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.LS_PR_console_Frame.pack_forget()
-				Functions.GUIdisplay.LS_PU_console_Frame.pack_forget()
-				Functions.GUIdisplay.current_Button = None
+	# 		elif Functions.GUIdisplay.current_Button == "Login_Security":
+	# 			Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+	# 			Functions.GUIdisplay.LS_LL_Frame.pack_forget()
+	# 			Functions.GUIdisplay.LS_PR_Frame.pack_forget()
+	# 			Functions.GUIdisplay.LS_PU_Frame.pack_forget()
+	# 			Functions.GUIdisplay.LS_LL_console_Frame.pack_forget()
+	# 			Functions.GUIdisplay.LS_PR_console_Frame.pack_forget()
+	# 			Functions.GUIdisplay.LS_PU_console_Frame.pack_forget()
+	# 			Functions.GUIdisplay.current_Button = None
 
-			elif Functions.GUIdisplay.current_Button == "Dashboard":
-				Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				# Functions.GUIdisplay.GUIuserInput_Frame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				# # Functions.GUIdisplay.userInputLabel_Label.config(bg=Functions.GUIdisplay.default_Color)
-				# # Functions.GUIdisplay.userInputEnterRow_Frame.config(bg=Functions.GUIdisplay.default_Color)
-				# Functions.GUIdisplay.GUIconsoleFrame.pack_forget()#config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.current_Button = None
+	# 		elif Functions.GUIdisplay.current_Button == "Dashboard":
+	# 			Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+	# 			Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
+	# 			Functions.GUIdisplay.current_Button = None
 
 class GUItkinter:
 	def __init__(self, Parent):
@@ -148,12 +129,10 @@ class GUItkinter:
 		self.chooseTestPlace_Yaxis = 173
 		self.OPLInfoWidth_Width = 22
 		self.betweeenFrame = 5
-		# self.consoleTextHeight = 100
+
 		self.OPLFrame_Dimension = '300x170'
 		self.mainFrame_Dimension = '900x425'
 		self.LS_Dimension = '875x525'
-
-		Functions.GUIOPLFrame = Tk
 
 		self.default_Color = Parent.cget("bg")
 		self.background_Color = "White"
@@ -161,169 +140,13 @@ class GUItkinter:
 		self.allFieldError = None
 		self.current_Button = None
 
+		self.GUIuserInputErrorRow_Frame = Frame()
+
+		self.bar_TabBar = Tab.TabBar() # For console Tab. -> in conSoleFrame
+
 		self.myParent = Parent
 		self.myParent.geometry(self.OPLFrame_Dimension)
 		self.myParent.title("Automated Smoke Test")
-
-		self.OPLInfoLabelName = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
-		self.OPLINfoEntry = []
-		self.askUserOPLInfo_Frame = Frame(self.myParent)
-		self.askUserOPLInfo_Frame.pack()
-		self.askUserOPLInfo_Frame.existElement = True
-
-		self.TestInfo_Label = Label(self.askUserOPLInfo_Frame, text="Test Information: ")
-		self.TestInfo_Label.pack()
-
-		self.GUIOPLErrorRow_Frame = tkinter.Frame(self.askUserOPLInfo_Frame)#, bg=self.background_Color)
-		self.GUIOPLErrorRow_Frame.pack(side=TOP, fill=X)
-
-		self.creatingRadioButton(self.askUserOPLInfo_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"], "OPL")
-
-		for info in self.OPLInfoLabelName:
-			self.Row_Frame = tkinter.Frame(self.askUserOPLInfo_Frame, width=self.OPLInfoWidth_Width)
-			self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
-			self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
-			self.Row_Frame.pack(side=TOP, fill=X)
-			self.Label_Label.pack(side=LEFT)
-			self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
-			self.OPLINfoEntry.append(self.Entry_Entry)
-
-		self.OPLINfoLabelSave_Button = tkinter.Button(self.askUserOPLInfo_Frame, text="Continue", command=self.getUserInputSendFunction)#, bg=self.default_Color)
-		self.OPLINfoLabelSave_Button.pack(side=RIGHT)
-
-	def mainTestingFrame(self):
-		self.myParent.geometry(self.mainFrame_Dimension)
-
-		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, height=self.chooseTestFrame_Height, bg=self.default_Color)
-		self.chooseTest_Frame.pack(side=LEFT, fill=Y)
-		self.chooseTest_Frame.existElement = True
-
-		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
-		self.loginSecurity_Button.pack()
-		self.loginSecurity_Button.place(y=self.chooseTestPlace_Yaxis, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-
-		self.LS_LL_Frame = tkinter.Frame(self.myParent)
-		self.LS_LL_Frame.existElement = False
-		self.LS_LL_console_Frame = tkinter.Frame(self.LS_LL_Frame)
-		self.LS_LL_console_Frame.existElement = False
-
-		self.LS_PR_Frame = tkinter.Frame(self.myParent)
-		self.LS_PR_Frame.existElement = False
-		self.LS_PR_console_Frame = tkinter.Frame(self.LS_PR_Frame)
-		self.LS_PR_console_Frame.existElement = False
-
-		self.LS_PU_Frame = tkinter.Frame(self.myParent)
-		self.LS_PU_Frame.existElement = False
-		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame)
-		self.LS_PU_console_Frame.existElement = False
-
-		self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text="Dashboard", command =self.dashBoard, bg=self.default_Color)
-		self.dashBoardPage_Button.pack()
-		self.dashBoardPage_Button.place(y=self.chooseTestPlace_Yaxis+self.chooseTestButton_Height, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-
-		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text="Hiring Status", command = self.hiringStatus, bg=self.default_Color)
-		self.hiringStatusPage_Button.pack()
-		self.hiringStatusPage_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*2), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-
-		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text="Order New Report", relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
-		self.orderNewReport_Button.pack()
-		self.orderNewReport_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*3), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-
-		self.ONR_userInput_Frame = tkinter.Frame(self.myParent)
-		self.ONR_userInput_Frame.existElement = False
-
-		self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent)
-		self.ONR_GUIconsoleFrame.existElement = False
-
-	def getUserInputSendFunction(self):
-		if Functions.GUIallFieldError != None:
-			Functions.GUIallFieldError.pack_forget()
-
-		dictValue = []
-
-		if self.askUserOPLInfo_Frame.existElement:
-			for f in self.OPLINfoEntry:
-				dictValue.append(f.get())
-
-			Functions.OPLINfo = collections.OrderedDict(zip(self.OPLInfoLabelName, dictValue))
-			# print(Functions.OPLINfo['URL to test'])
-			allFieldCheck = GUIFunctions.userInputFieldCheck("OPL")
-			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"OPL", "Please Enter all fields")
-
-		elif self.chooseTest_Frame.existElement:
-			for f in self.fields:
-				dictValue.append(f.get())
-
-			Functions.orderNewReportResult = collections.OrderedDict(zip(whichInfo, dictValue))
-			allFieldCheck = GUIFunctions.userInputFieldCheck("orderNewReport")
-			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"orderNewReport", "Please Enter all fields")
-
-	def makeUserInputForm(self, arg, testType):
-		if testType == "LS":
-			anchorAs = SW
-			self.userInputWidth_Width = 16
-		elif testType == "ONR":
-			self.userInputWidth_Width = 23
-			anchorAs = 'center'
-
-		self.fields = []
-		for entry in whichInfo:	
-			self.userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-			self.userInputLabel_Label = tkinter.Label(self.userInputRow_Frame, width=self.userInputWidth_Width, text=entry, anchor=anchorAs, bg=self.background_Color)
-			self.userInputEntry_Entry = tkinter.Entry(self.userInputRow_Frame)
-			self.userInputRow_Frame.pack(side=TOP, fill=X)
-			self.userInputLabel_Label.pack(side=LEFT)
-			self.userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
-			self.fields.append(self.userInputEntry_Entry)
-
-	def userInputFrame(self, arg, testType):
-		print("arg: ", arg)
-		print("arg.existElement: ",arg.existElement)
-
-		arg.config(bg=self.background_Color)
-
-		if self.background_Color == "light goldenrod yellow": 
-			arg.pack(side=LEFT, fill=Y, padx=self.betweeenFrame, expand=0)
-		else:
-			arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
-
-		if (arg.existElement == False):
-			Functions.GUIdisplay.GUIuserInputErrorRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-			Functions.GUIdisplay.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
-			self.makeUserInputForm(arg, testType)
-			arg.existElement = True
-			if len(whichInfo):
-				self.userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-				self.userInputEnterRow_Frame.pack(side=TOP, fill=X)
-				self.userInputEnterButton_Button = tkinter.Button(self.userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
-				self.userInputEnterButton_Button.pack(side=RIGHT)
-
-	def conSoleFrame(self, arg, testType):
-		print("arg: ", arg)
-		print("arg.existElement: ",arg.existElement)
-
-		if testType == "LS":
-			self.consoleTextWidth = 28
-			whichSide = RIGHT
-		else: 
-			self.consoleTextWidth = 90
-			whichSide = LEFT
-		
-		arg.config(bg=self.background_Color)
-		arg.pack(side=whichSide, fill=BOTH, padx=self.betweeenFrame, pady=5)
-
-		if (arg.existElement == False):
-			self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
-			self.tab1_Tab = Tab.Tab(arg, "Evaluation")
-			self.tab2_Tab = Tab.Tab(arg, "Console")
-			self.bar_TabBar.add(self.tab1_Tab)
-			self.bar_TabBar.add(self.tab2_Tab)
-			self.bar_TabBar.show()
-			arg.existElement = True
-
-		# if (self.GUIconsoleFrame.existElement == True):
-		# 	self.GUIconsoleFrame.forget()
-		# 	self.GUIconsoleFrame = tkinter.Frame(self.myParent)
 
 	def creatingRadioButton(self, arg, labelText, radioList, valueList, testType):
 		if testType == "OPL":
@@ -332,6 +155,7 @@ class GUItkinter:
 			radioRow_Frame.pack(side=TOP, fill=X)
 			radioLabel_Label = Label(radioRow_Frame, width=self.OPLInfoWidth_Width -6, text=labelText, anchor='w')
 			radioLabel_Label.pack(side=LEFT)
+
 			for radioText,valueText in zip(radioList, valueList):
 				radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText)
 				radioButton_Button.pack(side=LEFT)
@@ -351,12 +175,172 @@ class GUItkinter:
 			title_Label = tkinter.Label(title_Frame, bg=self.background_Color, text=txt, font=(fontSize))
 			title_Label.pack(side=LEFT, fill=X)
 
-	# def messageBox(self):
-	# 	msgBox = Tk()
-	# 	msgBox.geometry('150x150')
-	# 	label = Label(msgBox, text="Please enter valid email/password:")
-	# 	label.pack()
-	# 	msgBox.mainloop()
+	def OPLInfoFrame(self):
+		## Displaying OPL information.
+
+		self.OPLInfoLabelName = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
+		self.OPLINfoEntry = []
+		self.OPLInfo_Frame = Frame(self.myParent)
+		self.OPLInfo_Frame.pack()
+		self.OPLInfo_Frame.existElement = True
+
+		self.TestInfo_Label = Label(self.OPLInfo_Frame, text="Test Information: ")
+		self.TestInfo_Label.pack()
+
+		self.GUIOPLErrorRow_Frame = tkinter.Frame(self.OPLInfo_Frame)#, bg=self.background_Color)
+		self.GUIOPLErrorRow_Frame.pack(side=TOP, fill=X)
+
+		self.creatingRadioButton(self.OPLInfo_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"], "OPL")
+
+		for info in self.OPLInfoLabelName:
+			self.Row_Frame = tkinter.Frame(self.OPLInfo_Frame, width=self.OPLInfoWidth_Width)
+			self.Label_Label = tkinter.Label(self.Row_Frame, width=self.OPLInfoWidth_Width - 7, text=info, anchor='w')#, bg=self.background_Color)
+			self.Entry_Entry = tkinter.Entry(self.Row_Frame, width=self.OPLInfoWidth_Width + 7)
+			self.Row_Frame.pack(side=TOP, fill=X)
+			self.Label_Label.pack(side=LEFT)
+			self.Entry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+			self.OPLINfoEntry.append(self.Entry_Entry)
+
+		self.OPLINfoLabelSave_Button = tkinter.Button(self.OPLInfo_Frame, text="Continue", command=self.getUserInputSendFunction)#, bg=self.default_Color)
+		self.OPLINfoLabelSave_Button.pack(side=RIGHT)
+
+	def mainTestingFrame(self):
+		# self.myParent.geometry(self.mainFrame_Dimension)
+
+		# self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, height=self.chooseTestFrame_Height, bg=self.default_Color)
+		# self.chooseTest_Frame.pack(side=LEFT, fill=Y)
+		# self.chooseTest_Frame.existElement = True
+
+		# self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
+		# self.loginSecurity_Button.pack()
+		# self.loginSecurity_Button.place(y=self.chooseTestPlace_Yaxis, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+
+		self.LS_LL_Frame = tkinter.Frame(self.myParent)
+		self.LS_LL_Frame.existElement = False
+		self.LS_LL_console_Frame = tkinter.Frame(self.LS_LL_Frame)
+		self.LS_LL_console_Frame.existElement = False
+
+		self.LS_PR_Frame = tkinter.Frame(self.myParent)
+		self.LS_PR_Frame.existElement = False
+		self.LS_PR_console_Frame = tkinter.Frame(self.LS_PR_Frame)
+		self.LS_PR_console_Frame.existElement = False
+
+		self.LS_PU_Frame = tkinter.Frame(self.myParent)
+		self.LS_PU_Frame.existElement = False
+		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame)
+		self.LS_PU_console_Frame.existElement = False
+
+		# self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text="Dashboard", command =self.dashBoard, bg=self.default_Color)
+		# self.dashBoardPage_Button.pack()
+		# self.dashBoardPage_Button.place(y=self.chooseTestPlace_Yaxis+self.chooseTestButton_Height, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+
+		# self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text="Hiring Status", command = self.hiringStatus, bg=self.default_Color)
+		# self.hiringStatusPage_Button.pack()
+		# self.hiringStatusPage_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*2), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+
+		# self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text="Order New Report", relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
+		# self.orderNewReport_Button.pack()
+		# self.orderNewReport_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*3), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+
+		# self.User_Input_Frame_Frame = tkinter.Frame(self.myParent)
+		# self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame)
+		# self.OPL_Input_Frame_Frame.existElement = False
+
+		# self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent)
+		# self.ONR_GUIconsoleFrame.existElement = False
+
+	def getUserInputSendFunction(self):
+		if Functions.GUIallFieldError != None:
+			Functions.GUIallFieldError.pack_forget()
+
+		dictValue = []
+
+		if self.OPLInfo_Frame.existElement:
+			for f in self.OPLINfoEntry:
+				dictValue.append(f.get())
+
+			Functions.OPLINfo = collections.OrderedDict(zip(self.OPLInfoLabelName, dictValue))
+			# print(Functions.OPLINfo['URL to test'])
+			allFieldCheck = GUIFunctions.userInputFieldCheck("OPL")
+			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"OPL", "Please Enter all fields")
+
+		elif self.chooseTest_Frame.existElement:
+			for f in self.fields:
+				dictValue.append(f.get())
+
+			Functions.orderNewReportResult = collections.OrderedDict(zip(self.whichInfo, dictValue))
+			allFieldCheck = GUIFunctions.userInputFieldCheck("orderNewReport")
+			GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"orderNewReport", "Please Enter all fields")
+
+	# used in "userInputFrame"
+	# def makeUserInputForm(self, arg, testType):
+		# if testType == "LS":
+		# 	anchorAs = SW
+		# 	self.userInputWidth_Width = 16
+
+		# elif testType == "ONR":
+		# 	self.userInputWidth_Width = 23
+		# 	anchorAs = 'center'
+
+		# self.fields = []
+		# for entry in self.whichInfo:	
+		# 	userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+		# 	userInputLabel_Label = tkinter.Label(userInputRow_Frame, width=self.userInputWidth_Width, text=entry, anchor=anchorAs, bg=self.background_Color)
+		# 	userInputEntry_Entry = tkinter.Entry(userInputRow_Frame)
+		# 	userInputRow_Frame.pack(side=TOP, fill=X)
+		# 	userInputLabel_Label.pack(side=LEFT)
+		# 	userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+		# 	self.fields.append(userInputEntry_Entry)
+
+	def userInputFrame(self, arg, testType):
+		print("arg: ", arg)
+		print("arg.existElement: ",arg.existElement)
+
+		arg.config(bg=self.background_Color)
+
+		if self.background_Color == "light goldenrod yellow": 
+			arg.pack(side=LEFT, fill=Y, padx=self.betweeenFrame, expand=0)
+		else:
+			arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
+
+		if (arg.existElement == False):
+			self.GUIuserInputErrorRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+			self.GUIuserInputErrorRow_Frame.pack(side=TOP, fill=X)
+
+			self.makeUserInputForm(arg, testType)
+
+			arg.existElement = True
+
+			if len(self.whichInfo):
+				userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+				userInputEnterRow_Frame.pack(side=TOP, fill=X)
+				userInputEnterButton_Button = tkinter.Button(userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
+				userInputEnterButton_Button.pack(side=RIGHT)
+
+	def conSoleFrame(self, arg, testType):
+		print("arg: ", arg)
+		print("arg.existElement: ",arg.existElement)
+
+		if testType == "LS":
+			self.consoleTextWidth = 28
+			whichSide = RIGHT
+		else: 
+			self.consoleTextWidth = 90
+			whichSide = LEFT
+		
+		arg.config(bg=self.background_Color)
+		arg.pack(side=whichSide, fill=BOTH, padx=self.betweeenFrame, pady=5)
+
+		if (arg.existElement == False):
+			self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
+			tab1_Tab = Tab.Tab(arg, "Evaluation")
+			tab2_Tab = Tab.Tab(arg, "Console")
+			self.bar_TabBar.add(tab1_Tab)
+			self.bar_TabBar.add(tab2_Tab)
+			self.bar_TabBar.show()
+			arg.existElement = True
+
+
 
 	def loginSecurity(self):
 		self.myParent.geometry(self.LS_Dimension)
@@ -364,24 +348,25 @@ class GUItkinter:
 		GUIFunctions.buttonPressCheck()
 		self.current_Button = "Login_Security"
 		self.myParent.config(bg=self.background_Color)
+
 		self.loginSecurity_Button.config(bg=self.background_Color, relief=FLAT)
 
 		self.includeTitle_Frame(self.LS_LL_Frame, "Login and Logout", 20)
 		self.includeExtraBlankRow_Frame(self.LS_LL_Frame, 3)
-		global whichInfo
-		whichInfo = []
+		
+		self.whichInfo = []
 		self.userInputFrame(self.LS_LL_Frame, "LS")
 		self.conSoleFrame(self.LS_LL_console_Frame, "LS")
 
 		self.includeTitle_Frame(self.LS_PR_Frame, "Password Recovery", 20)
-		global whichInfo
-		whichInfo = ["Email Address:\n password recovery"]
+		
+		self.whichInfo = ["Email Address:\n password recovery"]
 		self.userInputFrame(self.LS_PR_Frame, "LS")
 		self.conSoleFrame(self.LS_PR_console_Frame, "LS")
 
 		self.includeTitle_Frame(self.LS_PU_Frame, "Password Unlock", 20)
-		global whichInfo
-		whichInfo = ["Email address:\n password unlock"]
+		
+		self.whichInfo = ["Email address:\n password unlock"]
 		self.userInputFrame(self.LS_PU_Frame, "LS")
 		self.conSoleFrame(self.LS_PU_console_Frame, "LS")
 
@@ -416,18 +401,23 @@ class GUItkinter:
 		self.myParent.config(bg=self.background_Color)
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 		
-		global whichInfo
-		whichInfo = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
-		self.userInputFrame(self.ONR_userInput_Frame, "ONR")#, self.ONR_userInput_Frame.existElement)
+		
+		self.whichInfo = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
+		self.userInputFrame(self.User_Input_Frame_Frame, "ONR")
 		self.conSoleFrame(self.ONR_GUIconsoleFrame, "ONR")
-		whichInfo = []
+		self.whichInfo = []
 
 if Functions.GUImainFrame == None:
 	Functions.GUImainFrame = Tk()
 	Functions.GUIdisplay = GUItkinter(Functions.GUImainFrame)
 	Functions.GUImainFrame.mainloop()
 
-
+	# def messageBox(self):
+	# 	msgBox = Tk()
+	# 	msgBox.geometry('150x150')
+	# 	label = Label(msgBox, text="Please enter valid email/password:")
+	# 	label.pack()
+	# 	msgBox.mainloop()
 ######################################tkinter background color chart
 # http://cs.smith.edu/dftwiki/index.php/Color_Charts_for_TKinter
 
@@ -459,7 +449,7 @@ if Functions.GUImainFrame == None:
 
 # def makeUserInputForm(root):
 # 	fields = []
-# 	for entry in whichInfo:
+# 	for entry in self.whichInfo:
 # 		row = Frame(root)
 # 		lab = Label(row, width=20, text=entry, anchor='center')
 # 		ent = Entry(row)
@@ -474,7 +464,7 @@ if Functions.GUImainFrame == None:
 # 	for i in inputs:
 # 		text.append(i.get())
 
-# 	result = dict(zip(whichInfo, text))
+# 	result = dict(zip(self.whichInfo, text))
 # 	result['Also Notify'] = 'Young Kim'
 # 	# print("inGUItkinter: ", enterRow)
 	
@@ -505,8 +495,8 @@ if Functions.GUImainFrame == None:
 # 	unittest.TextTestRunner(verbosity=2).run(suite)
 
 # def ordernewReport():
-# 	global whichInfo
-# 	whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
+# 	
+# 	self.whichInfo = ['First Name','Last Name', 'Email Address', 'PO Box', 'Cost Center', 'Color', 'Position Number', 'Favorite Number', 'Message to Consultant', 'Message to Assessee']
 
 # 	eachFrame()
 
