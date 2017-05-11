@@ -17,8 +17,7 @@ from tkinter import *
 import tkinter.messagebox as msg
 import tkinter.simpledialog as dlg
 class GUIFunctions:
-	# def __init__(self):
-	# 	self.allFieldCheck = None
+
 
 	def allFieldCheck():
 		if Functions.GUIdisplay.frameType == "ONR1":
@@ -76,6 +75,9 @@ class GUIFunctions:
 				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.current_Button = None
 
+# relief FLAT == if frame does not contain no fields
+# relief GROOVE == if frame CONTAINS all fields BUT NOT full entries
+# relief RAISED == if frame CONTAINS all fields & full entries
 class GUItkinter:
 	def __init__(self, Parent):
 		self.chooseTestFrame_Width = 100
@@ -119,10 +121,6 @@ class GUItkinter:
 		# self.Custom_Input_Frame_Frame.existElement = False
 		# self.Custom_Input_Frame_Frame.Error_Label = tkinter.Label()
 		# self.Custom_Input_Frame_Frame.Error_Label.existElement = False
-
-# relief FLAT == if frame does not contain no fields
-# relief GROOVE == if frame CONTAINS all fields BUT NOT full entries
-# relief RAISED == if frame CONTAINS all fields & full entries
 
 	def mainTestingFrame(self):
 		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, height=self.chooseTestFrame_Height, bg=self.default_Color)
@@ -189,10 +187,6 @@ class GUItkinter:
 			Functions.OPLInfo = collections.OrderedDict(zip(self.whichInfo, dictValue))
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck()
 			GUIFunctions.errorMessageCheck(self.OPL_Input_Frame_Frame.Error_Label)
-
-			# print(Functions.OPLINfo['URL to test'])
-			# allFieldCheck = GUIFunctions.userInputFieldCheck("OPL")
-			# GUIFunctions.orderNewReportErrorMessageCheck(allFieldCheck,"OPL", "Please Enter all fields")
 
 	def CustomgetUserInputSendFunction(self):
 		# print("Does it come here3")
@@ -273,7 +267,6 @@ class GUItkinter:
 
 		if (arg.cget("relief") == FLAT):
 			self.makeUserInputForm(arg)
-			# print("end of userInputFrame")
 
 	def createErrorLabel(self,arg):
 		if (arg.cget("relief") == FLAT):
@@ -295,8 +288,6 @@ class GUItkinter:
 				for radioText,valueText in zip(radioList, valueList):
 					radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText, bg=self.background_Color)
 					radioButton_Button.pack(side=LEFT)
-			# self.URL.existElement = True
-			# print("end of creatingRadioButton")
 
 	def createExtraBlankRow_Frame(self, arg, howMany):
 		if (arg.existElement == False):
@@ -308,7 +299,6 @@ class GUItkinter:
 
 	def createTitle_Frame(self, arg, txt, fontSize):
 		if (arg.cget("relief") == FLAT):
-			# print("createTitle_Frame")
 			title_Label = tkinter.Label(arg, bg=self.background_Color, text=txt, font=(fontSize), anchor='w')
 			title_Label.pack(side=TOP, fill=X)
 
