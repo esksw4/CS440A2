@@ -10,11 +10,12 @@ class Functions:
 	global timeAfterLogin
 	timeAfterLogin = 7
 
-	global OPLINfo
+	global OPLInfo
 	OPLInfo = collections.OrderedDict()
 
-	global orderNewReportResult
-	orderNewReportResult = collections.OrderedDict()
+	global CustomInfo
+	CustomInfo = collections.OrderedDict()
+
 
 	global GUImainFrame
 	GUImainFrame = None
