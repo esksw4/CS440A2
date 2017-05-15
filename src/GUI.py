@@ -318,28 +318,28 @@ class GUItkinter:
 	# 			userInputEnterButton_Button = tkinter.Button(userInputEnterRow_Frame, text="Enter", command =self.getUserInputSendFunction)
 	# 			userInputEnterButton_Button.pack(side=RIGHT)
 
-	def conSoleFrame(self, arg, testType):
-		print("arg: ", arg)
-		print("arg.existElement: ",arg.existElement)
+	# def conSoleFrame(self, arg, testType):
+	# 	print("arg: ", arg)
+	# 	print("arg.existElement: ",arg.existElement)
 
-		if testType == "LS":
-			self.consoleTextWidth = 28
-			whichSide = RIGHT
-		else: 
-			self.consoleTextWidth = 90
-			whichSide = LEFT
+	# 	if testType == "LS":
+	# 		self.consoleTextWidth = 28
+	# 		whichSide = RIGHT
+	# 	else: 
+	# 		self.consoleTextWidth = 90
+	# 		whichSide = LEFT
 		
-		arg.config(bg=self.background_Color)
-		arg.pack(side=whichSide, fill=BOTH, padx=self.betweeenFrame, pady=5)
+	# 	arg.config(bg=self.background_Color)
+	# 	arg.pack(side=whichSide, fill=BOTH, padx=self.betweeenFrame, pady=5)
 
-		if (arg.existElement == False):
-			self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
-			tab1_Tab = Tab.Tab(arg, "Evaluation")
-			tab2_Tab = Tab.Tab(arg, "Console")
-			self.bar_TabBar.add(tab1_Tab)
-			self.bar_TabBar.add(tab2_Tab)
-			self.bar_TabBar.show()
-			arg.existElement = True
+	# 	if (arg.existElement == False):
+	# 		self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
+	# 		tab1_Tab = Tab.Tab(arg, "Evaluation")
+	# 		tab2_Tab = Tab.Tab(arg, "Console")
+	# 		self.bar_TabBar.add(tab1_Tab)
+	# 		self.bar_TabBar.add(tab2_Tab)
+	# 		self.bar_TabBar.show()
+	# 		arg.existElement = True
 
 	def loginSecurity(self):
 		self.myParent.geometry(self.LS_Dimension)
