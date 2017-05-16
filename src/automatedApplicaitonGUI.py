@@ -309,7 +309,7 @@ class GUItkinter:
 			userInputEnterRow_Frame.pack(side=TOP, fill=X)
 			UserInputEnterButton = tkinter.Button(userInputEnterRow_Frame, text=enterButtonContinue, command =self.CustomGetUserInputSendFunction, relief=RAISED)
 			UserInputEnterButton.pack(side=RIGHT)
-
+####
 
 		# print("end of makeUserInputForm")
 
