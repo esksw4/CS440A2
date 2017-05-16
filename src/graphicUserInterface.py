@@ -51,9 +51,9 @@ class GUIFunctions:
 
 	def errorMessageDisplay(allFieldCheckAnswer, errorLabel, backgroundColor, LabelText):
 		if allFieldCheckAnswer == False:
-			print("does this come here")
-			errorLabel.config(text=LabelText, state=ACTIVE, anchor=CENTER, background='lavender')
-			errorLabel.pack()
+			# errorLabel.pack_forget()
+			errorLabel.config(text=LabelText, anchor=CENTER, bg=backgroundColor)
+			# errorLabel.pack()
 		else:
 			errorLabel.pack_forget()
 
@@ -179,7 +179,6 @@ class GUItkinter:
 
 		self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.conSoleFrame(self.ONR_GUIconsoleFrame)
-		# self.conSoleFrame(self.ONR_GUIconsoleFrame, "ONR")
 
 	def createTitle_Frame(self, arg, txt, fontSize):
 		if (arg.cget("relief") == FLAT):
@@ -190,8 +189,7 @@ class GUItkinter:
 		if (arg.cget("relief") == FLAT):
 			arg.Error_Frame = tkinter.Frame(arg, bg=self.background_Color)
 			arg.Error_Frame.pack(side=TOP, fill=X)
-			print(self.background_Color)
-			arg.Error_Label = tkinter.Label(arg.Error_Frame, text=" ", fg="red", bg=self.background_Color, anchor = 'w', state=DISABLED)
+			arg.Error_Label = tkinter.Label(arg.Error_Frame, text=" ", fg='red', bg=self.background_Color, anchor = 'w')
 			arg.Error_Label.pack(side=TOP, fill=X)
 
 	def createRadioButton(self, arg, labelText, radioList, valueList):
@@ -223,7 +221,7 @@ class GUItkinter:
 
 			Functions.OPLInfo = collections.OrderedDict(zip(self.whichInfoOPL, dictValue))
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
-			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, self.background_Color,"Please enter all fields.")
+			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, self.background_Color, "Please enter all fields.")
 
 	def CustomGetUserInputSendFunction(self):
 		# print("Does it come here3")
@@ -239,7 +237,7 @@ class GUItkinter:
 
 			Functions.CustomInfo = collections.OrderedDict(zip(self.whichInfoCustom, dictValue))
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.CustomInfo.values(), self.Custom_Input_Frame_Frame)
-			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label, "Please enter all fields.")
+			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label,  self.background_Color, "Please enter all fields.")
 
 	def userInputFrame(self, arg):
 		arg.config(bg=self.background_Color)
