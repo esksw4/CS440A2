@@ -19,39 +19,21 @@ import tkinter.simpledialog as dlg
 class GUIFunctions:
 	def allFieldCheck(valueList, frame):
 		if (len([v for v in valueList if v == '']) > 0): 
-			# need to display error message on arg's frame
 			return False
 		else:
 			# if OPL information is SAVED (user pressed save button) and all the information is all filled
-				# and return true.
+			# and return true.
 			frame.config(relief=RAISED)
 			return True
 
-		# if Functions.GUIdisplay.frameType == "ONR1":
-		# 	if len([v for v in Functions.OPLInfo.values() if v == '']) > 0 or (Functions.GUIdisplay.URL.get() == "empty"):
-		# 		# print(Functions.OPLINfo)
-		# 		return False
-		# 	else:
-		# 		# print(Functions.OPLINfo)
-		# 		Functions.GUIdisplay.User_Input_Frame_Frame.fullElement = True
-		# 		return True
-		# elif Functions.GUIdisplay.frameType == "ONR2":
-		# 	if len([v for v in Functions.CustomInfo.values() if v == '']) > 0:
-		# 		# print(Functions.OPLINfo)
-		# 		return False
-		# 	else:
-		# 		# print(Functions.OPLINfo)
-		# 		RAISED
-
-		# 		Functions.GUIdisplay.OPL_Input_Frame_Frame.fullElement = True
-		# 		return True
-
 	def errorMessageDisplay(allFieldCheckAnswer, errorLabel, LabelText):
+		print(LabelText, "\tinsideErrorMessageDisplay:" , allFieldCheckAnswer)
 		if allFieldCheckAnswer == False:
 			# errorLabel.pack_forget()
-			print()
+			# print()
+			print("inside allFieldCheckAnswer == False")
 			errorLabel.config(text=LabelText, anchor=CENTER, bg=Functions.GUIdisplay.background_Color)
-			# errorLabel.pack()
+			errorLabel.pack()
 		else:
 			errorLabel.pack_forget()
 
@@ -116,9 +98,9 @@ class GUItkinter:
 
 		self.mainTestingFrame()
 
-		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent)
-		self.User_Input_Frame_Frame.existElement = False
-		self.User_Input_Frame_Frame.fullElement = False
+		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.User_Input_Frame_Frame.existElement = False
+		# self.User_Input_Frame_Frame.fullElement = False
 
 		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
 		# self.OPL_Input_Frame_Frame.existElement = False
@@ -132,9 +114,10 @@ class GUItkinter:
 		# self.Custom_Input_Frame_Frame.Error_Label.existElement = False
 
 	def mainTestingFrame(self):
+		# relief FLAT == if frame does not contain all the elements that needed to be placed
+		# relief RAISED == if frame contain all the elements that needed to be placed
 		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, height=self.chooseTestFrame_Height, bg=self.default_Color)
 		self.chooseTest_Frame.pack(side=LEFT, fill=Y)
-		self.chooseTest_Frame.existElement = True
 
 		# self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
 		# self.loginSecurity_Button.pack()
@@ -161,6 +144,11 @@ class GUItkinter:
 
 		self.User_Input_Frame_Frame.config(bg=self.background_Color)
 		self.User_Input_Frame_Frame.pack(side=LEFT)
+		# self.OPL_Input_Frame_Frame.config(bg=self.background_Color)
+		# self.OPL_Input_Frame_Frame.pack(side=LEFT)
+		# self.createExtraBlankRow_Frame(self.User_Input_Frame_Frame, 1)
+		# self.Custom_Input_Frame_Frame.config(bg=self.background_Color)
+		# self.Custom_Input_Frame_Frame.pack(side=LEFT)
 
 		self.frameType = "ONR1"
 		self.createTitle_Frame(self.OPL_Input_Frame_Frame, "Login Information:", 16)
@@ -169,11 +157,14 @@ class GUItkinter:
 		self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
 		self.userInputFrame(self.OPL_Input_Frame_Frame)
 
+		self.createExtraBlankRow_Frame(self.User_Input_Frame_Frame, 1)
+
 		self.frameType = "ONR2"
 		self.createTitle_Frame(self.Custom_Input_Frame_Frame, "Additional Information:", 16)
 		self.createErrorLabel(self.Custom_Input_Frame_Frame)
 		self.whichInfoCustom = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
 		self.userInputFrame(self.Custom_Input_Frame_Frame)
+		self.createSaveButton(self.Custom_Input_Frame_Frame, "Save & Continue", self.GetUserInputSendFunction)
 
 		self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.conSoleFrame(self.ONR_GUIconsoleFrame)
@@ -207,49 +198,66 @@ class GUItkinter:
 					radioButton_Button.pack(side=LEFT)
 
 	def OPLGetUserInputSendFunction(self):
-		# print("Does it come here1")
-		# if Functions.GUIallFieldError != None:
-		# 	Functions.GUIallFieldError.pack_forget()
 		dictValue = []
+		# First, check if self.URL gets either QA or Production. If it did not get anything, self.radioButtonCheck is False
+		if self.URL.get() == "empty":
+			self.radioButtonCheck = False
+		# If it got something, self.radioButtonCheck is True
+		else: 
+			self.radioButtonCheck = True
 
+		# If the OPL_Input_Frame_Frame contains full input fields but not all the entries' input are collected,
 		if (self.OPL_Input_Frame_Frame.cget("relief") == GROOVE):
-			# print("Does it come here2")
+			# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
+			self.allFieldCheckAnswer = None
+			# collects the data from the entries
 			for f in self.OPLINfoEntry:
 				dictValue.append(f.get())
 
+			# Functions.OPLInfo collects the information and put it as ordred Dictionary
 			Functions.OPLInfo = collections.OrderedDict(zip(self.whichInfoOPL, dictValue))
+			# Check if all fields are filled. If not, it returns FALSE
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
+			# Display the erorr message if OPL_Input_Frame_Frame did not collect all the inputs.
 			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, "Please enter all fields.")
-			if self.URL.get() == "empty" and self.allFieldCheckAnswer is True:
-				GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
+			# if OPL_Input_Frame_Frame collected all the information and radioButtonCheck is not collected, display the error message, instead of waiting for user to click "Save & Continue" button again
+			if self.radioButtonCheck == False and self.allFieldCheckAnswer is True:
+				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
+			del self.allFieldCheckAnswer
 
-	def CustomGetUserInputSendFunction(self):
-		# print("Does it come here3")
-		# if Functions.GUIallFieldError != None:
-		# 	Functions.GUIallFieldError.pack_forget()
+		# If the OPL_Input_Frame_Frame contained full input fields and the all entries' inputs are collected
+		elif (self.OPL_Input_Frame_Frame.cget("relief") == RAISED):
+			# If self.URL is still empty,
+			if self.radioButtonCheck == False:
+				# display an error
+				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
+			# if self.URL is not empty
+			else: 
+				# get rid of error. This means everything is fine.
+				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
 
+	def GetUserInputSendFunction(self):
+		# when "Save & Continue" button is clicked, operate this. 
 		dictValue = []
-		
-		self.allFieldCheckAnswer = None
+
+		# if the Custom_input_Frame_Frame contains full input fields but not all the entries' inputs are collected,
 		if (self.Custom_Input_Frame_Frame.cget("relief") == GROOVE):
-			# print("Does it come here4")
+			# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
+			self.allFieldCheckAnswer = None
+			# collects the data from the entries
 			for f in self.CustomInfo:
 				dictValue.append(f.get())
 
+			# Functions.CustomInfo collects the information and put it as ordred Dictionary
 			Functions.CustomInfo = collections.OrderedDict(zip(self.whichInfoCustom, dictValue))
+			# Check if all fields are filled. If not it returns FALSE
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.CustomInfo.values(), self.Custom_Input_Frame_Frame)
+			# Display the erorr message if CUstom_Input_Frame_Frame did not collect all the inputs.
 			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label, "Please enter all fields.")
-			## HERE##
-			self.OPLGetUserInputSendFunction()
-			# # First need to check if OPLInfo is all filled.
-			# self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame, self.allFieldCheckAnswer)
-			# if self.allFieldCheckAnswer == False:
-			# 	GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label,  self.background_Color, "Please enter all fields.")
 
-			# self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.CustomInfo.values(), self.Custom_Input_Frame_Frame)
-			# if self.allFieldCheckAnswer == False:
-			# 	GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label,  self.background_Color, "Please enter all fields.")
-
+		# Regardless Custom_Input_Frame_Frame collected all the information, get information from OPL frame.
+		self.OPLGetUserInputSendFunction()
+			
 	def userInputFrame(self, arg):
 		arg.config(bg=self.background_Color)
 
@@ -270,7 +278,6 @@ class GUItkinter:
 
 		elif self.frameType == "ONR1":
 			labelanchorAs = 'center'
-			enterButtonContinue = "Save"
 			self.userInputWidth_Width = 23
 			frameSideAs = TOP
 
@@ -284,11 +291,7 @@ class GUItkinter:
 				userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
 				self.OPLINfoEntry.append(userInputEntry_Entry)
 			arg.config(relief=GROOVE)
-			userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-			userInputEnterRow_Frame.pack(side=TOP, fill=X)
-			UserInputEnterButton = tkinter.Button(userInputEnterRow_Frame, text=enterButtonContinue, command =self.OPLGetUserInputSendFunction, relief=RAISED)
-			UserInputEnterButton.pack(side=RIGHT)
-			
+
 		elif self.frameType == "ONR2":
 			labelanchorAs = 'center'
 			enterButtonContinue = "Save & Continue"
@@ -305,21 +308,18 @@ class GUItkinter:
 				userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
 				self.CustomInfo.append(userInputEntry_Entry)
 			arg.config(relief=GROOVE)
-			userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-			userInputEnterRow_Frame.pack(side=TOP, fill=X)
-			UserInputEnterButton = tkinter.Button(userInputEnterRow_Frame, text=enterButtonContinue, command =self.CustomGetUserInputSendFunction, relief=RAISED)
-			UserInputEnterButton.pack(side=RIGHT)
-####
-
-		# print("end of makeUserInputForm")
 
 	def createExtraBlankRow_Frame(self, arg, howMany):
-		if (arg.existElement == False):
-	 		for i in range(howMany):
-	 			# extraRow_Frame= Frame(arg, bg=self.background_Color)
-	 			# extraRow_Frame.pack(side=TOP, fill=X)
-	 			extraRow_Label = Label(arg, bg=self.background_Color, text=" ")
-	 			extraRow_Label.pack(side=LEFT, fill=X)
+		if (arg.cget("relief") == FLAT):
+			for i in range(howMany):
+				extraRow_Label = Label(arg, bg=self.background_Color, text=" ")
+				extraRow_Label.pack(side=TOP, fill=X)
+
+	def createSaveButton(self, arg, buttonText, commandMethod):
+		userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
+		userInputEnterRow_Frame.pack(side=TOP, fill=X)
+		UserInputEnterButton = tkinter.Button(userInputEnterRow_Frame, text=buttonText, command=commandMethod, relief=RAISED)
+		UserInputEnterButton.pack(side=RIGHT)
 
 	def conSoleFrame(self, arg):
 		print("arg: ", arg)
