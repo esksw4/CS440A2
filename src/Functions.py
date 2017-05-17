@@ -6,6 +6,9 @@ import collections
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+import tkinter
+from tkinter import *
+
 class Functions:
 	global timeAfterLogin
 	timeAfterLogin = 7
@@ -16,9 +19,11 @@ class Functions:
 	global CustomInfo
 	CustomInfo = collections.OrderedDict()
 
-
 	global GUImainFrame
 	GUImainFrame = None
+
+	global GUIdisplay
+	GUIdisplay = None
 
 	global GUIEvaluationText
 	GUIEvaluationText = None
@@ -281,10 +286,10 @@ class Functions:
 		driver.get(GUIdisplay.URL.get())
 		# type | id=user_password | 1234567899s
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
+		driver.find_element_by_id("user_password").send_keys(OPLInfo['Portal Password'])
 		# type | id=user_email | ekim+abc1@calipercorp.com
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
+		driver.find_element_by_id("user_email").send_keys(OPLInfo['Portal Username'])
 		# click | name=commit |
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
@@ -303,7 +308,7 @@ class Functions:
 	    return True
 
 	def OPL(self, testName):
-		import GUI
+		import automatedApplicaitonGUI
 
 		print('Testing ', testName)
 		print(GUIdisplay.URL.get())
@@ -312,22 +317,25 @@ class Functions:
 		driver.get(GUIdisplay.URL.get())
 
 		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(OPLINfo['Portal Username'])
+		driver.find_element_by_id("user_email").send_keys(OPLInfo['Portal Username'])
 		# type User Password
 		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(OPLINfo['Portal Password'])
+		driver.find_element_by_id("user_password").send_keys(OPLInfo['Portal Password'])
 		# click Ente
 		driver.find_element_by_id("login-btn").click()
 		time1.sleep(timeAfterLogin)
-		
+
 		try: 
 			if Functions.is_element_present(driver, By.XPATH, "//div[@id='alertMsgContainer']/div[1]"):
+				print(1)
+				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
+				print(2)
 				driver.quit()
-				GUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
-				################ Need to construct messageBox Method. (Displays the messageBox that takes user Inputs of two fields: Email address and Password).
-				# Functions.GUIdisplay.messageBox()
+				print(3)
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
+				print(4)
+
 		except:
-			# print("hello")
 			return driver
 
 

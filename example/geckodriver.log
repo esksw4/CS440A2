@@ -116,3 +116,11 @@ JavaScript error: chrome://marionette/content/listener.js, line 1341: NS_ERROR_F
 1494261916682	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.ERUEeemvGbMa
 1494261916688	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
 1494261916708	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51910
+1495050777758	geckodriver	INFO	Listening on 127.0.0.1:61308
+1495050779781	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.Nx0HizhoaAdB
+1495050779797	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1495050779812	geckodriver::marionette	INFO	Connecting to Marionette on localhost:61314
+1495050869216	geckodriver	INFO	Listening on 127.0.0.1:61396
+1495050871241	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.Sgb8DpcZb40N
+1495050871249	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1495050871257	geckodriver::marionette	INFO	Connecting to Marionette on localhost:61402

@@ -33,6 +33,21 @@ class GUIFunctions:
 		else:
 			errorLabel.pack_forget()
 
+	def outputDisplayConsole(text, displayType):
+		if displayType == 'e':
+			Functions.GUIdisplay.textConsole_Text.insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="red")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
+		else:
+			if Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0") is not '':
+				Functions.GUIdisplay.textEvaluation_Text.delete("0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n")
+			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+			GUIFunctions.orderNewReportCheckThis()
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
 			# print(Functions.GUIdisplay.current_Button)
@@ -41,11 +56,13 @@ class GUIFunctions:
 				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
 				# Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
 
 			elif Functions.GUIdisplay.current_Button == "Hiring Status":
 				Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
 
 			elif Functions.GUIdisplay.current_Button == "Login_Security":
 				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
@@ -56,11 +73,13 @@ class GUIFunctions:
 				Functions.GUIdisplay.LS_PR_console_Frame.pack_forget()
 				Functions.GUIdisplay.LS_PU_console_Frame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
 
 			elif Functions.GUIdisplay.current_Button == "Dashboard":
 				Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
 				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
 
 # relief FLAT == if frame does not contain no fields // does not contain the console
 # relief GROOVE == if frame CONTAINS all fields BUT NOT full entries // CONTAINS console but does not contain entries
@@ -135,6 +154,7 @@ class GUItkinter:
 		self.background_Color = "lavender"
 		GUIFunctions.buttonPressCheck()
 		self.current_Button = "Order New Report"
+		self.current_Test = Test_Order1.Test_Order1
 		self.myParent.config(bg=self.background_Color)
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 
@@ -197,6 +217,8 @@ class GUItkinter:
 		else: 
 			self.radioButtonCheck = True
 
+		print(Functions.OPLInfo)
+
 		# If the OPL_Input_Frame_Frame contains full input fields but not all the entries' input are collected,
 		if (self.OPL_Input_Frame_Frame.cget("relief") == GROOVE):
 			# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
@@ -211,9 +233,14 @@ class GUItkinter:
 			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
 			# Display the erorr message if OPL_Input_Frame_Frame did not collect all the inputs.
 			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, "Please enter all fields.")
+			
 			# if OPL_Input_Frame_Frame collected all the information and radioButtonCheck is not collected, display the error message, instead of waiting for user to click "Save & Continue" button again
 			if self.radioButtonCheck == False and self.allFieldCheckAnswer is True:
 				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
+			# if all the inputs are here then, run the test
+			elif self.radioButtonCheck == True and self.allFieldCheckAnswer is True:
+				self.runTest()
+			
 			del self.allFieldCheckAnswer
 
 		# If the OPL_Input_Frame_Frame contained full input fields and the all entries' inputs are collected
@@ -222,10 +249,13 @@ class GUItkinter:
 			if self.radioButtonCheck == False:
 				# display an error
 				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
+				self.runTest()
 			# if self.URL is not empty
 			else: 
 				# get rid of error. This means everything is fine.
 				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
+				# IF EVERYTHING IS FINE THEN RUN THE TEST!!!
+				self.runTest()
 
 	def GetUserInputSendFunction(self):
 		# when "Save & Continue" button is clicked, operate this. 
@@ -336,6 +366,9 @@ class GUItkinter:
 			# arg.existElement = True
 			arg.config(relief=GROOVE)
 
+	def runTest(self):
+		suite = unittest.TestLoader().loadTestsFromTestCase(self.current_Test)
+		unittest.TextTestRunner(verbosity=2).run(suite)
 
 if Functions.GUImainFrame == None:
 	Functions.GUImainFrame = Tk()

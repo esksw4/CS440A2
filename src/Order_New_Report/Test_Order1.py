@@ -53,7 +53,7 @@ class Test_Order1(unittest.TestCase):
     # New TAG
     # NO PROCTORED:: I THINK,.,.,    
     import Functions
-    import GUI
+    import automatedApplicaitonGUI
 
     checkNumError = 0
     testName = "'Order for existing job title, new assessee, also notify with new tag.'"
@@ -98,7 +98,7 @@ class Test_Order1(unittest.TestCase):
     if (checkErrorMsg == True):
       driver.quit()
       # Functions.Functions.orderNewStopTest()
-      GUI.GUIFunctions.orderNewReportErrorMessageCheck(False, "Please Enter inputs in valid format")
+      automatedApplicaitonGUI.GUIFunctions.orderNewReportErrorMessageCheck(False, "Please Enter inputs in valid format")
       # print(GUItkinter.py)
       # from GUItkinter import inputFrame
       # GUItkinter.getUserInputSendFunction
@@ -122,7 +122,7 @@ class Test_Order1(unittest.TestCase):
     	#Click "Place Order"
     except:
       # if any of proctored checkbox is not working, then display the error message on the GUI
-      GUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", 'e')
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", 'e')
 
     # Click Tags -> Edit
     time1.sleep(2)
@@ -139,7 +139,7 @@ class Test_Order1(unittest.TestCase):
       # print(driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text)
       if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable"):
       	driver.quit()
-      	GUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
+      	automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please choose different Tag Name. That Tag name exists in the system.", 'e')
     except:
       try:
         time1.sleep(2)
@@ -147,7 +147,7 @@ class Test_Order1(unittest.TestCase):
         if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable"):
         	pass
       except:
-      	GUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", 'e')
+      	automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", 'e')
 
     # click "Place Order"
     time1.sleep(4)
@@ -162,7 +162,7 @@ class Test_Order1(unittest.TestCase):
 
     if checkErrorMsg == True:
       driver.quit()
-      GUI.GUIFunctions.outputDisplayConsole("Please choose different email for assessee. That email address already exists in the system.", 'e')
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please choose different email for assessee. That email address already exists in the system.", 'e')
 
     else:
       #click OK on order confirmation dlg box
@@ -219,29 +219,29 @@ class Test_Order1(unittest.TestCase):
               # print("6")
               # print("Cancelled Succesfully")
               driver.close()
-              GUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
+              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Cancelled Succesfully" , 'r')
 
             else:
               # print("7")
               # print("Cancellation Failed")
-              GUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
+              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
           else:
             # print("8")
             # print(len(Functions.orderNewReportResult['Email Address']))
             # print(Functions.orderNewReportResult['Email Address'])
             # print(len(emailCheck))
             # print(emailCheck + " 123124123")
-            GUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", 'e')
+            automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", 'e')
             # print("Email address is not same as user input email address")
         else:
           # print("9")
-          GUI.GUIFunctions.outputDisplayConsole("Name does not match", 'e')
+          automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Name does not match", 'e')
           # print("Name does not match")
 
       else:
         # print("10")
         # print("The page is not directed to 'View Reports' page")
-        GUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page" , 'e')
+        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page" , 'e')
 
 if __name__ == "__main__":
   unittest.main(warnings='ignore')
