@@ -27,11 +27,7 @@ class GUIFunctions:
 			return True
 
 	def errorMessageDisplay(allFieldCheckAnswer, errorLabel, LabelText):
-		print(LabelText, "\tinsideErrorMessageDisplay:" , allFieldCheckAnswer)
 		if allFieldCheckAnswer == False:
-			# errorLabel.pack_forget()
-			# print()
-			print("inside allFieldCheckAnswer == False")
 			errorLabel.config(text=LabelText, anchor=CENTER, bg=Functions.GUIdisplay.background_Color)
 			errorLabel.pack()
 		else:
@@ -144,11 +140,6 @@ class GUItkinter:
 
 		self.User_Input_Frame_Frame.config(bg=self.background_Color)
 		self.User_Input_Frame_Frame.pack(side=LEFT)
-		# self.OPL_Input_Frame_Frame.config(bg=self.background_Color)
-		# self.OPL_Input_Frame_Frame.pack(side=LEFT)
-		# self.createExtraBlankRow_Frame(self.User_Input_Frame_Frame, 1)
-		# self.Custom_Input_Frame_Frame.config(bg=self.background_Color)
-		# self.Custom_Input_Frame_Frame.pack(side=LEFT)
 
 		self.frameType = "ONR1"
 		self.createTitle_Frame(self.OPL_Input_Frame_Frame, "Login Information:", 16)
@@ -322,8 +313,7 @@ class GUItkinter:
 		UserInputEnterButton.pack(side=RIGHT)
 
 	def conSoleFrame(self, arg):
-		print("arg: ", arg)
-
+		# print("arg: ", arg)
 		if self.frameType == "LS":
 			self.consoleTextWidth = 28
 			self.consoleTextHeight = 32
