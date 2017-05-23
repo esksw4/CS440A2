@@ -326,16 +326,20 @@ class Functions:
 		time1.sleep(timeAfterLogin)
 
 		try: 
-			if Functions.is_element_present(driver, By.XPATH, "//div[@id='alertMsgContainer']/div[1]"):
+			time1.sleep(3)
+			print(0)
+			if Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"):
+				print(Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"))
 				print(1)
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				print(2)
-				driver.quit()
-				print(3)
 				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
+				print(3)
+				driver.quit()
 				print(4)
 
 		except:
+			time1.sleep(2)
 			return driver
 
 

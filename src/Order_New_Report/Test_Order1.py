@@ -67,7 +67,7 @@ class Test_Order1(unittest.TestCase):
     time1.sleep(2)
     
     # Enter existing JobTitle
-    driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Functions.orderNewReportResult['Job Title'])
+    driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Functions.CustomInfo['Job Title'])
     time1.sleep(1)
     driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Keys.ARROW_DOWN)
     driver.find_element_by_xpath("//div[@id='newOrderForm']/div[1]/div[1]/div[1]/span[1]/input[@id='jobTitle-tokenfield']").send_keys(Keys.ENTER)
@@ -77,16 +77,16 @@ class Test_Order1(unittest.TestCase):
     driver.find_element_by_id('assesseeBtn').click()
     time1.sleep(2)
 
-    driver.find_element_by_id('assesseeFirstName').send_keys(Functions.orderNewReportResult['First Name'])
-    driver.find_element_by_id('assesseeLastName').send_keys(Functions.orderNewReportResult['Last Name'])
-    driver.find_element_by_id('assesseeEmail').send_keys(Functions.orderNewReportResult['Email Address'])
-    driver.find_element_by_xpath("//div[@class='row assesseePoNumberRow']/div[2]/input[@id='assesseePoNumber']").send_keys(Functions.orderNewReportResult['PO Box'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCostCenterRow']/div[2]/input[@id='assesseeCostCenter']").send_keys(Functions.orderNewReportResult['Cost Center'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow1']/div[2]/textarea[@id='assesseeCustomField1']").send_keys(Functions.orderNewReportResult['Color'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow2']/div[2]/textarea[@id='assesseeCustomField2']").send_keys(Functions.orderNewReportResult['Position Number'])
-    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow3']/div[2]/textarea[@id='assesseeCustomField3']").send_keys(Functions.orderNewReportResult['Favorite Number'])
-    driver.find_element_by_xpath("//div[@class='row assesseeSpecialInstructionsRow']/div[2]/textarea[@id='assesseeSpecialInstructions']").send_keys(Functions.orderNewReportResult['Message to Consultant'])
-    driver.find_element_by_xpath("//div[@class='row assesseeEmailMessageRow']/div[2]/textarea[@id='assesseeEmailMessage']").send_keys(Functions.orderNewReportResult['Message to Assessee'])
+    driver.find_element_by_id('assesseeFirstName').send_keys(Functions.CustomInfo['First Name'])
+    driver.find_element_by_id('assesseeLastName').send_keys(Functions.CustomInfo['Last Name'])
+    driver.find_element_by_id('assesseeEmail').send_keys(Functions.CustomInfo['Email Address'])
+    driver.find_element_by_xpath("//div[@class='row assesseePoNumberRow']/div[2]/input[@id='assesseePoNumber']").send_keys(Functions.CustomInfo['PO Box'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCostCenterRow']/div[2]/input[@id='assesseeCostCenter']").send_keys(Functions.CustomInfo['Cost Center'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow1']/div[2]/textarea[@id='assesseeCustomField1']").send_keys(Functions.CustomInfo['Color'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow2']/div[2]/textarea[@id='assesseeCustomField2']").send_keys(Functions.CustomInfo['Position Number'])
+    driver.find_element_by_xpath("//div[@class='row assesseeCustomFieldRow3']/div[2]/textarea[@id='assesseeCustomField3']").send_keys(Functions.CustomInfo['Favorite Number'])
+    driver.find_element_by_xpath("//div[@class='row assesseeSpecialInstructionsRow']/div[2]/textarea[@id='assesseeSpecialInstructions']").send_keys(Functions.CustomInfo['Message to Consultant'])
+    driver.find_element_by_xpath("//div[@class='row assesseeEmailMessageRow']/div[2]/textarea[@id='assesseeEmailMessage']").send_keys(Functions.CustomInfo['Message to Assessee'])
     # click save
     driver.find_element_by_id('assesseeSaveButton').click()
     time1.sleep(2)
@@ -108,7 +108,7 @@ class Test_Order1(unittest.TestCase):
     checkAlsoNotify = Test_Order1.is_element_present(self, By.XPATH, alsoNotifyLocation)
     # print("checkAlsoNotify: ", checkAlsoNotify)
     if checkAlsoNotify == True:
-    	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.orderNewReportResult['Also Notify'])
+    	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Functions.CustomInfo['Also Notify'])
     	time1.sleep(2)
     	driver.find_element_by_xpath(alsoNotifyLocation).send_keys(Keys.ARROW_DOWN)
     	time1.sleep(2)
@@ -128,7 +128,7 @@ class Test_Order1(unittest.TestCase):
     time1.sleep(2)
     driver.find_element_by_id("allAssesseeGroupsBtn").click()
     time1.sleep(2)
-    driver.find_element_by_id("aga_assesseeGroupName").send_keys(Functions.orderNewReportResult['New Tag Name'])
+    driver.find_element_by_id("aga_assesseeGroupName").send_keys(Functions.CustomInfo['New Tag Name'])
     time1.sleep(2)
     driver.find_element_by_id("aga_assesseeGroupDesc").send_keys('Smoke Test')
     time1.sleep(2)
@@ -171,7 +171,7 @@ class Test_Order1(unittest.TestCase):
 
       if 'reports' in driver.current_url:
         # print("1")
-        fullName = Functions.orderNewReportResult['First Name'] + " " + Functions.orderNewReportResult['Last Name']
+        fullName = Functions.CustomInfo['First Name'] + " " + Functions.CustomInfo['Last Name']
         tableText = driver.find_element_by_id("table_info").text
         systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
         whichRow = Functions.Functions.findWhichRow(driver,"Name", fullName, listAssessee)
@@ -194,11 +194,11 @@ class Test_Order1(unittest.TestCase):
           registerCheck = driver.find_element_by_xpath("//div[@class='container container-min-height']/div[2]/legend[1]/h4[1]").text
           emailCheck =  driver.find_element_by_xpath("//input[@id='assessee_email']").get_attribute('value')
 
-          if len(emailCheck) != len(Functions.orderNewReportResult['Email Address']):
-            Functions.orderNewReportResult['Email Address'] = Functions.orderNewReportResult['Email Address'][:len(emailCheck)]
-            # print(Functions.orderNewReportResult['Email Address'])
+          if len(emailCheck) != len(Functions.CustomInfo['Email Address']):
+            Functions.CustomInfo['Email Address'] = Functions.CustomInfo['Email Address'][:len(emailCheck)]
+            # print(Functions.CustomInfo['Email Address'])
 
-          if "Register" == registerCheck and Functions.orderNewReportResult['Email Address'] == emailCheck:
+          if "Register" == registerCheck and Functions.CustomInfo['Email Address'] == emailCheck:
             # print("4")
             # print(registerCheck + ", " + emailCheck)
             
@@ -227,8 +227,8 @@ class Test_Order1(unittest.TestCase):
               automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Cancellation Failed" , 'e')
           else:
             # print("8")
-            # print(len(Functions.orderNewReportResult['Email Address']))
-            # print(Functions.orderNewReportResult['Email Address'])
+            # print(len(Functions.CustomInfo['Email Address']))
+            # print(Functions.CustomInfo['Email Address'])
             # print(len(emailCheck))
             # print(emailCheck + " 123124123")
             automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", 'e')

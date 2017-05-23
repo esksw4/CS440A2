@@ -208,6 +208,20 @@ class GUItkinter:
 					radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText, bg=self.background_Color)
 					radioButton_Button.pack(side=LEFT)
 
+	def GetUserInputSendFunction(self):
+		self.OPL_Input_Frame_Frame.config(relief=GROOVE)
+		self.Custom_Input_Frame_Frame.config(relief=GROOVE)
+
+		self.OPLGetUserInputSendFunction()
+		self.CustomGetUserInputSendFunction()
+
+		if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True and self.Custom_Input_Frame_Frame.cget("relief") == RAISED):
+			# get rid of error. This means everything is fine.
+			self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
+			self.Custom_Input_Frame_Frame.Error_Label.pack_forget()
+			# IF EVERYTHING IS FINE THEN RUN THE TEST!!!
+			self.runTest()
+
 	def OPLGetUserInputSendFunction(self):
 		dictValue = []
 		# First, check if self.URL gets either QA or Production. If it did not get anything, self.radioButtonCheck is False
@@ -217,67 +231,43 @@ class GUItkinter:
 		else: 
 			self.radioButtonCheck = True
 
-		print(Functions.OPLInfo)
-
 		# If the OPL_Input_Frame_Frame contains full input fields but not all the entries' input are collected,
-		if (self.OPL_Input_Frame_Frame.cget("relief") == GROOVE):
+
 			# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
-			self.allFieldCheckAnswer = None
-			# collects the data from the entries
-			for f in self.OPLINfoEntry:
-				dictValue.append(f.get())
+		self.allFieldCheckAnswer = None
+		# collects the data from the entries
+		for f in self.OPLINfoEntry:
+			dictValue.append(f.get())
 
-			# Functions.OPLInfo collects the information and put it as ordred Dictionary
-			Functions.OPLInfo = collections.OrderedDict(zip(self.whichInfoOPL, dictValue))
-			# Check if all fields are filled. If not, it returns FALSE
-			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
-			# Display the erorr message if OPL_Input_Frame_Frame did not collect all the inputs.
-			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, "Please enter all fields.")
-			
-			# if OPL_Input_Frame_Frame collected all the information and radioButtonCheck is not collected, display the error message, instead of waiting for user to click "Save & Continue" button again
-			if self.radioButtonCheck == False and self.allFieldCheckAnswer is True:
-				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
-			# if all the inputs are here then, run the test
-			elif self.radioButtonCheck == True and self.allFieldCheckAnswer is True:
-				self.runTest()
-			
-			del self.allFieldCheckAnswer
+		# Functions.OPLInfo collects the information and put it as ordred Dictionary
+		Functions.OPLInfo = collections.OrderedDict(zip(self.whichInfoOPL, dictValue))
+		# Check if all fields are filled. If not, it returns FALSE
+		self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
+		# Display the erorr message if OPL_Input_Frame_Frame did not collect all the inputs.
+		GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.OPL_Input_Frame_Frame.Error_Label, "Please enter all fields.")
+		
+		# if OPL_Input_Frame_Frame collected all the information and radioButtonCheck is not collected, display the error message, instead of waiting for user to click "Save & Continue" button again
+		if self.radioButtonCheck == False and self.allFieldCheckAnswer is True:
+			GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
 
-		# If the OPL_Input_Frame_Frame contained full input fields and the all entries' inputs are collected
-		elif (self.OPL_Input_Frame_Frame.cget("relief") == RAISED):
-			# If self.URL is still empty,
-			if self.radioButtonCheck == False:
-				# display an error
-				GUIFunctions.errorMessageDisplay(self.radioButtonCheck, self.OPL_Input_Frame_Frame.Error_Label, "Please Select the server to test.")
-				self.runTest()
-			# if self.URL is not empty
-			else: 
-				# get rid of error. This means everything is fine.
-				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
-				# IF EVERYTHING IS FINE THEN RUN THE TEST!!!
-				self.runTest()
-
-	def GetUserInputSendFunction(self):
+	def CustomGetUserInputSendFunction(self):
 		# when "Save & Continue" button is clicked, operate this. 
 		dictValue = []
+		# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
+		self.allFieldCheckAnswer = None
+		# collects the data from the entries
+		for f in self.CustomInfo:
+			dictValue.append(f.get())
 
-		# if the Custom_input_Frame_Frame contains full input fields but not all the entries' inputs are collected,
-		if (self.Custom_Input_Frame_Frame.cget("relief") == GROOVE):
-			# this checks if the all inputs are filled by the user, DEFAULTLY = NONE
-			self.allFieldCheckAnswer = None
-			# collects the data from the entries
-			for f in self.CustomInfo:
-				dictValue.append(f.get())
+		# Functions.CustomInfo collects the information and put it as ordred Dictionary
+		Functions.CustomInfo = collections.OrderedDict(zip(self.whichInfoCustom, dictValue))
+		# Check if all fields are filled. If not it returns FALSE
+		self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.CustomInfo.values(), self.Custom_Input_Frame_Frame)
+		# Display the erorr message if CUstom_Input_Frame_Frame did not collect all the inputs.
+		GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label, "Please enter all fields.")
 
-			# Functions.CustomInfo collects the information and put it as ordred Dictionary
-			Functions.CustomInfo = collections.OrderedDict(zip(self.whichInfoCustom, dictValue))
-			# Check if all fields are filled. If not it returns FALSE
-			self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.CustomInfo.values(), self.Custom_Input_Frame_Frame)
-			# Display the erorr message if CUstom_Input_Frame_Frame did not collect all the inputs.
-			GUIFunctions.errorMessageDisplay(self.allFieldCheckAnswer, self.Custom_Input_Frame_Frame.Error_Label, "Please enter all fields.")
-
-		# Regardless Custom_Input_Frame_Frame collected all the information, get information from OPL frame.
-		self.OPLGetUserInputSendFunction()
+		# # Regardless Custom_Input_Frame_Frame collected all the information, get information from OPL frame.
+		# self.OPLGetUserInputSendFunction()
 			
 	def userInputFrame(self, arg):
 		arg.config(bg=self.background_Color)
