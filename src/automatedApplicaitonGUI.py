@@ -39,14 +39,26 @@ class GUIFunctions:
 			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
-		else:
+		elif displayType == 'p':
 			if Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0") is not '':
 				Functions.GUIdisplay.textEvaluation_Text.delete("0.0", "100.0")
-			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n")
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+		elif displayType == 's':
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
 			GUIFunctions.orderNewReportCheckThis()
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+
+	def orderNewReportCheckThis():
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "Please Check these following information in the pivotal\n")
+		temp = list(Functions.CustomInfo.keys())
+		for i in temp:
+			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, i + ": " +Functions.CustomInfo[i] + "\n")
+			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
 
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
@@ -150,6 +162,7 @@ class GUItkinter:
 		self.orderNewReport_Button.pack()
 		self.orderNewReport_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*3), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
 
+# ["Email Address", "Email Password", "Portal Username", "Portal Password"]
 	def ordernewReport(self):
 		self.background_Color = "lavender"
 		GUIFunctions.buttonPressCheck()
@@ -165,7 +178,7 @@ class GUItkinter:
 		self.createTitle_Frame(self.OPL_Input_Frame_Frame, "Login Information:", 16)
 		self.createErrorLabel(self.OPL_Input_Frame_Frame) 
 		self.createRadioButton(self.OPL_Input_Frame_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
+		self.whichInfoOPL = ["Portal Username", "Portal Password"]
 		self.userInputFrame(self.OPL_Input_Frame_Frame)
 
 		self.createExtraBlankRow_Frame(self.User_Input_Frame_Frame, 1)

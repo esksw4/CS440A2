@@ -56,7 +56,7 @@ class Functions:
 	        if len(mustbesmaller[f]) == len(mustbelarger[f]):
 	          if f == 0:
 	            #print('3')
-	            print('assessee names are same')
+	            # print('assessee names are same')
 	            returnthis = 1
 	            return returnthis
 	          else:
@@ -310,8 +310,8 @@ class Functions:
 	def OPL(self, testName):
 		import automatedApplicaitonGUI
 
-		print('Testing ', testName)
-		print(GUIdisplay.URL.get())
+		# print('Testing ', testName)
+		# print(GUIdisplay.URL.get())
 		driver = self.driver
 		
 		driver.get(GUIdisplay.URL.get())
@@ -326,17 +326,17 @@ class Functions:
 		time1.sleep(timeAfterLogin)
 
 		try: 
-			time1.sleep(3)
-			print(0)
+			time1.sleep(2)
+			# print(0)
 			if Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"):
-				print(Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"))
-				print(1)
+				# print(Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"))
+				# print(1)
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
-				print(2)
+				# print(2)
 				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
-				print(3)
+				# print(3)
 				driver.quit()
-				print(4)
+				# print(4)
 
 		except:
 			time1.sleep(2)
