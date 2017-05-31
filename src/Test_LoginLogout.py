@@ -5,8 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
-import Functions
+import unittest, re, string, sys
+import time as time1
 
 # def doTest():
 class Test_Login_Logout(unittest.TestCase):
@@ -47,22 +47,22 @@ class Test_Login_Logout(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_log_inlog_out(self):
-    checkNumError = 0
+    
+    # import Functions
+    # import automatedApplicaitonGUI
+
     testName = "'Login and Logout'"
     driver = Functions.Functions.OPL(self, testName)
     # click | link=Log out |
     driver.find_element_by_link_text("Log out").click()
     # verifyTitle | exact:Caliper: Login |
     try:
-      if driver.current_url != Ori_correct_PortalLink:
-        print(driver.current_url)
-        print(Ori_correct_PortalLink)
-        checkNumError += 1
-    except AssertionError as e:
-      self.verificationErrors.append(str(e))
-
-    driver.quit()
-    Functions.Functions.checkForError(checkNumError, testName)
+      if driver.current_url == Functions.GUIdisplay.URL.get():
+        driver.quit()
+        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested succesfully" %testName , 's')
+    except:
+      driver.quit()
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested failed" %testName , 'p')
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

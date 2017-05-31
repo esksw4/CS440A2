@@ -4418,3 +4418,24 @@ JavaScript warning: https://portal.caliperqaaws.com/assets/application-065c4d570
 1496177809571 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
 1496177810696 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
 1496177811842 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: cancelOrderBtn, tagName: BUTTON, className: btn btn-primary
+1496244862981	geckodriver	INFO	Listening on 127.0.0.1:62320
+1496244865009	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.3oZUmOlDCai3
+1496244865013	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496244865033	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62326
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-0739f41df653b40e8a3b2cf2189a6879.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1496244868639 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-0739f41df653b40e8a3b2cf2189a6879.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1496244943474	geckodriver	INFO	Listening on 127.0.0.1:62396
+1496244945496	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.Mcjz9q4tURta
+1496244945500	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496244945515	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62402
+JavaScript warning: https://portal.calipercorp.com/assets/application-cfbe23898c7526767caf279df8271637.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1496244949108 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://portal.calipercorp.com/assets/application-cfbe23898c7526767caf279df8271637.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: https://portal.calipercorp.com/assets/application-cfbe23898c7526767caf279df8271637.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+Performance warning: Async animation disabled because frame size (642, 1142) is bigger than the viewport (1607, 871) or the visual rectangle (642, 1142) is larger than the max allowable value (17895698) [div]
+1496245006063 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeSaveButton, tagName: BUTTON, className: btn btn-primary
+Performance warning: Async animation disabled because frame size (10553, 574) is bigger than the viewport (1607, 871) or the visual rectangle (10553, 574) is larger than the max allowable value (17895698) [div]
+1496245046699 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeGroupAssesseeSaveBtn, tagName: BUTTON, className: btn btn-primary
+1496245115086 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: okButton, tagName: BUTTON, className: btn btn-primary
+JavaScript warning: https://portal.calipercorp.com/assets/application-cfbe23898c7526767caf279df8271637.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create

@@ -308,7 +308,7 @@ class Functions:
 	    return True
 
 	def OPL(self, testName):
-		import automatedApplicaitonGUI
+		# import automatedApplicaitonGUI
 
 		# print('Testing ', testName)
 		# print(GUIdisplay.URL.get())
