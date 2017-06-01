@@ -61,10 +61,12 @@ class TabBar(Frame):
 			Functions.GUIdisplay.textConsole_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD)   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.textConsole_Text.focus()
 			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
+			# Functions.GUIdisplay.textConsole_Text.place(x=3, y=1)
 		elif tab.tab_name == "Evaluation":
 			Functions.GUIdisplay.textEvaluation_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD)   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.textEvaluation_Text.focus()
 			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
+			# Functions.GUIdisplay.textEvaluation_Text.place(x=3, y=1)
 
 		self.buttons[tab.tab_name] = b									# add it to the list of buttons
 

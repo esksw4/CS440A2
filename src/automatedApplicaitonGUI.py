@@ -75,7 +75,11 @@ class GUIFunctions:
 			if Functions.GUIdisplay.current_Button == "Order New Report":
 				Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
-				Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
+				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.Custom_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.ONR_GUIconsoleFrame.place_forget()
+				Functions.GUIdisplay.userInputEnterRow_Frame.pack_forget()
+				Functions.GUIdisplay.extraRow_Label.pack_forget()
 				# Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 				Functions.GUIdisplay.current_Test = None
@@ -94,6 +98,7 @@ class GUIFunctions:
 				Functions.GUIdisplay.LS_LL_console_Frame.pack_forget()
 				Functions.GUIdisplay.LS_PR_console_Frame.pack_forget()
 				Functions.GUIdisplay.LS_PU_console_Frame.pack_forget()
+				Functions.GUIdisplay.userInputEnterRow_Frame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 				Functions.GUIdisplay.current_Test = None
 
@@ -112,7 +117,7 @@ class GUItkinter:
 		self.chooseTestFrame_Height = 450
 		self.chooseTestButton_Height = 26
 		self.chooseTestPlace_Yaxis = 173
-		self.OPLInfoWidth_Width = 22
+		self.OPLInfoWidth_Width = 70
 		self.betweeenFrame = 5
 
 		self.OPLFrame_Dimension = '300x170'
@@ -135,17 +140,14 @@ class GUItkinter:
 
 		self.mainTestingFrame()
 
-		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 		# self.User_Input_Frame_Frame.existElement = False
 		# self.User_Input_Frame_Frame.fullElement = False
 
-		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
 		# self.OPL_Input_Frame_Frame.existElement = False
 		# self.OPL_Input_Frame_Frame.fullElement = False
 		# self.OPL_Input_Frame_Frame.Error_Label = tkinter.Label()
 		# self.OPL_Input_Frame_Frame.Error_Label.existElement = False
-
-		self.Custom_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
+		
 		# self.Custom_Input_Frame_Frame.existElement = False
 		# self.Custom_Input_Frame_Frame.Error_Label = tkinter.Label()
 		# self.Custom_Input_Frame_Frame.Error_Label.existElement = False
@@ -153,27 +155,22 @@ class GUItkinter:
 	def mainTestingFrame(self):
 		# relief FLAT == if frame does not contain all the elements that needed to be placed
 		# relief RAISED == if frame contain all the elements that needed to be placed
-		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, height=self.chooseTestFrame_Height, bg=self.default_Color)
+		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width)#, height=self.chooseTestFrame_Height, bg=self.default_Color)
 		self.chooseTest_Frame.pack(side=LEFT, fill=Y)
+
+		self.LS_LL_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.LS_LL_Info_Frame=tkinter.Frame(self.LS_LL_Frame, relief=FLAT)
+		self.LS_LL_console_Frame = tkinter.Frame(self.LS_LL_Frame, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
+
+		self.LS_PR_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.LS_PR_console_Frame = tkinter.Frame(self.LS_PR_Frame, relief=FLAT)
+
+		self.LS_PU_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame, relief=FLAT)
 
 		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
 		self.loginSecurity_Button.pack()
 		self.loginSecurity_Button.place(y=self.chooseTestPlace_Yaxis, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-
-		self.LS_LL_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		# self.LS_LL_Frame.existElement = False
-		self.LS_LL_console_Frame = tkinter.Frame(self.LS_LL_Frame, relief=FLAT)
-		# self.LS_LL_console_Frame.existElement = False
-
-		self.LS_PR_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		# self.LS_PR_Frame.existElement = False
-		self.LS_PR_console_Frame = tkinter.Frame(self.LS_PR_Frame, relief=FLAT)
-		# self.LS_PR_console_Frame.existElement = False
-
-		self.LS_PU_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		# self.LS_PU_Frame.existElement = False
-		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame, relief=FLAT)
-		# self.LS_PU_console_Frame.existElement = False
 
 		# self.dashBoardPage_Button = tkinter.Button(self.chooseTest_Frame, text="Dashboard", command =self.dashBoard, bg=self.default_Color)
 		# self.dashBoardPage_Button.pack()
@@ -182,6 +179,10 @@ class GUItkinter:
 		# self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text="Hiring Status", command = self.hiringStatus, bg=self.default_Color)
 		# self.hiringStatusPage_Button.pack()
 		# self.hiringStatusPage_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*2), height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+
+		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
+		self.Custom_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
 
 		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text="Order New Report", relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
 		self.orderNewReport_Button.pack()
@@ -200,39 +201,80 @@ class GUItkinter:
 		self.current_Test = Test_LoginLogout.Test_Login_Logout
 		self.myParent.config(bg=self.background_Color)
 		self.loginSecurity_Button.config(bg=self.background_Color, relief=FLAT)
-		self.OPLInfoWidth_Width = 12
+		self.OPLInfoWidth_Width = 15
 
 		self.frameType = "LSOPL"
 
-		self.LS_LL_Frame.config(bg=self.background_Color)
-		self.LS_LL_Frame.pack(side=LEFT, fill=Y)
-		self.createTitle_Frame(self.LS_LL_Frame, "Login and Logout", 20)
-		self.createErrorLabel(self.LS_LL_Frame)
+		self.titleFrame_Anchor = 'w'
+		self.titleLabel_PackSide = TOP
+		# self.titleLabel_PackFill = NONE
+
+		self.errorFrame_Anchor = 'w'
+		self.errorFrame_PackSide = TOP
+		# self.error_PackFill = NONE
+
+		self.radioButtonFrame_Anchor = 'w'
+		self.radioButtonFrame_PackSide = TOP
+		self.radioButtonFrame_Width = 30
+		self.radioButtonLabel_Width = 15
+		self.radioButton_Width = 7
+
+		self.userInputFrame_PackSide = TOP
+		self.userInputFrame_PackFill = NONE
+		self.userInputEntry_Expand = YES
+
+		self.userInputFormFrame_Anchor = 'w'
+		self.userInputFormFrame_PackSide = TOP
+		# self.userInputFormFrame_PackFill = NONE
+
+		self.extraLabel_PackSide = TOP
+		self.extraLabel_PackFill = X
+
+		self.saveButton_Anchor = 'e'
+		self.saveButton_PackSide = TOP
+		self.saveButton_ipadx = 82
+
+		self.consoleTextWidth = 75
+		self.consoleTextHeight = 6
+		self.console_PackSide = RIGHT
+		self.console_PackFill = NONE
+		self.console_PlaceY = 0
+		self.console_PlaceX = 300
+
+		self.LS_LL_Frame.config(bg=self.background_Color)#, highlightcolor="green", highlightthickness=1)
+		self.LS_LL_Frame.pack(side=LEFT, anchor='w', expand=YES, fill=X)
+
+		self.LS_LL_Info_Frame.config(bg=self.background_Color)#, highlightcolor="red", highlightthickness=10)
+		self.LS_LL_Info_Frame.pack(side=LEFT, fill=Y, anchor='w')
+		#, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
+		# self.LS_PR_Frame.config(bg=self.background_Color, highlightcolor="blue", highlightthickness=1)
+		# self.LS_PR_Frame.pack(fill=X)
+		# self.LS_PU_Frame.config(bg=self.background_Color, highlightcolor="blue", highlightthickness=1)
+		# self.LS_PU_Frame.pack(fill=X)
+
+		self.createTitle_Frame(self.LS_LL_Info_Frame, "Login and Logout", 20)
+		self.createErrorLabel(self.LS_LL_Info_Frame)
 		self.whichInfoOPL = ["Portal Username", "Portal Password"]
-		self.createRadioButton(self.LS_LL_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		self.userInputFrame(self.LS_LL_Frame)
-		self.createSaveButton(self.LS_LL_Frame, "Save & Continue", self.GetUserInputSendFunction)
+		self.createRadioButton(self.LS_LL_Info_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
+		self.userInputFrame(self.LS_LL_Info_Frame)
+		self.createSaveButton(self.LS_LL_Info_Frame, "Save & Continue", self.GetUserInputSendFunction)
 		self.conSoleFrame(self.LS_LL_console_Frame)
 
-		self.LS_PR_Frame.config(bg=self.background_Color)
-		self.LS_PR_Frame.pack(side=LEFT, fill=Y)
-		self.createTitle_Frame(self.LS_PR_Frame, "Password Recovery", 20)
-		self.createErrorLabel(self.LS_PR_Frame)
-		self.createRadioButton(self.LS_PR_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
-		self.userInputFrame(self.LS_PR_Frame)
-		self.createSaveButton(self.LS_PR_Frame, "Save & Continue", self.GetUserInputSendFunction)
-		self.conSoleFrame(self.LS_PR_console_Frame)
+		# self.createTitle_Frame(self.LS_PR_Frame, "Password Recovery", 20)
+		# self.createErrorLabel(self.LS_PR_Frame)
+		# self.createRadioButton(self.LS_PR_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
+		# self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
+		# self.userInputFrame(self.LS_PR_Frame)
+		# self.createSaveButton(self.LS_PR_Frame, "Save & Continue", self.GetUserInputSendFunction)
+		# self.conSoleFrame(self.LS_PR_console_Frame)
 
-		self.LS_PU_Frame.config(bg=self.background_Color)
-		self.LS_PU_Frame.pack(side=LEFT, fill=Y)
-		self.createTitle_Frame(self.LS_PU_Frame, "Password Unlock", 20)
-		self.createErrorLabel(self.LS_PU_Frame)
-		self.createRadioButton(self.LS_PU_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
-		self.userInputFrame(self.LS_PU_Frame)
-		self.createSaveButton(self.LS_PU_Frame, "Save & Continue", self.GetUserInputSendFunction)
-		self.conSoleFrame(self.LS_PU_console_Frame)
+		# self.createTitle_Frame(self.LS_PU_Frame, "Password Unlock", 20)
+		# self.createErrorLabel(self.LS_PU_Frame)
+		# self.createRadioButton(self.LS_PU_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
+		# self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
+		# self.userInputFrame(self.LS_PU_Frame)
+		# self.createSaveButton(self.LS_PU_Frame, "Save & Continue", self.GetUserInputSendFunction)
+		# self.conSoleFrame(self.LS_PU_console_Frame)
 
 	def ordernewReport(self):
 		import Test_Order1
@@ -246,19 +288,56 @@ class GUItkinter:
 		self.myParent.config(bg=self.background_Color)
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 
+		self.titleLabel_Anchor = 'w'
+		self.titleLabel_PackSide = TOP
+		self.titleLabel_PackFill = X
+
+		self.errorFrame_Anchor = 'w'
+		self.errorFrame_PackSide = TOP
+
+		self.radioButtonFrame_Anchor = 'w'
+		self.radioButtonFrame_PackSide = TOP
+		self.radioButtonFrame_Width = 30
+		self.radioButtonLabel_Width = 15
+		self.radioButton_Width = 7
+
+		self.userInputFrame_PackSide = TOP
+		self.userInputFrame_PackFill = X
+		self.userInputEntry_Expand = NO
+
 		self.User_Input_Frame_Frame.config(bg=self.background_Color)
 		self.User_Input_Frame_Frame.pack(side=LEFT)
 
 		self.frameType = "OPL"
+		self.userInputFormFrame_Anchor = 'center'
+		self.userInputFormFrame_PackSide = TOP
+		self.userInputFormFrame_PackFill = X
+
+		self.extraLabel_PackSide = TOP
+		self.extraLabel_PackFill = X
+
+		self.saveButton_Anchor = 'e'
+		self.saveButton_PackSide = TOP
+		self.saveButton_ipadx = 83
+
+		self.consoleTextWidth = 62
+		self.consoleTextHeight = 31
+		self.console_PackSide = LEFT
+		self.console_PackFill = X
+		self.console_PlaceY = 0
+		self.console_PlaceX = 390
+
 		self.createTitle_Frame(self.OPL_Input_Frame_Frame, "Login Information:", 16)
 		self.createErrorLabel(self.OPL_Input_Frame_Frame) 
 		self.createRadioButton(self.OPL_Input_Frame_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
 		self.whichInfoOPL = ["Portal Username", "Portal Password"]
 		self.userInputFrame(self.OPL_Input_Frame_Frame)
-
 		self.createExtraBlankRow_Frame(self.User_Input_Frame_Frame, 1)
 
 		self.frameType = "ONR"
+		self.userInputFormLabel_Anchor = 'center'
+		self.userInputFormFrame_PackSide = TOP
+		self.userInputFormFrame_PackFill = X
 		self.createTitle_Frame(self.Custom_Input_Frame_Frame, "Additional Information:", 16)
 		self.createErrorLabel(self.Custom_Input_Frame_Frame)
 		self.whichInfoCustom = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
@@ -271,31 +350,28 @@ class GUItkinter:
 	def createTitle_Frame(self, arg, txt, fontSize):
 		# print(arg.cget("relief"))
 		if (arg.cget("relief") == FLAT):
-			title_Label = tkinter.Label(arg, bg=self.background_Color, text=txt, font=(fontSize), anchor='w')
-			title_Label.pack(side=TOP, fill=X)
+			title_Frame = tkinter.Frame(arg,bg=self.background_Color)#, highlightcolor="blue", highlightthickness=7)
+			title_Frame.pack(side=TOP, anchor='w')
+			title_Label = tkinter.Label(title_Frame, bg=self.background_Color, text=txt, font=(fontSize), anchor='w')
+			title_Label.pack()
 
 	def createErrorLabel(self,arg):
 		if (arg.cget("relief") == FLAT):
-			arg.Error_Frame = tkinter.Frame(arg, bg=self.background_Color)
-			arg.Error_Frame.pack(side=TOP, fill=X)
-			arg.Error_Label = tkinter.Label(arg.Error_Frame, text=" ", fg='red', bg=self.background_Color, anchor = 'w')
-			arg.Error_Label.pack(side=TOP, fill=X)
+			arg.Error_Frame = tkinter.Frame(arg, bg=self.background_Color)#, highlightcolor="blue", highlightthickness=7)
+			arg.Error_Frame.pack(side=self.errorFrame_PackSide, anchor= self.errorFrame_Anchor)#fill=self.error_PackFill)
+			arg.Error_Label = tkinter.Label(arg.Error_Frame, text=" ", fg='red', bg=self.background_Color)
+			arg.Error_Label.pack(anchor='w')
 
 	def createRadioButton(self, arg, labelText, radioList, valueList):
-		if (arg.cget("relief") == FLAT):
-			if self.frameType == "OPL" or self.frameType == "LSOPL":
-				labelanchorAs = 'center'
-				self.userInputWidth_Width = 23
-				frameSideAs = TOP
-				
-				radioRow_Frame = Frame(arg, width=self.OPLInfoWidth_Width, bg=self.background_Color)
-				radioRow_Frame.pack(side=frameSideAs, fill=X)
-				radioLabel_Label = Label(radioRow_Frame, width=self.OPLInfoWidth_Width, text=labelText, anchor=labelanchorAs, bg=self.background_Color)
-				radioLabel_Label.pack(side=LEFT)
+		if (arg.cget("relief") == FLAT):				
+			radioRow_Frame = Frame(arg, bg=self.background_Color, width=self.radioButtonFrame_Width)#, highlightcolor="blue", highlightthickness=7)#, width=self.OPLInfoWidth_Width)
+			radioRow_Frame.pack(side=self.radioButtonFrame_PackSide, anchor = self.radioButtonFrame_Anchor)#side=self.radioButton_FrameSide)#, fill=X)
+			radioLabel_Label = Label(radioRow_Frame, text=labelText, bg=self.background_Color, width=self.radioButtonLabel_Width)#, width=int(self.OPLInfoWidth_Width*0.4))
+			radioLabel_Label.pack(side=LEFT, anchor='center')
 
-				for radioText,valueText in zip(radioList, valueList):
-					radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText, bg=self.background_Color)
-					radioButton_Button.pack(side=LEFT)
+			for radioText,valueText in zip(radioList, valueList):
+				radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText, bg=self.background_Color, width=self.radioButton_Width)
+				radioButton_Button.pack(side=LEFT, anchor='w')
 
 	def GetUserInputSendFunction(self):
 		if self.frameType is not "LSOPL":
@@ -364,11 +440,7 @@ class GUItkinter:
 			
 	def userInputFrame(self, arg):
 		arg.config(bg=self.background_Color)
-
-		if self.background_Color == "light goldenrod yellow": 
-			arg.pack(side=LEFT, fill=X, padx=self.betweeenFrame)
-		else:
-			arg.pack(side=TOP, fill=X, padx=self.betweeenFrame)
+		arg.pack(side=self.userInputFrame_PackSide)#, fill=self.userInputFrame_PackFill)#, padx=self.betweeenFrame)
 
 		if (arg.cget("relief") == FLAT):
 			self.makeUserInputForm(arg)
@@ -376,63 +448,48 @@ class GUItkinter:
 	# used in "userInputFrame"
 	def makeUserInputForm(self, arg):
 		if self.frameType == "OPL" or self.frameType == "LSOPL":
-			labelanchorAs = 'center'
-			self.userInputWidth_Width = 23
-			frameSideAs = TOP
-
 			self.OPLINfoEntry = []
 			for entry in self.whichInfoOPL:	
-				userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-				userInputLabel_Label = tkinter.Label(userInputRow_Frame, width=self.userInputWidth_Width, text=entry, anchor=labelanchorAs, bg=self.background_Color)
+				userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color, width=self.radioButtonFrame_Width)#highlightcolor="blue", highlightthickness=7#, width=self.OPLInfoWidth_Width)
+				userInputLabel_Label = tkinter.Label(userInputRow_Frame, text=entry, bg=self.background_Color, width=self.radioButtonLabel_Width+4)#,width=int(self.OPLInfoWidth_Width*0.4))
 				userInputEntry_Entry = tkinter.Entry(userInputRow_Frame)
-				userInputRow_Frame.pack(side=frameSideAs, fill=X)
-				userInputLabel_Label.pack(side=LEFT)
-				userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+				userInputRow_Frame.pack(side=self.userInputFormFrame_PackSide, anchor=self.userInputFormFrame_Anchor)#fill=self.userInputFormFrame_PackFill)
+				userInputLabel_Label.pack(side=LEFT, anchor='center')
+				userInputEntry_Entry.pack(side=RIGHT)#, fill=X)#expand=self.userInputEntry_Expand)#
 				self.OPLINfoEntry.append(userInputEntry_Entry)
 			arg.config(relief=GROOVE)
 
 		elif self.frameType == "ONR":
-			labelanchorAs = 'center'
-			enterButtonContinue = "Save & Continue"
-			self.userInputWidth_Width = 23
-			frameSideAs = TOP
-
 			self.CustomInfo = []
 			for entry in self.whichInfoCustom:	
-				userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-				userInputLabel_Label = tkinter.Label(userInputRow_Frame, width=self.userInputWidth_Width, text=entry, anchor=labelanchorAs, bg=self.background_Color)
+				userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color, width=self.radioButtonFrame_Width)#highlightcolor="blue", highlightthickness=7)#, width=self.OPLInfoWidth_Width)
+				userInputLabel_Label = tkinter.Label(userInputRow_Frame, text=entry, bg=self.background_Color, width=self.radioButtonLabel_Width+5)
 				userInputEntry_Entry = tkinter.Entry(userInputRow_Frame)
-				userInputRow_Frame.pack(side=frameSideAs, fill=X)
-				userInputLabel_Label.pack(side=LEFT)
-				userInputEntry_Entry.pack(side=RIGHT, expand=YES, fill=X)
+				userInputRow_Frame.pack(side=self.userInputFormFrame_PackSide, anchor=self.userInputFormFrame_Anchor)
+				userInputLabel_Label.pack(side=LEFT, anchor='center')
+				userInputEntry_Entry.pack(side=RIGHT)#, expand=self.userInputEntry_Expand)#, fill=X)
 				self.CustomInfo.append(userInputEntry_Entry)
 			arg.config(relief=GROOVE)
 
 	def createExtraBlankRow_Frame(self, arg, howMany):
 		if (arg.cget("relief") == FLAT):
 			for i in range(howMany):
-				extraRow_Label = Label(arg, bg=self.background_Color, text=" ")
-				extraRow_Label.pack(side=TOP, fill=X)
+				self.extraRow_Label = Label(arg, bg=self.background_Color, text=" ")
+				self.extraRow_Label.pack(side=self.extraLabel_PackSide, fill=self.extraLabel_PackFill)
 
 	def createSaveButton(self, arg, buttonText, commandMethod):
-		userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)
-		userInputEnterRow_Frame.pack(side=TOP, fill=X)
-		UserInputEnterButton = tkinter.Button(userInputEnterRow_Frame, text=buttonText, command=commandMethod, relief=RAISED)
-		UserInputEnterButton.pack(side=RIGHT)
+		self.userInputEnterRow_Frame = tkinter.Frame(arg, bg=self.background_Color)#, highlightcolor="blue", highlightthickness=7)
+		self.userInputEnterRow_Frame.pack(side=TOP, anchor='w', ipadx=self.saveButton_ipadx)
+		UserInputEnterButton = tkinter.Button(self.userInputEnterRow_Frame, text=buttonText, command=commandMethod, relief=RAISED)
+		UserInputEnterButton.pack(side=self.saveButton_PackSide, anchor=self.saveButton_Anchor)
 
 	def conSoleFrame(self, arg):
 		# print("arg: ", arg)
-		if self.frameType == "LSOPL":
-			self.consoleTextWidth = 28
-			self.consoleTextHeight = 27.5
-			whichSide = RIGHT
-		else: 
-			self.consoleTextWidth = 62
-			self.consoleTextHeight = 31
-			whichSide = LEFT
-		
-		arg.config(bg=self.background_Color)
-		arg.pack(side=whichSide, fill=BOTH, padx=self.betweeenFrame, pady=5)
+
+		arg.config(bg=self.background_Color)#, highlightcolor="blue", highlightthickness=1)
+		arg.pack(side=self.console_PackSide)#, anchor='e')
+		arg.place(y=self.console_PlaceY, x=self.console_PlaceX)
+		# arg.pack(side=self.console_PackSide, anchor='e')#, fill=self.console_PackFill)#, padx=self.betweeenFrame, pady=5)
 
 		if (arg.cget("relief") == FLAT):
 			self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
