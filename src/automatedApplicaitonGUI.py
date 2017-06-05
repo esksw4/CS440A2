@@ -15,6 +15,7 @@ import time as time1
 import Functions
 import unittest, time, re
 import Tab
+# import Checkbar
 
 import tkinter
 from tkinter import *
@@ -158,14 +159,18 @@ class GUItkinter:
 		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width)#, height=self.chooseTestFrame_Height, bg=self.default_Color)
 		self.chooseTest_Frame.pack(side=LEFT, fill=Y)
 
+		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+
 		self.LS_LL_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.LS_LL_Info_Frame=tkinter.Frame(self.LS_LL_Frame, relief=FLAT)
+		self.LS_LL_Info_Frame = tkinter.Frame(self.LS_LL_Frame, relief=FLAT)
 		self.LS_LL_console_Frame = tkinter.Frame(self.LS_LL_Frame, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
 
 		self.LS_PR_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.LS_PR_Info_Frame = tkinter.Frame(self.LS_PR_Frame, relief=FLAT)
 		self.LS_PR_console_Frame = tkinter.Frame(self.LS_PR_Frame, relief=FLAT)
 
 		self.LS_PU_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.LS_PU_Info_Frame = tkinter.Frame(self.LS_PU_Frame, relief=FLAT)
 		self.LS_PU_console_Frame = tkinter.Frame(self.LS_PU_Frame, relief=FLAT)
 
 		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
@@ -192,6 +197,8 @@ class GUItkinter:
 
 	def loginSecurity(self):
 		import Test_LoginLogout
+		import Test_PasswordRecovery
+		import Test_PasswordUnlock
 
 		self.myParent.geometry(self.LS_Dimension)
 
@@ -235,46 +242,14 @@ class GUItkinter:
 		self.saveButton_ipadx = 82
 
 		self.consoleTextWidth = 75
-		self.consoleTextHeight = 6
+		self.consoleTextHeight = 10
 		self.console_PackSide = RIGHT
 		self.console_PackFill = NONE
 		self.console_PlaceY = 0
 		self.console_PlaceX = 300
 
-		self.LS_LL_Frame.config(bg=self.background_Color)#, highlightcolor="green", highlightthickness=1)
-		self.LS_LL_Frame.pack(side=LEFT, anchor='w', expand=YES, fill=X)
-
-		self.LS_LL_Info_Frame.config(bg=self.background_Color)#, highlightcolor="red", highlightthickness=10)
-		self.LS_LL_Info_Frame.pack(side=LEFT, fill=Y, anchor='w')
-		#, height=self.chooseTestButton_Height, width=self.chooseTestFrame_Width)
-		# self.LS_PR_Frame.config(bg=self.background_Color, highlightcolor="blue", highlightthickness=1)
-		# self.LS_PR_Frame.pack(fill=X)
-		# self.LS_PU_Frame.config(bg=self.background_Color, highlightcolor="blue", highlightthickness=1)
-		# self.LS_PU_Frame.pack(fill=X)
-
-		self.createTitle_Frame(self.LS_LL_Info_Frame, "Login and Logout", 20)
-		self.createErrorLabel(self.LS_LL_Info_Frame)
-		self.whichInfoOPL = ["Portal Username", "Portal Password"]
-		self.createRadioButton(self.LS_LL_Info_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		self.userInputFrame(self.LS_LL_Info_Frame)
-		self.createSaveButton(self.LS_LL_Info_Frame, "Save & Continue", self.GetUserInputSendFunction)
-		self.conSoleFrame(self.LS_LL_console_Frame)
-
-		# self.createTitle_Frame(self.LS_PR_Frame, "Password Recovery", 20)
-		# self.createErrorLabel(self.LS_PR_Frame)
-		# self.createRadioButton(self.LS_PR_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		# self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
-		# self.userInputFrame(self.LS_PR_Frame)
-		# self.createSaveButton(self.LS_PR_Frame, "Save & Continue", self.GetUserInputSendFunction)
-		# self.conSoleFrame(self.LS_PR_console_Frame)
-
-		# self.createTitle_Frame(self.LS_PU_Frame, "Password Unlock", 20)
-		# self.createErrorLabel(self.LS_PU_Frame)
-		# self.createRadioButton(self.LS_PU_Frame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
-		# self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
-		# self.userInputFrame(self.LS_PU_Frame)
-		# self.createSaveButton(self.LS_PU_Frame, "Save & Continue", self.GetUserInputSendFunction)
-		# self.conSoleFrame(self.LS_PU_console_Frame)
+		self.checkBoxText =["Login Logout", "Password Recovery", "Password Unlock"]
+		self.createCheckButton(self.testCases_Frame, 20)
 
 	def ordernewReport(self):
 		import Test_Order1
@@ -284,7 +259,6 @@ class GUItkinter:
 		self.background_Color = "lavender"
 		GUIFunctions.buttonPressCheck()
 		self.current_Button = "Order New Report"
-		self.current_Test = Test_Order1.Test_Order1
 		self.myParent.config(bg=self.background_Color)
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 
@@ -342,10 +316,72 @@ class GUItkinter:
 		self.createErrorLabel(self.Custom_Input_Frame_Frame)
 		self.whichInfoCustom = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
 		self.userInputFrame(self.Custom_Input_Frame_Frame)
-		self.createSaveButton(self.Custom_Input_Frame_Frame, "Save & Continue", self.GetUserInputSendFunction)
+		self.createSaveButton(self.Custom_Input_Frame_Frame, "Save & Continue", self.GetUserInputSendFunction("ONR",[self.OPL_Input_Frame_Frame, self.Custom_Input_Frame_Frame]))
 
 		self.ONR_GUIconsoleFrame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.conSoleFrame(self.ONR_GUIconsoleFrame)
+
+	def onPress(self,this):
+		self.testInfoFrame = []
+		self.testConsoleFrame = []
+		if this == "Login Logout" and self.testCases[this] == 0:
+			self.frame = self.LS_LL_Frame
+			self.testInfoFrame.append(self.LS_LL_Info_Frame)
+			self.testConsoleFrame.append(self.LS_LL_console_Frame)
+
+		elif this == "Login Logout" and self.testCases[this] == 1:
+			self.testInfoFrame.remove(self.LS_LL_Info_Frame)
+			self.testConsoleFrame.remove(self.LS_LL_console_Frame)
+
+		elif this == "Password Recoveery" and self.testCases[this] == 0:
+			self.frame = self.LS_LL_Frame
+			self.testInfoFrame.append(self.LS_PR_Info_Frame)
+			self.testConsoleFrame.append(self.LS_PR_console_Frame)
+			
+		elif this == "Password Recovery" and self.testCases[this] == 1:
+			self.testInfoFrame.remove(self.LS_PR_Info_Frame)
+			self.testConsoleFrame.remove(self.LS_PR_console_Frame)
+
+		elif this == "Password Unlock" and self.testCases[this] == 0:
+			self.frame = self.LS_PU_Frame
+			self.testInfoFrame.append(self.LS_PU_Info_Frame)
+			self.testConsoleFrame.append(self.LS_PU_console_Frame)
+			
+		elif this == "Password Unlock" and self.testCases[this] == 1:
+			self.testInfoFrame.remove(self.LS_PU_Info_Frame)
+			self.testConsoleFrame.remove(self.LS_PU_console_Frame)
+
+		if self.testCases[this] == 0:
+			self.testCases[this] = 1
+			self.frame.config(bg=self.background_Color)#, highlightcolor="green", highlightthickness=1)
+			self.frame.pack(side=TOP, anchor='w', expand=YES, fill=X)
+			self.infoFrame.config(bg=self.background_Color)#, highlightcolor="red", highlightthickness=10)
+			self.infoFrame.pack(side=LEFT, fill=Y, anchor='w')
+
+			self.createTitle_Frame(self.infoFrame, this, 20)
+			self.createErrorLabel(self.infoFrame)
+			self.whichInfoOPL = ["Email Address", "Email Password", "Portal Username", "Portal Password"]
+			self.createRadioButton(self.infoFrame, "Server", ["QA", "Production"], ["https://portal.caliperqaaws.com/", "https://portal.calipercorp.com/"])
+			self.userInputFrame(self.infoFrame)
+			self.createSaveButton(self.infoFrame, "Save & Continue", self.GetUserInputSendFunction(this, self.infoFrame))
+			self.conSoleFrame(self.consoleFrame)
+
+		else: 
+			self.testCases[this] = 0
+			self.frame.pack_forget()
+			self.consoleFrame.pack_forget()
+			Functions.GUIdisplay.userInputEnterRow_Frame.pack_forget()
+			Functions.GUIdisplay.current_Button = None
+			Functions.GUIdisplay.current_Test = None
+
+	def createCheckButton(self, parent, fontsize):
+		self.testCases = collections.OrderedDict(zip(self.checkBoxText, [0]*len(self.checkBoxText)))
+		parent.config(bg=self.background_Color)
+		parent.pack(side=TOP, expand=YES, anchor=W)
+		parent.place(x=100, y=0)
+		for i in self.checkBoxText:
+			check = Checkbutton(parent, text=i, command=(lambda i=i: self.onPress(i)), font=(fontsize), bg=self.background_Color)
+			check.pack(side=LEFT, anchor=W)
 
 	def createTitle_Frame(self, arg, txt, fontSize):
 		# print(arg.cget("relief"))
@@ -373,23 +409,26 @@ class GUItkinter:
 				radioButton_Button = Radiobutton(radioRow_Frame, text=radioText, variable=self.URL, value=valueText, bg=self.background_Color, width=self.radioButton_Width)
 				radioButton_Button.pack(side=LEFT, anchor='w')
 
-	def GetUserInputSendFunction(self):
-		if self.frameType is not "LSOPL":
-			self.OPL_Input_Frame_Frame.config(relief=GROOVE)
-			self.Custom_Input_Frame_Frame.config(relief=GROOVE)
-
+	def GetUserInputSendFunction(self, whichTestToRun, whichFrame):
+		if whichTestToRun is "OPL" or whichTestToRun is "ONR":
+			for i in whichFrame:
+				i.config(relief=GROOVE)
 			self.OPLGetUserInputSendFunction()
 			self.CustomGetUserInputSendFunction()
 
-			if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True and self.Custom_Input_Frame_Frame.cget("relief") == RAISED):
+			if (whichFrame[0].cget("relief") == RAISED and self.radioButtonCheck == True and whichFrame[1].cget("relief") == RAISED):
 				# get rid of error. This means everything is fine.
-				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
-				self.Custom_Input_Frame_Frame.Error_Label.pack_forget()
+				for i in whichFrame:
+					i.pack_forget()
+				self.current_Test = Test_Order1.Test_Order1
 				# IF EVERYTHING IS FINE THEN RUN THE TEST!!!
 				self.runTest()
-		else:
-			self.LS_LL_Frame.config(relief=GROOVE)
-			self.LS_PR_Frame.config(relief=GROOVE)
+
+		elif (whichTestToRun in self.testCases.keys()):
+			for i in self.testCases:
+				if self.testCases[i] == 1:
+					self.frame.config(relief=GROOVE)
+			# self.OPLGetUserInputSendFunction()
 
 	def OPLGetUserInputSendFunction(self):
 		dictValue = []
