@@ -4439,3 +4439,19 @@ Performance warning: Async animation disabled because frame size (10553, 574) is
 1496245046699 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeGroupAssesseeSaveBtn, tagName: BUTTON, className: btn btn-primary
 1496245115086 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: okButton, tagName: BUTTON, className: btn btn-primary
 JavaScript warning: https://portal.calipercorp.com/assets/application-cfbe23898c7526767caf279df8271637.js, line 30: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1496770155115	geckodriver	INFO	Listening on 127.0.0.1:56720
+1496770157159	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.1AgLMUhJV5S2
+1496770157166	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496770157185	geckodriver::marionette	INFO	Connecting to Marionette on localhost:56726
+1496775122538	geckodriver	INFO	Listening on 127.0.0.1:57537
+1496775124589	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.JYea4yNfUECM
+1496775124593	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496775124608	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57543
+1496775367030	geckodriver	INFO	Listening on 127.0.0.1:57577
+1496775369087	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.S0QYQC943Dy4
+1496775369090	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496775369105	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57583
+1496775371184	geckodriver	INFO	Listening on 127.0.0.1:57593
+1496775373197	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.1ATw1viDavio
+1496775373201	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1496775373214	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57599

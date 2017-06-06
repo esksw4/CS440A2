@@ -9,7 +9,7 @@ import unittest, re, string, sys
 import time as time1
 
 # def doTest():
-class Test_Login_Logout(unittest.TestCase):
+class Test_LoginLogout(unittest.TestCase):
   def setUp(self):
       self.driver = webdriver.Firefox()
       self.driver.implicitly_wait(30)
