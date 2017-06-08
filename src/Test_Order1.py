@@ -10,7 +10,6 @@ import time as time1
 class Test_Order1(unittest.TestCase):
 	def setUp(self):
 		self.driver = webdriver.Firefox()
-		self.driver.implicitly_wait(30)
 		self.verificationErrors = []
 		self.accept_next_alert = True
 
@@ -51,7 +50,7 @@ class Test_Order1(unittest.TestCase):
 		# New TAG
 		# NO PROCTORED:: I THINK,.,.,    
 		import Functions
-		# import automatedApplicaitonGUI
+		import automatedApplicaitonGUI
 
 		checkNumError = 0
 		testName = "'Order for existing job title, new assessee, also notify with new tag.'"
@@ -182,9 +181,20 @@ class Test_Order1(unittest.TestCase):
 			if 'reports' in driver.current_url:
 				# print("1")
 				fullName = Functions.CustomInfo['First Name'] + " " + Functions.CustomInfo['Last Name']
+				# tableText = driver.find_element_by_id("table_info").text
+				# systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+				# time1.sleep(2)
+				# whichRow = Functions.Functions.findWhichRow(driver, "Name", fullName, listAssessee)
+				driver.find_element_by_id("mainSearch").send_keys(fullName)
+				time1.sleep(3)
 				tableText = driver.find_element_by_id("table_info").text
+				time1.sleep(2)
 				systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
-				whichRow = Functions.Functions.findWhichRow(driver,"Name", fullName, listAssessee)
+				time1.sleep(2)
+				if listAssessee == 1:
+					whichRow = 1
+				else: 
+					whichRow == 9999
 
 				if whichRow != 9999:
 					# print("3")
@@ -221,7 +231,7 @@ class Test_Order1(unittest.TestCase):
 						time1.sleep(1)
 						driver.find_element_by_xpath("//div[@class='modal-dialog']/div[1]/div[3]/button[@id='cancelOrderBtn']").click()
 
-						# print("5")
+						time1.sleep(2)
 						checkConfirmationMessage = Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-success.alert-dismissable")
 						# print(checkConfirmationMessage)
 

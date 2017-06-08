@@ -55,6 +55,7 @@ class GUIFunctions:
 			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 		elif displayType == 's':
 			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
@@ -63,12 +64,21 @@ class GUIFunctions:
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
 	def orderNewReportCheckThis():
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "Please Check these following information in the pivotal\n")
-		temp = list(Functions.CustomInfo.keys())
-		for i in temp:
-			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, i + ": " +Functions.CustomInfo[i] + "\n")
-			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "Following functions were evaluated successfully: \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Checking 'Order a Report/Assessment' button \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Order with existing title \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Order with new assessee \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Create a new tag \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "\t * Please check '%s' tag in tag list \n" % Functions.CustomInfo['New Tag Name'])
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Search with assessee name \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Copy assessment URL \n")
+		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Cancel Order \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		# temp = list(Functions.CustomInfo.keys())
+		# for i in temp:
+		# 	Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, i + ": " +Functions.CustomInfo[i] + "\n")
+		# 	Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
+		# 	Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
 
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
@@ -115,7 +125,7 @@ class GUIFunctions:
 # relief RAISED == if frame CONTAINS all fields & full entries // CONTAINS console & CONTAINS entries
 class GUItkinter:
 	def __init__(self, Parent):
-		self.chooseTestFrame_Width = 100
+		self.chooseTestFrame_Width = 110
 		self.chooseTestFrame_Height = 450
 		self.chooseTestButton_Height = 26
 		self.chooseTestPlace_Yaxis = 173
@@ -407,7 +417,7 @@ class GUItkinter:
 				self.createExtraBlankRow_Frame(arg, 1)
 				arg.Error_Frame = tkinter.Frame(arg, bg=self.background_Color)#, highlightcolor="blue", highlightthickness=7)
 				arg.Error_Frame.pack(side=self.errorFrame_PackSide, anchor= self.errorFrame_Anchor)
-				arg.Error_Label = tkinter.Label(arg.Error_Frame, text="asdf", fg='red', bg=self.background_Color)
+				arg.Error_Label = tkinter.Label(arg.Error_Frame, text=" ", fg='red', bg=self.background_Color)
 				arg.Error_Label.pack(side=TOP, anchor=NW, fill=self.errorLabel_PackFill)
 
 	def createRadioButton(self, arg, labelText, radioList, valueList):
@@ -428,7 +438,22 @@ class GUItkinter:
 			self.OPLGetUserInputSendFunction()
 			if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True):
 				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
+				print("self.testToRun: ", self.testToRun)
 				for i in self.testToRun:
+					print("i: ", i)
+					suite.addTests(unittest.makeSuite(i))
+				self.runTest(suite)
+		elif self.current_Button == "Order New Report":
+			self.OPL_Input_Frame_Frame.config(relief=GROOVE)
+			self.Custom_Input_Frame_Frame.config(relief=GROOVE)
+			self.OPLGetUserInputSendFunction()
+			self.CustomGetUserInputSendFunction()
+			if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.Custom_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True):
+				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
+				self.Custom_Input_Frame_Frame.Error_Label.pack_forget()
+				# print("self.testToRun: ", self.testToRun)
+				for i in self.testToRun:
+					# print("i: ", i)
 					suite.addTests(unittest.makeSuite(i))
 				self.runTest(suite)
 
@@ -454,6 +479,7 @@ class GUItkinter:
 	def OPLGetUserInputSendFunction(self):
 		dictValue = []
 		# First, check if self.URL gets either QA or Production. If it did not get anything, self.radioButtonCheck is False
+		print("Which URL:", self.URL.get())
 		if self.URL.get() == "empty":
 			self.radioButtonCheck = False
 		# If it got something, self.radioButtonCheck is True
@@ -511,7 +537,7 @@ class GUItkinter:
 
 	# used in "userInputFrame"
 	def makeUserInputForm(self, arg):
-		if self.frameType == "OPLf" or self.frameType == "LSOPL":
+		if self.frameType == "OPL" or self.frameType == "LSOPL":
 			self.OPLINfoEntry = []
 			for entry in self.whichInfoOPL:	
 				userInputRow_Frame = tkinter.Frame(arg, bg=self.background_Color, width=self.radioButtonFrame_Width)#highlightcolor="blue", highlightthickness=7#, width=self.OPLInfoWidth_Width)

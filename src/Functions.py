@@ -5,6 +5,7 @@ import collections
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 import tkinter
 from tkinter import *
@@ -270,13 +271,16 @@ class Functions:
 	def findWhichRow(driver, byWhat, findValue, listAssessee):
 		if byWhat == "Name": 
 			row = 1
+			time1.sleep(1)
 			check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+			time1.sleep(1)
 			while check != findValue and  row < listAssessee:
 				row += 1
 				check = driver.find_element_by_xpath("//tbody/tr[%d]/td[4]/div[1]/div[@class='main-text assessee-name']" % row).text
+				time1.sleep(1)
 				if row == listAssessee and check != findValue:
 					row = 9999
-
+			print()
 			return row 
 
 	# Used inside of "sortingCheck" function, Test_SortingDropdown, Test_SearchForAssessee, Test_HiringFunction, Test_Filters
@@ -308,39 +312,61 @@ class Functions:
 	    return True
 
 	def OPL(self, testName):
-		# import automatedApplicaitonGUI
+		import automatedApplicaitonGUI
 
 		# print('Testing ', testName)
 		# print(GUIdisplay.URL.get())
 		driver = self.driver
-		
+		# System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"false");
 		driver.get(GUIdisplay.URL.get())
 
-		driver.find_element_by_id("user_email").clear()
-		driver.find_element_by_id("user_email").send_keys(OPLInfo['Portal Username'])
-		# type User Password
-		driver.find_element_by_id("user_password").clear()
-		driver.find_element_by_id("user_password").send_keys(OPLInfo['Portal Password'])
-		# click Ente
-		driver.find_element_by_id("login-btn").click()
-		time1.sleep(timeAfterLogin)
 
-		try: 
-			time1.sleep(2)
-			# print(0)
-			if Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"):
+		# print(1)
+		if Functions.is_element_present(driver, By.CLASS_NAME, "text-center"):
+			# print(2)
+			if "This browser version is not supported." in driver.find_element_by_class_name("text-center").text:
+				# print(3)
+				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
+				# print(4)
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please update the browser. Your Browser is not supported", 'se')
+				# print(5)
+				driver.quit()
+		else:
+			# print(6)
+			driver.find_element_by_id("user_email").clear()
+			# print(7)
+			# print("OPLInfo['Portal Username']: ", OPLInfo['Portal Username'])
+			driver.find_element_by_id("user_email").send_keys(OPLInfo['Portal Username'])
+			# print(8)
+			# type User Password
+			driver.find_element_by_id("user_password").clear()
+			# print(9)
+			driver.find_element_by_id("user_password").send_keys(OPLInfo['Portal Password'])
+			# print(10)
+			# click Ente
+			driver.find_element_by_id("login-btn").click()
+			# print(11)
+			time1.sleep(timeAfterLogin)
+
+			# print(12)
+			if Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error") or Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-alert"):
+				# print(14)
 				# print(Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"))
 				# print(1)
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				# print(2)
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'e')
+				# print(15)
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'ie')
+				# print(16)
 				# print(3)
 				driver.quit()
+				# print(17)
 				# print(4)
-
-		except:
-			time1.sleep(2)
-			return driver
+			else: 
+				# print(18)
+				time1.sleep(2)
+				# print(19)
+				return driver
 
 
 
