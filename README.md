@@ -9,7 +9,8 @@ After input all the required input fields, by clicking Continue/Enter button, th
 
 ### Built with
 * [Python 3.4.3] (https://www.python.org/downloads/release/python-343/) - programming language
-* [Selenium 3.0] (http://www.seleniumhq.org/download/) - software-testing framework for web applications
+* [Selenium 3.4] (http://www.seleniumhq.org/download/) - software-testing framework for web applications
+* [Geckodriver 0.16.1] (https://github.com/mozilla/geckodriver/releases)
 * [tkinter] - Python package for graphical user interfaces
 * [Colorama 0.3.9] (https://pypi.python.org/pypi/colorama) - Python package for colored terminal text and cursor position
 * TO BE USED: [PyInstaller 3.2.1] (https://pypi.python.org/pypi/PyInstaller/3.2.1) - Python package for compiling script to a single package
