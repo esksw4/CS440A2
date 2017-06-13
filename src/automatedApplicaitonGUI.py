@@ -38,41 +38,46 @@ class GUIFunctions:
 		else:
 			errorLabel.pack_forget()
 
-	def outputDisplayConsole(text, displayType):
+	def outputDisplayConsole(text, testCaseName, displayType):
+		Functions.GUIdisplay.testName = testCaseName
 		if displayType == 'ie':
-			Functions.GUIdisplay.textConsole_Text.insert(INSERT, "  " + text + "\n\n")
-			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="red")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
 		elif displayType == 'se':
-			Functions.GUIdisplay.textConsole_Text.insert(INSERT, "  " + text + "\n\n")
-			Functions.GUIdisplay.textConsole_Text.tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.textConsole_Text.tag_config("insert", background="white", foreground ="blue")
+			Functions.GUIdisplay.consoleTab[Functons.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="blue")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
 		elif displayType == 'p':
-			if Functions.GUIdisplay.textEvaluation_Text.get("0.0","100.0") is not '':
-				Functions.GUIdisplay.textEvaluation_Text.delete("0.0", "100.0")
-			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
-			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="black")
+			if Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].get("0.0","100.0") is not '':
+				Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].delete("0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="black")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 		elif displayType == 's':
-			Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "  " + text + "\n\n")
-			Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
-			GUIFunctions.orderNewReportCheckThis()
-			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
+			if Functions.GUIdisplay.testName == "Order Existing Title with New Assessee":
+				GUIFunctions.orderNewReportCheckThis()
+			elif Functions.GUIdisplay.testName == "Login Logout":
+				GUIFunctions.loginLogoutCheckThis()
+
+			# Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
 	def orderNewReportCheckThis():
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "Following functions were evaluated successfully: \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Checking 'Order a Report/Assessment' button \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Order with existing title \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Order with new assessee \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Create a new tag \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "\t * Please check '%s' tag in tag list \n" % Functions.CustomInfo['New Tag Name'])
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Search with assessee name \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Copy assessment URL \n")
-		Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, "- Cancel Order \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following functions were evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Checking 'Order a Report/Assessment' button \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Order with existing title \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Order with new assessee \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Create a new tag \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "\t * Please check '%s' tag in tag list \n" % Functions.CustomInfo['New Tag Name'])
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Search with assessee name \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Copy assessment URL \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Cancel Order \n")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 		# temp = list(Functions.CustomInfo.keys())
 		# for i in temp:
@@ -80,6 +85,10 @@ class GUIFunctions:
 		# 	Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
 		# 	Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
 
+	def loginLogoutCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following functions were evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Login/Logout \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
 			# print(Functions.GUIdisplay.current_Button)
@@ -134,7 +143,8 @@ class GUItkinter:
 
 		self.OPLFrame_Dimension = '300x170'
 		self.mainFrame_Dimension = '900x530'
-		self.LS_Dimension = '770x650'
+		self.LS_max2_Dimension = '770x650'
+		self.LS_max3_Dimension = '770x750'
 
 		self.default_Color = Parent.cget("bg")
 		self.background_Color = "White"
@@ -185,7 +195,7 @@ class GUItkinter:
 		import Test_PasswordRecovery
 		import Test_PasswordUnlock
 
-		self.myParent.geometry(self.LS_Dimension)
+		self.myParent.geometry(self.LS_max2_Dimension)
 
 		self.background_Color = "light goldenrod yellow"
 		GUIFunctions.buttonPressCheck()
@@ -359,6 +369,8 @@ class GUItkinter:
 		# 	Functions.GUIdisplay.current_Test = None
 
 	def onOKPress(self):
+		for i in self.checkButtonsEnter:
+			i.config(state=DISABLED)
 		self.testToRun = []
 		self.whichInfoOPL= collections.OrderedDict()
 		self.consoleToDisplay = []
@@ -366,6 +378,7 @@ class GUItkinter:
 			if k.cget("relief") is not FLAT:
 				k.pack_forget()
 				k = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)#, highlightcolor="blue", highlightthickness=7)
+		# remove console frame and re open it
 		for j in self.checkBoxInfo.keys():
 			self.checkBoxInfo[j][2][0].pack_forget()
 			self.checkBoxInfo[j][2][0] = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="black", highlightthickness=7)
@@ -376,6 +389,9 @@ class GUItkinter:
 				self.whichInfoOPL.update(zip(self.checkBoxInfo[i][0], [0]*len(self.checkBoxInfo[i][0])))
 				self.testToRun.append(self.checkBoxInfo[i][1][0])
 				self.consoleToDisplay.append(self.checkBoxInfo[i][2][0])
+			else:
+				del self.testUserTestCases[i]
+		# print(self.whichInfoOPL)
 
 		# self.whichInfoOPL = list(self.whichInfoOPL.keys())
 		self.User_Input_Frame_Frame.config(bg=self.background_Color)#, highlightcolor="red", highlightthickness=7)
@@ -392,6 +408,8 @@ class GUItkinter:
 		self.conSoleFrame(self.consoleToDisplay)
 
 	def createCheckButton(self, parent, fontsize):
+		# to disable choosing user test cases when click "OK" button
+		self.checkButtonsEnter = []
 		if (parent.cget("relief") == FLAT):
 			self.testUserTestCases = collections.OrderedDict(zip(list(self.checkBoxInfo.keys()), [0]*len(self.checkBoxInfo)))
 			parent.config(bg=self.background_Color, relief=GROOVE)#, highlightcolor="blue", highlightthickness=5)
@@ -400,16 +418,19 @@ class GUItkinter:
 			for i in list(self.checkBoxInfo.keys()):
 				check = Checkbutton(parent, text=i, command=(lambda i=i: self.onPress(i)), font=(fontsize), bg=self.background_Color)
 				check.pack(side=LEFT)
+				self.checkButtonsEnter.append(check)
 			checkEnter = tkinter.Button(parent, text="OK", font=('','10','bold'), command=self.onOKPress, width=7, relief=RAISED)
 			checkEnter.pack(side=RIGHT, anchor=NE)
+			self.checkButtonsEnter.append(checkEnter)
 
 	def createTitle_Frame(self, arg, txt, fontSize):
 		# print(arg.cget("relief"))
 		if (arg.cget("relief") == FLAT):
+			# print(1)
 			title_Frame = tkinter.Frame(arg,bg=self.background_Color)#, highlightcolor="blue", highlightthickness=7)
-			title_Frame.pack(side=TOP, anchor=NW)
+			title_Frame.grid(sticky=W)
 			title_Label = tkinter.Label(title_Frame, bg=self.background_Color, text=txt, font=(fontSize), anchor='w')
-			title_Label.pack()
+			title_Label.grid(sticky=W)
 
 	def createErrorLabel(self):
 		for arg in self.testInfoFrames:
@@ -533,7 +554,7 @@ class GUItkinter:
 				self.makeUserInputForm(k)
 				if self.frameType is not "ONR":
 					self.frameType = "ONR"
-					self.whichInfoCustom = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Color", "Position Number", "Favorite Number", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
+					self.whichInfoCustom = ["First Name","Last Name", "Email Address", "Job Title", "PO Box", "Cost Center", "Message to Consultant", "Message to Assessee", "Also Notify", "New Tag Name"]
 
 	# used in "userInputFrame"
 	def makeUserInputForm(self, arg):
@@ -576,18 +597,32 @@ class GUItkinter:
 			arg.config(relief=RIDGE)
 
 	def conSoleFrame(self, frames):
-		for arg in frames:
+		self.consoleTab = {}
+		for arg, i in zip(frames, self.testUserTestCases.keys()):
 			arg.config(bg=self.background_Color)#, highlightcolor="blue", highlightthickness=1)
 			arg.pack(padx=self.consolePack_padx, side=self.consoleFrame_PackSide, anchor=self.consoleFrame_Anchor, fill=self.consoleFrame_PackFill, expand=self.consoleFrame_PackExpand)
-
+			# if there are more than two buttons selected == need to display more than two consoles, then enlarge the frame
+			if len(frames) > 2:
+				self.myParent.geometry(self.LS_max3_Dimension)
+			# if there are more than one buttons selected == need to display more than one console, then give title to each of console frame
+			if len(frames) > 1:
+				self.createTitle_Frame(arg, i, 20)
 			if (arg.cget("relief") == FLAT):
-				self.bar_TabBar = Tab.TabBar(arg, "Evaluation")
+				# self.consoleTab[i]
+				self.bar_TabBar = Tab.TabBar(arg, "Evaluation", i)
 				tab1_Tab = Tab.Tab(arg, "Evaluation")
 				tab2_Tab = Tab.Tab(arg, "Console")
+				# self.consoleTab[i] = [tab1_Tab, tab2_Tab]
 				self.bar_TabBar.add(tab1_Tab)
 				self.bar_TabBar.add(tab2_Tab)
 				self.bar_TabBar.show()
+
 				arg.config(relief=GROOVE)
+		# print(self.consoleTab)
+		# self.consoleTab["Password Recovery"][0].insert(INSERT, "  " + "This is stupid" + "\n\n")
+		# print("First One: ", self.consoleTab["Password Recovery"][0])
+		# print("Second One: ", self.consoleTab["Password Recovery"][1])
+		# self.consoleTab["Password Recovery"][0].insert(INSERT, "  " + "This is stupid" + "\n\n")
 
 	def runTest(self, suite):
 		result = unittest.TextTestRunner(verbosity=2).run(suite)

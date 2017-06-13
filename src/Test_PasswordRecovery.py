@@ -47,8 +47,8 @@ class Test_PasswordRecovery(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_password_recovery_reset(self):
-      checkNumError = 0
-      testName = "'Reset Password'"
+      # checkNumError = 0
+      testName = "Password Recovery"
       driver = self.driver
       # store | https://mail.google.com/mail/u/0/#inbox | Ori_incorrect_GoogleLink
       Ori_incorrect_GoogleLink = "https://mail.google.com/mail/u/0/#inbox"

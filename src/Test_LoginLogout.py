@@ -48,21 +48,21 @@ class Test_LoginLogout(unittest.TestCase):
 
   def test_log_inlog_out(self):
     
-    # import Functions
-    # import automatedApplicaitonGUI
-
-    testName = "'Login and Logout'"
+    import Functions
+    import automatedApplicaitonGUI
+    testName = "Login Logout"
     driver = Functions.Functions.OPL(self, testName)
+    time1.sleep(2)
     # click | link=Log out |
-    driver.find_element_by_link_text("Log out").click()
+    driver.find_element_by_xpath("//div[@id='main-content']/div[1]/div[1]/div[2]").click()
     # verifyTitle | exact:Caliper: Login |
-    try:
-      if driver.current_url == Functions.GUIdisplay.URL.get():
-        driver.quit()
-        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested succesfully" %testName , 's')
-    except:
+    time1.sleep(2)
+
+    if str(driver.current_url) == str(Functions.GUIdisplay.URL.get() +"users/sign_in"):
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout Successfully" , "Login Logout",'s')
+    else:
       driver.quit()
-      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested failed" %testName , 'p')
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout failed", "Login Logout", 'p')
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

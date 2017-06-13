@@ -47,8 +47,8 @@ class Test_PasswordUnlock(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_resend_password_unlock(self):
-      checkNumError = 0
-      testName = "'Resend Password Unlock'"
+      # checkNumError = 0
+      testName = "Password Unlock"
       i = 0
       driver = self.driver
       while i < 2:

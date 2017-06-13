@@ -37,12 +37,13 @@ class Tab(Frame):
 
 # the bulk of the logic is in the actual tab bar
 class TabBar(Frame):
-	def __init__(self, master=None, init_name=None):
+	def __init__(self, master=None, init_name=None, testName=None):
 		Frame.__init__(self, master)
 		self.tabs = {}
 		self.buttons = {}
 		self.current_tab = None
 		self.init_name = init_name
+		self.testName = testName
 	
 	def show(self):
 		#self.pack(side=TOP, expand=YES, fill=X)
@@ -53,19 +54,20 @@ class TabBar(Frame):
 		tab.grid_forget()									# hide the tab on init
 		
 		self.tabs[tab.tab_name] = tab						# add it to the list of tabs
+		print("tab.tab_name: ", tab.tab_name)
 		b = Button(self, text=tab.tab_name, relief=BASE,	# basic button stuff
 			command=(lambda name=tab.tab_name: self.switch_tab(name)))	# set the command to switch tabs
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
 
 		if tab.tab_name == "Console":
-			Functions.GUIdisplay.textConsole_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD)   # pack the buttont to the left mose of self
-			Functions.GUIdisplay.textConsole_Text.focus()
-			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName][1].focus()
+			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
 			# Functions.GUIdisplay.textConsole_Text.place(x=3, y=1)
 		elif tab.tab_name == "Evaluation":
-			Functions.GUIdisplay.textEvaluation_Text = Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD)   # pack the buttont to the left mose of self
-			Functions.GUIdisplay.textEvaluation_Text.focus()
-			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[self.testName] = [Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName][0].focus()
+			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
 			# Functions.GUIdisplay.textEvaluation_Text.place(x=3, y=1)
 
 		self.buttons[tab.tab_name] = b									# add it to the list of buttons
@@ -78,20 +80,20 @@ class TabBar(Frame):
 			del self.tabs[tabname]
 
 			if tabname == "Console":
-				Functions.GUIdisplay.textConsole_Text .grid_forget()
-				del Functions.GUIdisplay.textConsole_Text
+				Functions.GUIdisplay.consoleTab[self.testName][1].grid_forget()
+				del Functions.GUIdisplay.consoleTab[self.testName][1]
 			elif tab_name == "Evaluation":
-				Functions.GUIdisplay.textEvaluation_Text.grid_forget()
-				del Functions.GUIdisplay.textEvaluation_Text
+				Functions.GUIdisplay.consoleTab[self.testName][0].grid_forget()
+				del Functions.GUIdisplay.consoleTab[self.testName][0]
 
 			self.switch_tab(self.tabs.keys()[0])
 		
 		else:
 			del self.tabs[tabname]
 			if tabname == "Console":
-				del Functions.GUIdisplay.textConsole_Text
+				del Functions.GUIdisplay.consoleTab[self.testName][1]
 			elif tab_name == "Evaluation":
-				del Functions.GUIdisplay.textEvaluation_Text
+				del Functions.GUIdisplay.consoleTab[self.testName][0]
 		
 		self.buttons[tabname].pack_forget()
 		del self.buttons[tabname] 
@@ -103,17 +105,17 @@ class TabBar(Frame):
 			self.tabs[self.current_tab].grid_forget()			# hide the current tab
 			# self.tabs[self.current_tab].forget()
 			if name == "Console":
-				Functions.GUIdisplay.textConsole_Text.grid_forget()
+				Functions.GUIdisplay.consoleTab[self.testName][1].grid_forget()
 			elif name == "Evaluation":
-				Functions.GUIdisplay.textEvaluation_Text.grid_forget()
+				Functions.GUIdisplay.consoleTab[self.testName][0].grid_forget()
 
 		# self.tabs[name].pack(side=BOTTOM)							# add the new tab to the display
 		self.tabs[name].grid(sticky='w')
 
 		if name == "Console":
-			Functions.GUIdisplay.textConsole_Text.grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
 		elif name == "Evaluation":
-			Functions.GUIdisplay.textEvaluation_Text.grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
 
 		self.current_tab = name									# set the current tab to itself
 		

@@ -320,7 +320,6 @@ class Functions:
 		# System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"false");
 		driver.get(GUIdisplay.URL.get())
 
-
 		# print(1)
 		if Functions.is_element_present(driver, By.CLASS_NAME, "text-center"):
 			# print(2)
@@ -328,7 +327,7 @@ class Functions:
 				# print(3)
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				# print(4)
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please update the browser. Your Browser is not supported", 'se')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please update the browser. Your Browser is not supported",testName, 'se')
 				# print(5)
 				driver.quit()
 		else:
@@ -356,7 +355,7 @@ class Functions:
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				# print(2)
 				# print(15)
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", 'ie')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", testName, 'ie')
 				# print(16)
 				# print(3)
 				driver.quit()
