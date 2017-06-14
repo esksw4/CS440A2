@@ -39,6 +39,10 @@ class GUIFunctions:
 			errorLabel.pack_forget()
 
 	def outputDisplayConsole(text, testCaseName, displayType):
+		# ie: Input Error
+		# se: System Error
+		# m: manually test this
+		# s: Successfully tested
 		Functions.GUIdisplay.testName = testCaseName
 		if displayType == 'ie':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
@@ -46,16 +50,16 @@ class GUIFunctions:
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
 		elif displayType == 'se':
-			Functions.GUIdisplay.consoleTab[Functons.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
-			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="blue")
-			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
-		elif displayType == 'p':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="red")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		elif displayType == 'm':
 			if Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].get("0.0","100.0") is not '':
 				Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].delete("0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
-			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="black")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 		elif displayType == 's':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
@@ -65,11 +69,15 @@ class GUIFunctions:
 				GUIFunctions.orderNewReportCheckThis()
 			elif Functions.GUIdisplay.testName == "Login Logout":
 				GUIFunctions.loginLogoutCheckThis()
+			elif Functions.GUIdisplay.testName == "Password Recovery":
+				GUIFunctions.passwordRecoveryCheckThis()
+			elif Functions.GUIdisplay.testName == "Password Unlock":
+				GUIFunctions.passwordUnlockCheckThis()
 
 			# Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
 	def orderNewReportCheckThis():
-		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following functions were evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Checking 'Order a Report/Assessment' button \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Order with existing title \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Order with new assessee \n")
@@ -79,16 +87,23 @@ class GUIFunctions:
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Copy assessment URL \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Cancel Order \n")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
-		# temp = list(Functions.CustomInfo.keys())
-		# for i in temp:
-		# 	Functions.GUIdisplay.textEvaluation_Text.insert(INSERT, i + ": " +Functions.CustomInfo[i] + "\n")
-		# 	Functions.GUIdisplay.textEvaluation_Text.tag_add("insert", "0.0", "100.0")
-		# 	Functions.GUIdisplay.textEvaluation_Text.tag_config("insert", background="white", foreground ="green")
 
 	def loginLogoutCheckThis():
-		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following functions were evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Login/Logout \n")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+
+	def passwordRecoveryCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Reset \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Recovery \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+
+	def passwordUnlockCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Resend email for unlock instruction \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
 			# print(Functions.GUIdisplay.current_Button)
@@ -138,7 +153,7 @@ class GUItkinter:
 		self.chooseTestFrame_Height = 450
 		self.chooseTestButton_Height = 26
 		self.chooseTestPlace_Yaxis = 173
-		self.OPLInfoWidth_Width = 70
+		self.OPLInfoWidth_Width = 75
 		self.betweeenFrame = 5
 
 		self.OPLFrame_Dimension = '300x170'
@@ -235,8 +250,8 @@ class GUItkinter:
 
 		self.radioButtonFrame_Anchor = W
 		self.radioButtonFrame_PackSide = TOP
-		self.radioButtonFrame_Width = 30
-		self.radioButtonLabel_Width = 15
+		self.radioButtonFrame_Width = 33
+		self.radioButtonLabel_Width = 17
 		self.radioButton_Width = 7
 
 		self.userInputFormFrame_Anchor = NW
@@ -248,7 +263,7 @@ class GUItkinter:
 
 		self.saveButton_Anchor = E
 		self.saveButton_PackSide = TOP
-		self.saveButton_ipadx = 82
+		self.saveButton_ipadx = 88
 
 		self.consoleTextWidth = 80
 		self.consoleTextHeight = 7
@@ -263,8 +278,8 @@ class GUItkinter:
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
 		self.checkBoxInfo =collections.OrderedDict({"Login Logout": [["Portal Username", "Portal Password"],[Test_LoginLogout.Test_LoginLogout], [self.LS_LL_console_Frame]], \
-							"Password Recovery": [["Email Address", "Email Password", "Portal Username", "Portal Password"],[Test_PasswordRecovery.Test_PasswordRecovery], [self.LS_PR_console_Frame]], \
-							"Password Unlock": [["Email Address", "Email Password", "Portal Username", "Portal Password"],[Test_PasswordUnlock.Test_PasswordUnlock],[self.LS_PU_console_Frame]]})
+							"Password Recovery": [["Portal Username", "Portal Password to change", "Email Address", "Email Password"],[Test_PasswordRecovery.Test_PasswordRecovery], [self.LS_PR_console_Frame]], \
+							"Password Unlock": [["Portal Username", "Portal Password", "Email Address", "Email Password"],[Test_PasswordUnlock.Test_PasswordUnlock],[self.LS_PU_console_Frame]]})
 
 		self.createCheckButton(self.testCases_Frame, 20)
 
@@ -308,7 +323,7 @@ class GUItkinter:
 		self.radioButtonFrame_PackSide = TOP
 		self.radioButtonFrame_Width = 30
 		self.radioButtonLabel_Width = 15
-		self.radioButton_Width = 7
+		self.radioButton_Width = 6
 
 
 		self.frameType = "OPL"

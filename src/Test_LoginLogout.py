@@ -47,9 +47,9 @@ class Test_LoginLogout(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_log_inlog_out(self):
-    
     import Functions
     import automatedApplicaitonGUI
+
     testName = "Login Logout"
     driver = Functions.Functions.OPL(self, testName)
     time1.sleep(2)
@@ -59,10 +59,10 @@ class Test_LoginLogout(unittest.TestCase):
     time1.sleep(2)
 
     if str(driver.current_url) == str(Functions.GUIdisplay.URL.get() +"users/sign_in"):
-      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout Successfully" , "Login Logout",'s')
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout Successfully", testName,'s')
     else:
       driver.quit()
-      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout failed", "Login Logout", 'p')
+      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout failed", testName, 'p')
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

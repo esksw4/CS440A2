@@ -47,20 +47,23 @@ class Test_PasswordRecovery(unittest.TestCase):
     self.assertEqual([], self.verificationErrors)
 
   def test_password_recovery_reset(self):
-      # checkNumError = 0
+      import Functions
+      import automatedApplicaitonGUI
+
       testName = "Password Recovery"
+      
       driver = self.driver
-      # store | https://mail.google.com/mail/u/0/#inbox | Ori_incorrect_GoogleLink
+      # driver = Functions.Functions.OPL(self, testName)
+      driver.get(Functions.GUIdisplay.URL.get())
+
       Ori_incorrect_GoogleLink = "https://mail.google.com/mail/u/0/#inbox"
       Ori_correct_GoogleLink = "https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default&service=mail&sacu=1&scc=1&passive=1209600&ignoreShadow=0&acui=0#Email=ekim%40calipercorp.com"
 
-      # open | /users/sign_in |
-      driver.get(Functions.OPLINfo['URL to test'])
       # click | link=exact:Forgot your password? |
       driver.find_element_by_link_text("Forgot your password?").click()
       # type | id=user_email | ekim+ABC2@calipercorp.com
       time.sleep(2)
-      driver.find_element_by_id("user_email").send_keys("ekim+ABC3@calipercorp.com")
+      driver.find_element_by_id("user_email").send_keys(Functions.OPLInfo['Portal Username'])
       # click | name=commit |
       driver.find_element_by_xpath("//form[@id='new_user']/div[3]/div[1]").click()
       # assertText | css=div.alert.alert-notice | You will receive an email with instructions about how to reset your password in a few minutes.
@@ -68,7 +71,7 @@ class Test_PasswordRecovery(unittest.TestCase):
       check = driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[1]").text
       # print(check)
       if check != "You will receive an email with instructions about how to reset your password in a few minutes.":
-        checkNumError += 1
+        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The confirmation message saying 'You will receive an email with instructions about how to reset your password in a few minutes.' is not displayed correctly" , testName, 's')
       time.sleep(2)
       # open | https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1 |
       driver.get(
@@ -76,53 +79,66 @@ class Test_PasswordRecovery(unittest.TestCase):
       # storeLocation | TestingGoogleLink |
       TestingGoogleLink = driver.current_url
 
-      driver.find_element_by_id("Email").send_keys(Functions.OPLINfo['Email Address'])
-      driver.find_element_by_id("next").click()
-      time.sleep(2)
-      driver.find_element_by_id("Passwd").send_keys(Functions.OPLINfo['Email Password'])
-      remember = driver.find_element_by_id("PersistentCookie")
-      if remember.get_attribute("value") == "true":
-         driver.find_element_by_class_name("remember").click()
-      driver.find_element_by_id("signIn").click()
-
-      # type | id=gbqfq | Request to reset password
-      time.sleep(2)
-      driver.find_element_by_id("gbqfq").clear()
-      driver.find_element_by_id("gbqfq").send_keys("Request to reset password")
-      # click | id=gbqfb |
-      driver.find_element_by_id("gbqfb").click()
-      # click | class=xY a4W |
-      time.sleep(2)
-
-      driver.find_element_by_xpath("//div[@class='AO']//tbody/tr[1]/td[6]/div[1]/div[1]/div[2]/span[1]").click()
-      window_before = driver.window_handles[0]
-      time.sleep(2)
-      # click | link=Reset Password |
-      driver.find_element_by_link_text("Reset Password").click()
-      # click | css=span.gb_Za.gb_Xa |
-      window_after = driver.window_handles[1]
-      #driver.find_element_by_css_selector("span.gb_Za.gb_Xa").click()
-      # type | id=user_password | 1234567899
-      time.sleep(2)
-
-      try:
-        if "reset_password_token" not in driver.current_url:
+      driver.find_element_by_id("identifierId").send_keys(Functions.OPLInfo['Email Address'])
+      driver.find_element_by_class_name("RveJvd.snByac").click()
+      if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class='rFrNMe uIZQNc og3oZc sdJrJc Tyc9J CDELXb k0tWj IYewr']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
+        driver.quit()
+        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Email Address is invalid. Please enter the valid email address" , testName, 'ie')
+      else:
+        time.sleep(2)
+        driver.find_element_by_xpath("//form[@class='RFjuSb bxPAYd k6Zj8d']/div[2]//div[@class='Xb9hP']/input[1]").send_keys(Functions.OPLInfo['Email Password'])
+        time.sleep(2)
+        driver.find_element_by_xpath("//span[@class='RveJvd snByac']").click()
+        time.sleep(2)
+        if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@id='password']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
+          driver.quit()
+          automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Email Password is invalid. Please enter the valid email Password" , testName, 'ie')
+        else:
+          # search "Request to reset password" on the gmail
+          time.sleep(2)
+          driver.find_element_by_id("gbqfq").clear()
+          driver.find_element_by_id("gbqfq").send_keys("Request to reset password")
+          driver.find_element_by_id("gbqfb").click()
+          
+          time.sleep(2)
+          driver.find_element_by_xpath("//div[@class='AO']//tbody/tr[1]/td[6]/div[1]/div[1]/div[2]/span[1]").click()
+          window_before = driver.window_handles[0]
+          time.sleep(2)
+          # click "Reset Password" inside of email sent
+          driver.find_element_by_link_text("Reset Password").click()
+          time.sleep(1)
+          window_after = driver.window_handles[1]
           driver.switch_to.window(window_after)
-          driver.find_element_by_id("user_password").send_keys("123456789!")
-          time.sleep(1)
-          driver.find_element_by_id("user_password_confirmation").send_keys("123456789!")
-          time.sleep(1)
-          driver.find_element_by_name("commit").click()
-          time.sleep(1)
-          check =  driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[1]").text
-          if "changed successfully." not in check:
-            checkNumError += 1
+          time.sleep(2)
+          # print("Text Token expired: ", driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error']").text)
+          if "reset_password_token" in driver.current_url:
+            driver.find_element_by_id("user_password").send_keys(Functions.OPLInfo['Portal Password to change'])
+            time.sleep(1)
+            driver.find_element_by_id("user_password_confirmation").send_keys(Functions.OPLInfo['Portal Password to change'])
+            time.sleep(1)
+            driver.find_element_by_name("commit").click()
+            time.sleep(2)
+            # print("is_element_present: ", Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']"))
+            # print(driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']").text)
 
-      except AssertionError as e:
-        self.verificationErrors.append(str(e))
+            if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-notice']"):
+              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password was succesfully resetted." , testName, 's')
+            elif Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error']"):
+              # print('\n')
+              # print("check: ", driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error]").text)
+              driver.quit()
+              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password needed to be contain certain characters. Please re-write the password to change." , testName, 'ie')
+            else:
+              driver.quit()
+              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password did not get reset." , testName, 'se')
+          elif Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error']"):
+            driver.quit()
+            automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The 'Reset Password' token is expired.", testName, 'se')
+          else:
+            driver.quit()
+            automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("'Reset Password' button from email is not working correctly." , testName, 'se')
 
-      driver.quit()
-      Functions.Functions.checkForError(checkNumError, testName)
+
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

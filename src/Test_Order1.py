@@ -87,13 +87,13 @@ class Test_Order1(unittest.TestCase):
 			# print(Test_Order1.is_element_present(self, By.XPATH, "//div[@id='deliverToDiv']/div[1]/div[@class='token']"))
 			if not Test_Order1.is_element_present(self, By.XPATH, "//div[@id='deliverToDiv']/div[1]/div[@class='token']"):
 				driver.quit()
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please enter valid Name for 'Also Notify'.", "Order Existing Title with New Assessee", 'ie')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please enter valid Name for 'Also Notify'.", testName, 'ie')
 			else:
 				Functions.CustomInfo['Also Notify'] = driver.find_element_by_xpath("//div[@id='deliverToDiv']/div[1]/div[1]/span[1]").text
 				# print("Functions.CustomInfo['Also Notify']: ", Functions.CustomInfo['Also Notify'])
 		else:
 			driver.quit()
-			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: The job title, you entered is not available; therefore, 'Also Notify' is not available. Please enter correct existing job title.", "Order Existing Title with New Assessee", 'ie')
+			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: The job title, you entered is not available; therefore, 'Also Notify' is not available. Please enter correct existing job title.", testName, 'ie')
 
 		# Enter new Assessee
 		driver.find_element_by_id('assesseeBtn').click()
@@ -120,7 +120,7 @@ class Test_Order1(unittest.TestCase):
 		if (checkErrorMsg == True):
 			driver.quit()
 			# Functions.Functions.orderNewStopTest()
-			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please enter valid additional information. Cannot process with given input.", "Order Existing Title with New Assessee",  'ie')
+			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please enter valid additional information. Cannot process with given input.", testName,  'ie')
 			# print(GUItkinter.py)
 			# from GUItkinter import inputFrame
 			# GUItkinter.getUserInputSendFunction
@@ -132,7 +132,7 @@ class Test_Order1(unittest.TestCase):
 			#Click "Place Order"
 		except:
 			# if any of proctored checkbox is not working, then display the error message on the GUI
-			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", "Order Existing Title with New Assessee", 'p')
+			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Proctored checkbox cannot be pressed automatically. Please manually test the proctored checkbox", testName, 'm')
 
 		# Click Tags -> Edit
 		time1.sleep(2)
@@ -149,7 +149,7 @@ class Test_Order1(unittest.TestCase):
 			# print(driver.find_element_by_class_name("alert.alert-error.alert-dismissable").text)
 			if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-error.alert-dismissable"):
 				driver.quit()
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please choose different Tag Name. That Tag name exists in the system.", "Order Existing Title with New Assessee", 'ie')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please choose different Tag Name. That Tag name exists in the system.", testName, 'ie')
 		except:
 			try:
 				time1.sleep(2)
@@ -157,7 +157,7 @@ class Test_Order1(unittest.TestCase):
 				if Test_Order1.is_element_present(self, By.CLASS_NAME, "alert.alert-info.alert-dismissable"):
 					pass
 			except:
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", "Order Existing Title with New Assessee", 'se')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Tag is not created. Please check 'Creat New Tag' functionality.", testName, 'se')
 
 		# click "Place Order"
 		time1.sleep(4)
@@ -172,7 +172,7 @@ class Test_Order1(unittest.TestCase):
 
 		if checkErrorMsg == True:
 			driver.quit()
-			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please choose different email for assessee. That email address already exists in the system.", "Order Existing Title with New Assessee", 'ie')
+			automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Please choose different email for assessee. That email address already exists in the system.", testName, 'ie')
 
 		else:
 			time1.sleep(4)
@@ -241,29 +241,29 @@ class Test_Order1(unittest.TestCase):
 							# print("6")
 							# print("Cancelled Succesfully")
 							driver.close()
-							automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested succesfully" %testName, "Order Existing Title with New Assessee" , 's')
+							automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("%s tested succesfully" %testName, testName , 's')
 
 						else:
 							# print("7")
 							# print("Cancellation Failed")
-							automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Cancellation Failed", "Order Existing Title with New Assessee" , 'se')
+							automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Cancellation Failed", testName , 'se')
 					else:
 						# print("8")
 						# print(len(Functions.CustomInfo['Email Address']))
 						# print(Functions.CustomInfo['Email Address'])
 						# print(len(emailCheck))
 						# print(emailCheck + " 123124123")
-						automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", "Order Existing Title with New Assessee", 'se')
+						automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Register page email address is not same as user input email address", testName, 'se')
 						# print("Email address is not same as user input email address")
 				else:
 					# print("9")
-					automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The name is not found from the report list", "Order Existing Title with New Assessee", 'se')
+					automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The name is not found from the report list", testName, 'se')
 					# print("Name does not match")
 
 			else:
 				# print("10")
 				# print("The page is not directed to 'View Reports' page")
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page", "Order Existing Title with New Assessee" , 'se')
+				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The page is not directed to 'View Reports' page", testName, 'se')
 
 if __name__ == "__main__":
   unittest.main(warnings='ignore')
