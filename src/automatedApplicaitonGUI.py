@@ -46,23 +46,30 @@ class GUIFunctions:
 		# s: Successfully tested
 		Functions.GUIdisplay.testName = testCaseName
 		if displayType == 'ie':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].config(state=DISABLED)
 		elif displayType == 'se':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="red")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 		elif displayType == 'm':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
 			if Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].get("0.0","100.0") is not '':
 				Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].delete("0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 		elif displayType == 's':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
@@ -74,6 +81,7 @@ class GUIFunctions:
 				GUIFunctions.passwordRecoveryCheckThis()
 			elif Functions.GUIdisplay.testName == "Password Unlock":
 				GUIFunctions.passwordUnlockCheckThis()
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 
 			# Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
 
@@ -108,7 +116,41 @@ class GUIFunctions:
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
 			# print(Functions.GUIdisplay.current_Button)
-			if Functions.GUIdisplay.current_Button == "Order New Report":
+			if Functions.GUIdisplay.current_Button == "Login_Security":
+				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+				Functions.GUIdisplay.testCases_Frame.pack_forget()
+				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
+				for j in Functions.GUIdisplay.checkBoxInfo.keys():
+					Functions.GUIdisplay.checkBoxInfo[j][2][0].pack_forget()
+				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
+				Functions.GUIdisplay.URL = StringVar(value="empty")
+
+			elif Functions.GUIdisplay.current_Button == "Dashboard":
+				Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+				Functions.GUIdisplay.testCases_Frame.pack_forget()
+				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
+				for j in Functions.GUIdisplay.checkBoxInfo.keys():
+					Functions.GUIdisplay.checkBoxInfo[j][2][0].pack_forget()
+				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
+				Functions.GUIdisplay.URL = StringVar(value="empty")
+
+			elif Functions.GUIdisplay.current_Button == "Hiring Status":
+				Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
+				Functions.GUIdisplay.testCases_Frame.pack_forget()
+				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
+				Functions.GUIdisplay.checkEnter.pack_forget()
+				for j in Functions.GUIdisplay.checkBoxInfo.keys():
+					Functions.GUIdisplay.checkBoxInfo[j][2][0].pack_forget()
+				Functions.GUIdisplay.current_Button = None
+				Functions.GUIdisplay.current_Test = None
+				Functions.GUIdisplay.URL = StringVar(value="empty")
+
+			elif Functions.GUIdisplay.current_Button == "Order New Report":
 				Functions.GUIdisplay.orderNewReport_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
 				Functions.GUIdisplay.testCases_Frame.pack_forget()
 				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
@@ -121,33 +163,8 @@ class GUIFunctions:
 				# Functions.GUIdisplay.ONR_GUIconsoleFrame.pack_forget()
 				Functions.GUIdisplay.current_Button = None
 				Functions.GUIdisplay.current_Test = None
-
-			elif Functions.GUIdisplay.current_Button == "Hiring Status":
-				Functions.GUIdisplay.hiringStatusPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				Functions.GUIdisplay.myParent.config(bg=Functions.GUIdisplay.default_Color)
-				Functions.GUIdisplay.current_Button = None
-				Functions.GUIdisplay.current_Test = None
-
-			elif Functions.GUIdisplay.current_Button == "Login_Security":
-				Functions.GUIdisplay.loginSecurity_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				Functions.GUIdisplay.testCases_Frame.pack_forget()
-				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
-				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
-				for j in Functions.GUIdisplay.checkBoxInfo.keys():
-					Functions.GUIdisplay.checkBoxInfo[j][2][0].pack_forget()
-				Functions.GUIdisplay.current_Button = None
-				Functions.GUIdisplay.current_Test = None
-
-			elif Functions.GUIdisplay.current_Button == "Dashboard":
-				Functions.GUIdisplay.dashBoardPage_Button.config(bg=Functions.GUIdisplay.default_Color, relief=RAISED)
-				Functions.GUIdisplay.testCases_Frame.pack_forget()
-				Functions.GUIdisplay.User_Input_Frame_Frame.pack_forget()
-				Functions.GUIdisplay.OPL_Input_Frame_Frame.pack_forget()
-				for j in Functions.GUIdisplay.checkBoxInfo.keys():
-					Functions.GUIdisplay.checkBoxInfo[j][2][0].pack_forget()
-				Functions.GUIdisplay.current_Button = None
-				Functions.GUIdisplay.current_Test = None
-
+				Functions.GUIdisplay.URL = StringVar(value="empty")
+			
 # relief FLAT == if frame does not contain no fields // does not contain the console
 # relief GROOVE == if frame CONTAINS all fields BUT NOT full entries and SAVE BUTTON// CONTAINS console but does not contain entries
 # relief GROOVE == if frame CONTAINS all fields AND SAVE BUTTON BUT NOT full entries
@@ -156,7 +173,7 @@ class GUItkinter:
 	def __init__(self, Parent):
 		self.chooseTestFrame_Width = 140
 		self.chooseTestFrame_Height = 450
-		self.chooseTestButton_Width = 135
+		self.chooseTestButton_Width = 130
 		self.chooseTestButton_Height = 26
 		self.chooseTestPlace_Yaxis = 173
 		self.OPLInfoWidth_Width = 75
@@ -169,7 +186,6 @@ class GUItkinter:
 		self.max3_Dimension = '900x750'
 		self.max4_Dimension = '900x850'
 		self.max5_Dimension = '900x950' 
-		self.HiringStatus_Dimension = '1100x530' 
 
 		self.default_Color = Parent.cget("bg")
 		self.background_Color = "White"
@@ -185,42 +201,13 @@ class GUItkinter:
 		self.myParent.geometry(self.mainFrame_Dimension)
 		self.myParent.title("Automated Smoke Test")
 
-		###########################################################
-		self.canvas = Canvas(self.myParent, width=1000, height=1000, highlightcolor="blue", highlightthickness=7)
-		
-		# self.scrollbar.pack(side=RIGHT, fill=Y)
-		# self.canvas.configure(yscrollcommand = self.scrollbar.set)
-		# self.canvas.bind('<Configure>', self.on_configure)
-
-
-
 		self.mainTestingFrame()
-###########################################################
-	def onFrameConfigure(self, event):
-		'''Reset the scroll region to encompass the inner frame'''
-		self.canvas.configure(scrollregion=self.canvas.bbox("all"))
-###########################################################
-	def pop(self):
-		for i in range(100):
-			self.f = Label(self.chooseTest_Frame, text=i,background="#ffffff", anchor="center")
-			self.f.pack(side="top", fill="both")
 
 	def mainTestingFrame(self):
 		# relief FLAT == if frame does not contain all the elements that needed to be placed
 		# relief RAISED == if frame contain all the elements that needed to be placed
-###########################################################
-		self.chooseTest_Frame = Frame(self.canvas,  width=self.chooseTestFrame_Width, highlightcolor="blue", highlightthickness=7)#, height=self.chooseTestFrame_Height, bg=self.default_Color)
-###########################################################
-		self.scrollbar = Scrollbar(self.myParent, orient="vertical", command=self.canvas.yview)
-		self.canvas.configure(yscrollcommand=self.scrollbar.set)
 
-		# self.f = Label(self.chooseTest_Frame, text="hello",background="#ffffff", anchor="center")
-		# self.f.pack()
-		# self.pop()
-		self.scrollbar.pack(side="right", fill="y")
-		self.canvas.pack(side="left", fill="both", expand=True)
-		self.canvas.create_window((0,0), window=self.chooseTest_Frame, anchor="nw", tags="self.chooseTest_Frame")
-		self.chooseTest_Frame.bind("<Configure>", self.onFrameConfigure)
+		self.chooseTest_Frame = Frame(self.myParent,  width=self.chooseTestFrame_Width, highlightcolor="blue", highlightthickness=7)#, height=self.chooseTestFrame_Height, bg=self.default_Color)
 		self.chooseTest_Frame.pack(side=LEFT, anchor=W, fill=Y)
 
 		self.loginSecurity_Button = tkinter.Button(self.chooseTest_Frame, text="Login_Security", command=self.loginSecurity, bg=self.default_Color)
@@ -234,10 +221,6 @@ class GUItkinter:
 		self.hiringStatusPage_Button = tkinter.Button(self.chooseTest_Frame, text="Hiring Status", command = self.hiringStatus, bg=self.default_Color)
 		self.hiringStatusPage_Button.pack()
 		self.hiringStatusPage_Button.place(y=self.chooseTestPlace_Yaxis+(self.chooseTestButton_Height*2), height=self.chooseTestButton_Height, width=self.chooseTestButton_Width)
-
-		# self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		# self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
-		# self.Custom_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
 
 		self.orderNewReport_Button= tkinter.Button(self.chooseTest_Frame, text="Order New Report", relief=RAISED, command = self.ordernewReport, bg=self.default_Color)
 		self.orderNewReport_Button.pack(side=LEFT)
@@ -263,6 +246,9 @@ class GUItkinter:
 		self.frameType = "LSOPL"
 
 		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.rootOfEnterButton = self.testCases_Frame
+		self.EnterButton_width = 7
+		self.EnterButton_Height = 1
 
 		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
@@ -305,7 +291,7 @@ class GUItkinter:
 		self.saveButton_PackSide = TOP
 		self.saveButton_ipadx = 88
 
-		self.consoleTextWidth = 104
+		self.consoleTextWidth = 90
 		self.consoleTextHeight = 7
 		self.consolePack_padx = 10
 		self.consoleFrame_Anchor = NW
@@ -321,7 +307,7 @@ class GUItkinter:
 							"Password Recovery": [["Portal Username", "Portal Password to change", "Email Address", "Email Password"],[Test_PasswordRecovery.Test_PasswordRecovery], [self.LS_PR_console_Frame]], \
 							"Password Unlock": [["Portal Username", "Portal Password", "Email Address", "Email Password"],[Test_PasswordUnlock.Test_PasswordUnlock],[self.LS_PU_console_Frame]]})
 
-		self.createCheckButton(self.testCases_Frame, 20)
+		self.createCheckButton([self.testCases_Frame], 20)
 
 	def dashBoard(self):
 		import Test_Circles
@@ -341,6 +327,9 @@ class GUItkinter:
 		self.frameType = "OPL"
 
 		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.rootOfEnterButton = self.testCases_Frame
+		self.EnterButton_width = 7
+		self.EnterButton_Height = 1
 
 		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
@@ -384,7 +373,7 @@ class GUItkinter:
 		self.saveButton_PackSide = TOP
 		self.saveButton_ipadx = 88
 
-		self.consoleTextWidth = 104
+		self.consoleTextWidth = 90
 		self.consoleTextHeight = 7
 		self.consolePack_padx = 10
 		self.consoleFrame_Anchor = NW
@@ -399,7 +388,7 @@ class GUItkinter:
 							"Switch Different language": [["Portal Username", "Portal Password"],[Test_SwitchDifferentLanguage.Test_SwitchDifferentLanguage],[self.DB_SDL_console_Frame]], \
 							"View Report Tab": [["Portal Username", "Portal Password"], [Test_ViewReport.Test_ViewReport],[self.DB_VRT_console_Frame]]})
 
-		self.createCheckButton(self.testCases_Frame, 20)
+		self.createCheckButton([self.testCases_Frame], 20)
 
 	def hiringStatus(self):
 		import Test_FilterByStatus
@@ -411,18 +400,24 @@ class GUItkinter:
 		import Test_SearchForAssessee
 		import Test_SortingDropdown
 
-		self.myParent.geometry(self.HiringStatus_Dimension)
+		self.myParent.geometry(self.mainFrame_Dimension)
 
 		self.background_Color = "misty rose"
 		GUIFunctions.buttonPressCheck()
 		self.current_Button = "Hiring Status"
 		self.myParent.config(bg=self.background_Color)
-		self.dashBoardPage_Button.config(bg=self.background_Color, relief=FLAT)
+		self.hiringStatusPage_Button.config(bg=self.background_Color, relief=FLAT)
 		self.OPLInfoWidth_Width = 15
 
 		self.frameType = "OPL"
 
-		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
+		self.testCases_Frame.pack(side=TOP, anchor=NW, fill=X)
+		self.testCases_Frame1 = tkinter.Frame(self.testCases_Frame, relief=FLAT)#, highlightcolor="red", highlightthickness=7)
+		self.testCases_Frame2 = tkinter.Frame(self.testCases_Frame, relief=FLAT)# highlightcolor="black", highlightthickness=7)
+		self.rootOfEnterButton = self.testCases_Frame1
+		self.EnterButton_width = 10
+		self.EnterButton_Height = 1
 
 		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)
@@ -463,6 +458,7 @@ class GUItkinter:
 		self.userInputFormFrame_PackSide = TOP
 		# self.userInputFormFrame_PackFill = NONE
 
+
 		self.extraLabel_PackSide = TOP
 		self.extraLabel_PackFill = X
 
@@ -470,7 +466,7 @@ class GUItkinter:
 		self.saveButton_PackSide = TOP
 		self.saveButton_ipadx = 88
 
-		self.consoleTextWidth = 104
+		self.consoleTextWidth = 90
 		self.consoleTextHeight = 7
 		self.consolePack_padx = 10
 		self.consoleFrame_Anchor = NW
@@ -480,14 +476,14 @@ class GUItkinter:
 
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
-		self.HS_FBStatus_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
-		self.HS_FBDate_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.HS_FBSupervisor_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.HS_Hire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.HS_DHire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
-		self.HS_Retire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.HS_SFA_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
-		self.HS_SD_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_FBStatus_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
+		# self.HS_FBDate_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_FBSupervisor_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_Hire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_DHire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
+		# self.HS_Retire_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_SFA_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		# self.HS_SD_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 
 		self.checkBoxInfo =collections.OrderedDict({"Filter by Status": [["Portal Username", "Portal Password"],[Test_FilterByStatus.Test_FilterByStatus], [self.HS_FBStatus_console_Frame]], \
 							"Filter by Date Range": [["Portal Username", "Portal Password"],[Test_FilterbyDateRange.Test_FilterbyDateRange], [self.HS_FBDate_console_Frame]], \
@@ -498,7 +494,7 @@ class GUItkinter:
 							"Search For Assessee": [["Portal Username", "Portal Password"], [Test_SearchForAssessee.Test_SearchForAssessee],[self.HS_SFA_console_Frame]], \
 							"Sorting Dropdown": [["Portal Username", "Portal Password"], [Test_SortingDropdown.Test_SortingDropdown],[self.HS_SD_console_Frame]]})
 
-		self.createCheckButton(self.testCases_Frame, 20)
+		self.createCheckButton([self.testCases_Frame1,self.testCases_Frame2], 20)
 		
 	def ordernewReport(self):
 		import Test_Order1
@@ -512,6 +508,9 @@ class GUItkinter:
 		self.orderNewReport_Button.config(bg=self.background_Color, relief=FLAT)
 
 		self.testCases_Frame = tkinter.Frame(self.myParent, relief=FLAT)
+		self.rootOfEnterButton = self.testCases_Frame
+		self.EnterButton_width = 7
+		self.EnterButton_Height = 1
 
 		self.User_Input_Frame_Frame = tkinter.Frame(self.myParent, relief=FLAT)
 		self.OPL_Input_Frame_Frame = tkinter.Frame(self.User_Input_Frame_Frame, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
@@ -540,7 +539,7 @@ class GUItkinter:
 		self.radioButtonFrame_PackSide = TOP
 		self.radioButtonFrame_Width = 30
 		self.radioButtonLabel_Width = 15
-		self.radioButton_Width = 6
+		self.radioButton_Width = 7
 
 
 		self.frameType = "OPL"
@@ -555,7 +554,7 @@ class GUItkinter:
 		self.saveButton_PackSide = TOP
 		self.saveButton_ipadx = 83
 
-		self.consoleTextWidth = 62
+		self.consoleTextWidth = 66
 		self.consoleTextHeight = 28
 		self.consolePack_padx = 0
 		self.consoleFrame_PackSide = RIGHT
@@ -568,7 +567,7 @@ class GUItkinter:
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame, self.Custom_Input_Frame_Frame]
 
 		self.checkBoxInfo = collections.OrderedDict({"Order Existing Title with New Assessee":[["Portal Username", "Portal Password"],[Test_Order1.Test_Order1],[self.ONR_GUIconsoleFrame]]})
-		self.createCheckButton(self.testCases_Frame, 20)
+		self.createCheckButton([self.testCases_Frame], 20)
 
 	def onPress(self,this):
 		if self.testUserTestCases[this] == 0:
@@ -601,8 +600,10 @@ class GUItkinter:
 		# 	Functions.GUIdisplay.current_Test = None
 
 	def onOKPress(self):
-		for i in self.checkButtonsEnter:
+		for i in self.checkButtonsEntered:
 			i.config(state=DISABLED)
+		self.checkEnter.config(state=DISABLED)
+
 		self.testToRun = []
 		self.whichInfoOPL= collections.OrderedDict()
 		self.consoleToDisplay = []
@@ -641,21 +642,27 @@ class GUItkinter:
 
 	def createCheckButton(self, parent, fontsize):
 		# to disable choosing user test cases when click "OK" button
-		self.checkButtonsEnter = []
-		self.testUserTestCases = []
-		if (parent.cget("relief") == FLAT):
-			self.testUserTestCases = collections.OrderedDict(zip(list(self.checkBoxInfo.keys()), [0]*len(self.checkBoxInfo)))
-			parent.config(bg=self.background_Color, relief=GROOVE)#, highlightcolor="blue", highlightthickness=5)
-			parent.pack(side=TOP, fill=X, anchor=NW)
-			
-			for i in list(self.checkBoxInfo.keys()):
-				self.check = Checkbutton(parent, text=i, command=(lambda i=i: self.onPress(i)), font=(fontsize), bg=self.background_Color)
-				self.check.pack(side=LEFT)
-				self.check.deselect()
-				self.checkButtonsEnter.append(self.check)
-			self.checkEnter = tkinter.Button(parent, text="OK", font=('','10','bold'), command=self.onOKPress, width=7, relief=RAISED)
-			self.checkEnter.pack(side=RIGHT, anchor=NE)
-			self.checkButtonsEnter.append(self.checkEnter)
+		self.checkButtonsEntered = []
+		self.testUserTestCases = collections.OrderedDict(zip(list(self.checkBoxInfo.keys()), [0]*len(self.checkBoxInfo)))
+		for i in range(len(parent)):
+			if (parent[i].cget("relief") == FLAT):
+				parent[i].config(bg=self.background_Color, relief=GROOVE)#, highlightcolor="blue", highlightthickness=5)
+				parent[i].pack(side=TOP, fill=X, anchor=NW)
+				if i < 1:
+					for j in list(self.checkBoxInfo.keys())[:4]:
+						check = Checkbutton(parent[i], text=j, command=(lambda j=j: self.onPress(j)), font=(fontsize), bg=self.background_Color)
+						check.pack(side=LEFT)
+						check.deselect()
+						self.checkButtonsEntered.append(check)
+				else:
+					for j in list(self.checkBoxInfo.keys())[4:]:
+						check = Checkbutton(parent[i], text=j, command=(lambda j=j: self.onPress(j)), font=(fontsize), bg=self.background_Color)
+						check.pack(side=LEFT)
+						check.deselect()
+						self.checkButtonsEntered.append(check)
+
+		self.checkEnter = tkinter.Button(self.rootOfEnterButton, text="OK", font=('','10','bold'), command=self.onOKPress, width=self.EnterButton_width, height=self.EnterButton_Height, relief=RAISED)
+		self.checkEnter.pack(side=TOP, anchor=NE)
 
 	def createTitle_Frame(self, arg, txt, fontSize):
 		# print(arg.cget("relief"))
@@ -839,8 +846,8 @@ class GUItkinter:
 			# if there are more than two buttons selected == need to display more than two consoles, then enlarge the frame
 			if self.current_Button == "Order New Report":
 				self.myParent.geometry(self.mainFrame_Dimension)
-			elif self.current_Button == "Hiring Status":
-				self.myParent.geometry(self.HiringStatus_Dimension)
+			# elif self.current_Button == "Hiring Status":
+			# 	self.myParent.geometry(self.HiringStatus_Dimension)
 				
 			else:
 				if len(frames) == 1:

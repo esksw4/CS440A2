@@ -25,6 +25,7 @@ __doc__ = info = '''
 import tkinter
 import Functions
 from tkinter import *
+import tkinter.scrolledtext as tkst
 
 BASE = RAISED
 SELECTED = SUNKEN
@@ -54,18 +55,18 @@ class TabBar(Frame):
 		tab.grid_forget()									# hide the tab on init
 		
 		self.tabs[tab.tab_name] = tab						# add it to the list of tabs
-		print("tab.tab_name: ", tab.tab_name)
+		# print("tab.tab_name: ", tab.tab_name)
 		b = Button(self, text=tab.tab_name, relief=BASE,	# basic button stuff
 			command=(lambda name=tab.tab_name: self.switch_tab(name)))	# set the command to switch tabs
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
 
 		if tab.tab_name == "Console":
-			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], tkst.ScrolledText(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.consoleTab[self.testName][1].focus()
 			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
 			# Functions.GUIdisplay.textConsole_Text.place(x=3, y=1)
 		elif tab.tab_name == "Evaluation":
-			Functions.GUIdisplay.consoleTab[self.testName] = [Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName] = [tkst.ScrolledText(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.consoleTab[self.testName][0].focus()
 			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
 			# Functions.GUIdisplay.textEvaluation_Text.place(x=3, y=1)

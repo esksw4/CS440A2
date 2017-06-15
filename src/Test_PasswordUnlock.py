@@ -138,7 +138,7 @@ class Test_PasswordUnlock(unittest.TestCase):
       if i == 0:
         if Test_PasswordUnlock.is_element_present(self, By.LINK_TEXT,"Unlock My Account") == False:
           automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("First email was not received on the email(%s). I'm checking for second time." %Functions.OPLInfo['Email Address'], testName, 'se')
-        driver.quit()
+        # driver.quit()
       i += 1 # now going back to very beginning. Need to check for 2nd time.
 
     if i != 100:
