@@ -60,12 +60,12 @@ class TabBar(Frame):
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
 
 		if tab.tab_name == "Console":
-			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.consoleTab[self.testName][1].focus()
 			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
 			# Functions.GUIdisplay.textConsole_Text.place(x=3, y=1)
 		elif tab.tab_name == "Evaluation":
-			Functions.GUIdisplay.consoleTab[self.testName] = [Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName] = [Text(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.consoleTab[self.testName][0].focus()
 			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
 			# Functions.GUIdisplay.textEvaluation_Text.place(x=3, y=1)

@@ -6,9 +6,8 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-import Functions
 
-class Test_ViewReport(unittest.TestCase):
+class Test_Circles(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.base_url = "http://portal.qa.calipercorp.com/users/sign_in"
@@ -45,35 +44,55 @@ class Test_ViewReport(unittest.TestCase):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
 
-    def test_view_a_report(self):
-        checkNumError = 0
-        testName = "'View a Report'"
-        driver = Functions.Functions.OPL(self, testName)
+    def test_click_a_circle(self):
+        import Functions
 
-        driver.find_element_by_link_text("Reports").click()
-        time.sleep(2)
-        check = driver.title
-        if check != "Caliper: Reports":
+        checkNumError = 0
+        testName = "Click Circles"
+        driver = Functions.Functions.OPL(self, testName)
+        #check = driver.title
+        if "Dashboard" not in driver.title:
           checkNumError += 1
 
+        # Click Pending Assessemtn circle
+        driver.find_element_by_xpath("//div[@id='dashboard-chart1']").click()
+        time.sleep(2)
+        if "Caliper: Reports" not in driver.title:
+          checkNumError += 1
+        # Click Caliper logo
         driver.find_element_by_link_text("Caliper").click()
         time.sleep(2)
-        # click 1st report to see
-        assesseeName = driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").text
-        assesseeName = assesseeName.split(" ")
-        assesseeName = assesseeName[0] + "_" + assesseeName[1]
-        driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").click()
-        driver.switch_to.window(driver.window_handles[1])
-        # FselectWindow | title=4207867 |
-        # ERROR: Caught exception [ERROR: Unsupported command [selectWindow | title=4207867 | ]]
-        # assertTitle | 4207867 |
+
+       
+        # Click Pending Report circle
+        driver.find_element_by_xpath("//div[@id='dashboard-chart2']").click()
         time.sleep(2)
-        #check = driver.current_url
-        if assesseeName not in driver.current_url:
+        if "Caliper: Reports" not in driver.title:
+          checkNumError += 1
+        # Click Caliper logo
+        driver.find_element_by_link_text("Caliper").click()
+        time.sleep(2)
+        
+        # Click Completed Reports
+        driver.find_element_by_xpath("//div[@id='dashboard-chart3']").click()
+        time.sleep(2)
+        if "Caliper: Reports" not in driver.title:
+          checkNumError += 1
+        # Click Caliper logo
+        driver.find_element_by_link_text("Caliper").click()
+        time.sleep(2)
+
+        # Click Total Report
+        driver.find_element_by_xpath("//div[@id='dashboard-chart4']").click()
+        time.sleep(2)
+        if "Caliper: Reports" not in driver.title:
+          checkNumError += 1
+        # Click Caliper logo
+        driver.find_element_by_link_text("Caliper").click()
+        time.sleep(2)
+        if "Caliper: Dashboard" not in driver.title:
           checkNumError += 1
 
-        driver.quit()
         Functions.Functions.checkForError(checkNumError, testName)
-
 if __name__ == "__main__":
-    unittest.main(warnings ='ignore')        
+    unittest.main(warnings ='ignore')

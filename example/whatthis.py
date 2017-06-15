@@ -1,24 +1,37 @@
 
-import tkinter
+
+
+import tkinter as tk
 from tkinter import *
 
-def cbc(id, tex):
-    return lambda : callback(id, tex)
+class Example(tk.Frame):
+    def __init__(self, root):
 
-def callback(id, tex):
-    s = 'At {} f is {}\n'.format(id, id**id/0.987)
-    tex.insert(END, s)
-    tex.see(END)             # Scroll if necessary
+        tk.Frame.__init__(self, root)
+        self.canvas = tk.Canvas(root, borderwidth=0, background="#d3d3d3")
+        self.frame = tk.Frame(self.canvas, background="#ffffff")
+        self.vsb = tk.Scrollbar(root, orient="vertical", command=self.canvas.yview)
+        self.canvas.configure(yscrollcommand=self.vsb.set)
 
-top = Tk()
-tex = Text(master=top)
-tex.pack(side=RIGHT)
-bop = Frame()
-bop.pack(side=LEFT)
-for k in range(1,10):
-    tv = 'Say {}'.format(k)
-    b = Button(bop, text=tv, command=cbc(k, tex))
-    b.pack()
+        self.vsb.pack(side="right", fill="y")
+        self.canvas.pack(side="left", fill="both", expand=True)
+        self.canvas.create_window((4,4), window=self.frame, anchor="nw", 
+                                  tags="self.frame")
+        self.frame.bind("<Configure>", self.onFrameConfigure)
+        self.pop()
 
-Button(bop, text='Exit', command=top.destroy).pack()
-top.mainloop()
+    def pop(self):
+        for i in range(100):
+            self.f = Label(self.frame, text=i,background="#ffffff", anchor="center")
+            self.f.pack(side="top", fill="both")
+
+    def onFrameConfigure(self, event):
+        '''Reset the scroll region to encompass the inner frame'''
+        self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
+
+if __name__ == "__main__":
+    root=tk.Tk()
+    root.geometry("800x500")
+    Example(root).pack(side="top", fill="both", expand=True)
+    root.mainloop()

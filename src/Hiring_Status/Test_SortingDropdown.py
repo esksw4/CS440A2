@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-import Functions.Functions
+import Functions
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, re, string, sys
@@ -51,7 +51,7 @@ class Test_SortingDropdown(unittest.TestCase):
 
   def test_sortingDropdown(self):
     checkNumError = 0
-    testName = "'Sorting Dropdown'"
+    testName = "Sorting Dropdown"
     driver = Functions.Functions.hiringOPL(self, testName)
 
     whatToSort = 'Name'

@@ -6,9 +6,8 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-import Functions
 
-class TestCircles(unittest.TestCase):
+class Test_Circles(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.base_url = "http://portal.qa.calipercorp.com/users/sign_in"
@@ -46,6 +45,8 @@ class TestCircles(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
     def test_click_a_circle(self):
+        import Functions
+
         checkNumError = 0
         testName = "'Click a circle'"
         driver = Functions.Functions.OPL(self, testName)

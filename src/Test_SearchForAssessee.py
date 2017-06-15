@@ -49,31 +49,31 @@ class Test_SearchForAssessee(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
 
-  def test_searchForAssessee(self):
-    checkNumError = 0
-    testName = "Search For Assessee"
-    driver = Functions.Functions.hiringOPL(self, testName)
+  # def test_searchForAssessee(self):
+  #   checkNumError = 0
+  #   testName = "Search For Assessee"
+  #   driver = Functions.Functions.hiringOPL(self, testName)
 
-    str1 = str("//body/div[@id='main-content']/div[@id='hiringStatusContainer']/div/div[2]/div[4]//table[@id='table']/tbody/tr[")
-    str2 = str(1)
-    str3 = str("]/td[2]/div/div")
-    str_element = str1 + str2 + str3
-    existAssesseeName = driver.find_element_by_xpath(str_element).text
-    driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(existAssesseeName)
-    driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(Keys.ARROW_DOWN)
-    driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(Keys.ENTER)
-    time1.sleep(2)
+  #   str1 = str("//body/div[@id='main-content']/div[@id='hiringStatusContainer']/div/div[2]/div[4]//table[@id='table']/tbody/tr[")
+  #   str2 = str(1)
+  #   str3 = str("]/td[2]/div/div")
+  #   str_element = str1 + str2 + str3
+  #   existAssesseeName = driver.find_element_by_xpath(str_element).text
+  #   driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(existAssesseeName)
+  #   driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(Keys.ARROW_DOWN)
+  #   driver.find_element_by_xpath("//div[@id='hiringStatusContainer']/div/div[2]/div/div[2]//input[@id='mainSearch']").send_keys(Keys.ENTER)
+  #   time1.sleep(2)
 
-    tableText = driver.find_element_by_id("table_info").text
-    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
-    time1.sleep(1)
-    for j in range(1, listAssessee+1):
-      str2 = str(j)
-      str_element = str1 + str2 + str3
-      check = driver.find_element_by_xpath(str_element).text
-      if check != existAssesseeName:
-        checkNumError += 1
+  #   tableText = driver.find_element_by_id("table_info").text
+  #   systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+  #   time1.sleep(1)
+  #   for j in range(1, listAssessee+1):
+  #     str2 = str(j)
+  #     str_element = str1 + str2 + str3
+  #     check = driver.find_element_by_xpath(str_element).text
+  #     if check != existAssesseeName:
+  #       checkNumError += 1
 
-    Functions.Functions.checkForError(checkNumError, testName)
+  #   Functions.Functions.checkForError(checkNumError, testName)
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

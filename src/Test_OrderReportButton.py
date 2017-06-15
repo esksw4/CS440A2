@@ -1,4 +1,13 @@
-class Test_OrderAReportButton(unittest.TestCase):
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest, time, re
+
+class Test_OrderReportButton(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.base_url = "http://portal.qa.calipercorp.com/users/sign_in"
@@ -37,7 +46,7 @@ class Test_OrderAReportButton(unittest.TestCase):
 
     def test_does_ordera_report_work(self):
         checkNumError = 0
-        testName = "'Order a Report'"
+        testName = "Order Report Button"
         driver = Functions.Functions.OPL(self, testName)
         # open | / |
         driver.get(self.base_url + "/")

@@ -47,7 +47,7 @@ class Test_ViewReport(unittest.TestCase):
 
     def test_view_a_report(self):
         checkNumError = 0
-        testName = "'View a Report'"
+        testName = "View Report Tab"
         driver = Functions.Functions.OPL(self, testName)
 
         driver.find_element_by_link_text("Reports").click()

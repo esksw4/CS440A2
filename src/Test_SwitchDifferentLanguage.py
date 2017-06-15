@@ -47,7 +47,7 @@ class Test_SwitchDifferentLanguage(unittest.TestCase):
     
     def test_switch_different_language(self):
         checkNumError = 0
-        testName = "'Switch Different language'"
+        testName = "Switch Different language"
         driver = Functions.Functions.OPL(self, testName)
 
         driver.find_element_by_id("localeSelector").click()
