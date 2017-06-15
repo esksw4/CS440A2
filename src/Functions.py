@@ -355,10 +355,11 @@ class Functions:
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				# print(2)
 				# print(15)
+				driver.quit()
 				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", testName, 'ie')
 				# print(16)
 				# print(3)
-				driver.quit()
+				
 				# print(17)
 				# print(4)
 			else: 
