@@ -46,34 +46,37 @@ class Test_ViewReport(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
     def test_view_a_report(self):
-        checkNumError = 0
-        testName = "View Report Tab"
+        import Functions
+        import automatedSmokeTest
+
+        testName = "View Report"
         driver = Functions.Functions.OPL(self, testName)
 
+        time.sleep(1)
         driver.find_element_by_link_text("Reports").click()
         time.sleep(2)
         check = driver.title
         if check != "Caliper: Reports":
-          checkNumError += 1
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("View Report Button DOES NOT directs you to Order page.", testName,'se')
+        else:
+          driver.find_element_by_link_text("Caliper").click()
+          time.sleep(2)
+          # click 1st report to see
+          assesseeName = driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").text
+          assesseeName = assesseeName.split(" ")
+          assesseeName = assesseeName[0] + "_" + assesseeName[1]
+          driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").click()
+          driver.switch_to.window(driver.window_handles[1])
+          # FselectWindow | title=4207867 |
+          # ERROR: Caught exception [ERROR: Unsupported command [selectWindow | title=4207867 | ]]
+          # assertTitle | 4207867 |
+          time.sleep(2)
+          #check = driver.current_url
+          if assesseeName not in driver.current_url:
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is not displayed properly." %assesseeName, testName,'se')
+          else:
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is displayed properly." %assesseeName, testName,'s')
 
-        driver.find_element_by_link_text("Caliper").click()
-        time.sleep(2)
-        # click 1st report to see
-        assesseeName = driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").text
-        assesseeName = assesseeName.split(" ")
-        assesseeName = assesseeName[0] + "_" + assesseeName[1]
-        driver.find_element_by_xpath("//div[@class='dashboard-orders']/div[1]/div[2]/a[1]").click()
-        driver.switch_to.window(driver.window_handles[1])
-        # FselectWindow | title=4207867 |
-        # ERROR: Caught exception [ERROR: Unsupported command [selectWindow | title=4207867 | ]]
-        # assertTitle | 4207867 |
-        time.sleep(2)
-        #check = driver.current_url
-        if assesseeName not in driver.current_url:
-          checkNumError += 1
-
-        driver.quit()
-        Functions.Functions.checkForError(checkNumError, testName)
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')        

@@ -44,20 +44,21 @@ class GUIFunctions:
 		# se: System Error
 		# m: manually test this
 		# s: Successfully tested
-		Functions.GUIdisplay.testName = testCaseName
+		# Functions.GUIdisplay.testName = testCaseName
+		# print(Functions.GUIdisplay.testName)
 		if displayType == 'ie':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].tag_config("insert", background="white", foreground ="red")
-			Functions.GUIdisplay.bar_TabBar.switch_tab("Console")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Console", Functions.GUIdisplay.testName)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][1].config(state=DISABLED)
 		elif displayType == 'se':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="red")
-			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 		elif displayType == 'm':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
@@ -66,7 +67,7 @@ class GUIFunctions:
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
-			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 		elif displayType == 's':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
@@ -81,6 +82,14 @@ class GUIFunctions:
 				GUIFunctions.passwordRecoveryCheckThis()
 			elif Functions.GUIdisplay.testName == "Password Unlock":
 				GUIFunctions.passwordUnlockCheckThis()
+			elif Functions.GUIdisplay.testName == "Order Report Button":
+				GUIFunctions.orderReportButtonCheckThis()
+			elif Functions.GUIdisplay.testName == "View Report":
+				GUIFunctions.viewReportCheckThis()
+			elif Functions.GUIdisplay.testName == "Switch Different language":
+				GUIFunctions.switchDifferentLanguageCheckThis()
+			elif Functions.GUIdisplay.testName == "Click Circles":
+				GUIFunctions.clickCirclesCheckThis()
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 
 			# Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
@@ -95,23 +104,44 @@ class GUIFunctions:
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Search with assessee name \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Copy assessment URL \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Cancel Order \n")
-		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def loginLogoutCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Login/Logout \n")
-		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def passwordRecoveryCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Reset \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Recovery \n")
-		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def passwordUnlockCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Resend email for unlock instruction \n")
-		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+
+	def orderReportButtonCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Does Order a Report button work \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+
+	def viewReportCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- View a report \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+
+	def switchDifferentLanguageCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Switch to a different language \n")
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+
+	def clickCirclesCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Click a circle \n")
+		Functions.GUIdisplay.completedTests.append(Test_Circles.Test_Circles)
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def buttonPressCheck():
 		if Functions.GUIdisplay.current_Button != None:
@@ -194,6 +224,8 @@ class GUItkinter:
 
 		self.allFieldError = None
 		self.current_Button = None
+
+		self.completedTests = []
 
 		self.GUIuserInputErrorRow_Frame = Frame()
 
@@ -380,13 +412,15 @@ class GUItkinter:
 		self.consoleFrame_PackSide = TOP
 		self.consoleFrame_PackFill = X
 		self.consoleFrame_PackExpand = YES
+		self.tabs = collections.OrderedDict()
+		self.tabsButtons = collections.OrderedDict()
 
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
 		self.checkBoxInfo =collections.OrderedDict({"Click Circles": [["Portal Username", "Portal Password"],[Test_Circles.Test_Circles], [self.DB_CC_console_Frame]], \
 							"Order Report Button": [["Portal Username", "Portal Password"],[Test_OrderReportButton.Test_OrderReportButton], [self.DB_ORB_console_Frame]], \
 							"Switch Different language": [["Portal Username", "Portal Password"],[Test_SwitchDifferentLanguage.Test_SwitchDifferentLanguage],[self.DB_SDL_console_Frame]], \
-							"View Report Tab": [["Portal Username", "Portal Password"], [Test_ViewReport.Test_ViewReport],[self.DB_VRT_console_Frame]]})
+							"View Report": [["Portal Username", "Portal Password"], [Test_ViewReport.Test_ViewReport],[self.DB_VRT_console_Frame]]})
 
 		self.createCheckButton([self.testCases_Frame], 20)
 
@@ -696,7 +730,7 @@ class GUItkinter:
 
 	def GetUserInputSendFunction(self):
 		suite = unittest.TestSuite()
-		if self.current_Button == "Login_Security":
+		if self.current_Button == "Login_Security" or self.current_Button == "Dashboard":
 			self.OPL_Input_Frame_Frame.config(relief=GROOVE)
 			self.OPLGetUserInputSendFunction()
 			if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True):
@@ -719,6 +753,7 @@ class GUItkinter:
 					# print("i: ", i)
 					suite.addTests(unittest.makeSuite(i))
 				self.runTest(suite)
+
 
 		# if whichTestToRun is "OPL" or whichTestToRun is "ONR":
 		# 	whichFrame.config(relief=GROOVE)
@@ -839,8 +874,18 @@ class GUItkinter:
 			arg.config(relief=RIDGE)
 
 	def conSoleFrame(self, frames):
-		self.consoleTab = {}
+		self.consoleTab = collections.OrderedDict()
+		print("\n")
+		print("frames: ", frames)
+		print("self.TestUserTestCases.keys(): ", self.testUserTestCases.keys())
+		print("\n")
+
 		for arg, i in zip(frames, self.testUserTestCases.keys()):
+			print("----------------------------------------------")
+			print("arg: ", arg)
+			print("i: ", i)
+			print("\n")
+
 			arg.config(bg=self.background_Color)#, highlightcolor="blue", highlightthickness=1)
 			arg.pack(padx=self.consolePack_padx, side=self.consoleFrame_PackSide, anchor=self.consoleFrame_Anchor, fill=self.consoleFrame_PackFill, expand=self.consoleFrame_PackExpand)
 			# if there are more than two buttons selected == need to display more than two consoles, then enlarge the frame
@@ -866,6 +911,8 @@ class GUItkinter:
 				self.createTitle_Frame(arg, i, 20)
 			if (arg.cget("relief") == FLAT):
 				# self.consoleTab[i]
+				Functions.GUIdisplay.tabs[i] = collections.OrderedDict()
+				Functions.GUIdisplay.tabsButtons[i] = collections.OrderedDict()
 				self.bar_TabBar = Tab.TabBar(arg, "Evaluation", i)
 				tab1_Tab = Tab.Tab(arg, "Evaluation")
 				tab2_Tab = Tab.Tab(arg, "Console")
@@ -882,7 +929,11 @@ class GUItkinter:
 		# self.consoleTab["Password Recovery"][0].insert(INSERT, "  " + "This is stupid" + "\n\n")
 
 	def runTest(self, suite):
-		result = unittest.TextTestRunner(verbosity=2).run(suite)
+		for i in self.completedTests:
+			if i in suite:
+				self.result.remove(i)
+
+		self.result = unittest.TextTestRunner(verbosity=2, failfast=True).run(suite)
 
 if Functions.GUImainFrame == None:
 	Functions.GUImainFrame = Tk()

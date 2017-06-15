@@ -45,21 +45,24 @@ class Test_OrderReportButton(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
     def test_does_ordera_report_work(self):
-        checkNumError = 0
-        testName = "Order Report Button"
-        driver = Functions.Functions.OPL(self, testName)
-        # open | / |
-        driver.get(self.base_url + "/")
+        import Functions
+        import automatedSmokeTest
+
+        Functions.GUIdisplay.testName = "Order Report Button"
+        driver = Functions.Functions.OPL(self)
+        time.sleep(2)
         # click | id=dashboardOrderReport |
         driver.find_element_by_id("dashboardOrderReport").click()
         time.sleep(2)
         check = driver.title
-        if check != "Caliper: Order Reports/Assessments":
-          checkNumError += 1
+        if check == "Caliper: Order Reports/Assessments":
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button successfully directs you to Order page.", testName,'s')
         # click | link=Caliper |
-        driver.find_element_by_link_text("Caliper").click()
+        else: 
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button DOES NOT directs you to Order page.", testName,'se')
+          # driver.find_element_by_link_text("Caliper").click()
 
-        Functions.Functions.checkForError(checkNumError, testName)
+        # Functions.Functions.checkForError(checkNumError, testName)
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

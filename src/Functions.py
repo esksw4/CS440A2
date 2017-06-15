@@ -32,9 +32,9 @@ class Functions:
 	global GUIallFieldError
 	GUIallFieldError = None
 
-	def checkForError(checkNumError, testName):
-		colorama.init(autoreset=True)
-		print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(testName) + " with " + str(checkNumError) + " error(s).")
+	# def checkForError(checkNumError, GUIdisplay.testName):
+	# 	colorama.init(autoreset=True)
+	# 	print(colorama.Fore.BLACK + colorama.Back.YELLOW + str(GUIdisplay.testName) + " with " + str(checkNumError) + " error(s).")
 
 # Hiring Stauts
 	# Used inside of "sortingCheck" function
@@ -284,8 +284,8 @@ class Functions:
 			return row 
 
 	# Used inside of "sortingCheck" function, Test_SortingDropdown, Test_SearchForAssessee, Test_HiringFunction, Test_Filters
-	def hiringOPL(self, testName):
-		print('Testing ', testName)
+	def hiringOPL(self):
+		print('Testing ', GUIdisplay.testName)
 		driver = self.driver
 		driver.get(GUIdisplay.URL.get())
 		# type | id=user_password | 1234567899s
@@ -311,10 +311,10 @@ class Functions:
 	      return False
 	    return True
 
-	def OPL(self, testName):
-		import automatedApplicaitonGUI
+	def OPL(self):
+		import automatedSmokeTest
 
-		# print('Testing ', testName)
+		# print('Testing ', GUIdisplay.testName)
 		# print(GUIdisplay.URL.get())
 		driver = self.driver
 		# System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"false");
@@ -325,9 +325,10 @@ class Functions:
 			# print(2)
 			if "This browser version is not supported." in driver.find_element_by_class_name("text-center").text:
 				# print(3)
+				# GUIdisplay.result.stop()
 				GUIdisplay.OPL_Input_Frame_Frame.config(relief=GROOVE)
 				# print(4)
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please update the browser. Your Browser is not supported",testName, 'se')
+				automatedSmokeTest.GUIFunctions.outputDisplayConsole("Please update the browser. Your Browser is not supported",GUIdisplay.testName, 'se')
 				# print(5)
 				driver.quit()
 		else:
@@ -349,6 +350,7 @@ class Functions:
 
 			# print(12)
 			if Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error") or Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-alert"):
+				# GUIdisplay.result.stop()
 				# print(14)
 				# print(Functions.is_element_present(driver, By.CLASS_NAME, "alert.alert-error"))
 				# print(1)
@@ -356,7 +358,7 @@ class Functions:
 				# print(2)
 				# print(15)
 				driver.quit()
-				automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", testName, 'ie')
+				automatedSmokeTest.GUIFunctions.outputDisplayConsole("Please check user's email address/password.", GUIdisplay.testName, 'ie')
 				# print(16)
 				# print(3)
 				

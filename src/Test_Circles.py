@@ -46,53 +46,57 @@ class Test_Circles(unittest.TestCase):
 
     def test_click_a_circle(self):
         import Functions
+        import automatedSmokeTest
 
-        checkNumError = 0
-        testName = "Click Circles"
-        driver = Functions.Functions.OPL(self, testName)
-        #check = driver.title
-        if "Dashboard" not in driver.title:
-          checkNumError += 1
 
-        # Click Pending Assessemtn circle
+        # checkNumError = 0
+        Functions.GUIdisplay.testName = "Click Circles"
+        driver = Functions.Functions.OPL(self)
+
+        time.sleep(1)
+
+        # Click Pending Assessement circle
         driver.find_element_by_xpath("//div[@id='dashboard-chart1']").click()
         time.sleep(2)
         if "Caliper: Reports" not in driver.title:
-          checkNumError += 1
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Pending Assessment circle does not lead to report page", Functions.GUIdisplay.testName,'se')
         # Click Caliper logo
-        driver.find_element_by_link_text("Caliper").click()
-        time.sleep(2)
+        else:
+          driver.find_element_by_link_text("Caliper").click()
+          time.sleep(2)
 
-       
-        # Click Pending Report circle
-        driver.find_element_by_xpath("//div[@id='dashboard-chart2']").click()
-        time.sleep(2)
-        if "Caliper: Reports" not in driver.title:
-          checkNumError += 1
-        # Click Caliper logo
-        driver.find_element_by_link_text("Caliper").click()
-        time.sleep(2)
-        
-        # Click Completed Reports
-        driver.find_element_by_xpath("//div[@id='dashboard-chart3']").click()
-        time.sleep(2)
-        if "Caliper: Reports" not in driver.title:
-          checkNumError += 1
-        # Click Caliper logo
-        driver.find_element_by_link_text("Caliper").click()
-        time.sleep(2)
+          # Click Pending Report circle
+          driver.find_element_by_xpath("//div[@id='dashboard-chart2']").click()
+          time.sleep(2)
+          if "Caliper: Reports" not in driver.title:
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("Pending Report circle does not lead to report page", Functions.GUIdisplay.testName,'se')
+          else:
+            # Click Caliper logo
+            driver.find_element_by_link_text("Caliper").click()
+            time.sleep(2)
+            
+            # Click Completed Reports
+            driver.find_element_by_xpath("//div[@id='dashboard-chart3']").click()
+            time.sleep(2)
+            if "Caliper: Reports" not in driver.title:
+              automatedSmokeTest.GUIFunctions.outputDisplayConsole("Complete Report circle does not lead to report page", Functions.GUIdisplay.testName,'se')
+            else:
+              # Click Caliper logo
+              driver.find_element_by_link_text("Caliper").click()
+              time.sleep(2)
 
-        # Click Total Report
-        driver.find_element_by_xpath("//div[@id='dashboard-chart4']").click()
-        time.sleep(2)
-        if "Caliper: Reports" not in driver.title:
-          checkNumError += 1
-        # Click Caliper logo
-        driver.find_element_by_link_text("Caliper").click()
-        time.sleep(2)
-        if "Caliper: Dashboard" not in driver.title:
-          checkNumError += 1
+              # Click Total Report
+              driver.find_element_by_xpath("//div[@id='dashboard-chart4']").click()
+              time.sleep(2)
+              if "Caliper: Reports" not in driver.title:
+                automatedSmokeTest.GUIFunctions.outputDisplayConsole("Total Report circle does not lead to report page", Functions.GUIdisplay.testName,'se')
+              # Click Caliper logo
+              driver.find_element_by_link_text("Caliper").click()
+              time.sleep(2)
+              if "Caliper: Dashboard" not in driver.title:
+                automatedSmokeTest.GUIFunctions.outputDisplayConsole("Caliper Logo on left top corner does not lead to Dashboard page", Functions.GUIdisplay.testName,'se')
+              else:
+                automatedSmokeTest.GUIFunctions.outputDisplayConsole("All the circles are sucessfully directed to report page", Functions.GUIdisplay.testName,'s')
 
-        Functions.Functions.checkForError(checkNumError, testName)
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

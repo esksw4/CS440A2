@@ -48,7 +48,7 @@ class Test_LoginLogout(unittest.TestCase):
 
   def test_log_inlog_out(self):
     import Functions
-    import automatedApplicaitonGUI
+    import automatedSmokeTest
 
     testName = "Login Logout"
     driver = Functions.Functions.OPL(self, testName)
@@ -59,10 +59,10 @@ class Test_LoginLogout(unittest.TestCase):
     time1.sleep(2)
 
     if str(driver.current_url) == str(Functions.GUIdisplay.URL.get() +"users/sign_in"):
-      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout Successfully", testName,'s')
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout Successfully", testName,'s')
     else:
       driver.quit()
-      automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Logout failed", testName, 'p')
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout failed", testName, 'p')
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

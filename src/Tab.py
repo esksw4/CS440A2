@@ -26,6 +26,7 @@ import tkinter
 import Functions
 from tkinter import *
 import tkinter.scrolledtext as tkst
+import collections
 
 BASE = RAISED
 SELECTED = SUNKEN
@@ -40,45 +41,51 @@ class Tab(Frame):
 class TabBar(Frame):
 	def __init__(self, master=None, init_name=None, testName=None):
 		Frame.__init__(self, master)
-		self.tabs = {}
-		self.buttons = {}
+		# Functions.GUIdisplay.tabs = collections.OrderedDict()
+		# self.buttons = {}
 		self.current_tab = None
 		self.init_name = init_name
 		self.testName = testName
+		
 	
 	def show(self):
 		#self.pack(side=TOP, expand=YES, fill=X)
 		self.grid(sticky='w')
-		self.switch_tab(self.init_name or self.tabs.keys()[-1])# switch the tab to the first tab
+		self.switch_tab(self.init_name or Functions.GUIdisplay.tabs[self.testName].keys()[-1], self.testName)# switch the tab to the first tab
 	
 	def add(self, tab):
 		tab.grid_forget()									# hide the tab on init
-		
-		self.tabs[tab.tab_name] = tab						# add it to the list of tabs
+		print("add, tab: ", tab)
+		print("add, tab.tab_name: ", tab.tab_name)
+		print("self.tabs: ", Functions.GUIdisplay.tabs)
+		if len(Functions.GUIdisplay.tabs[self.testName]) == 0:
+			Functions.GUIdisplay.tabs[self.testName][tab.tab_name] = tab
+		else:
+			Functions.GUIdisplay.tabs[self.testName].update({tab.tab_name: tab})						# add it to the list of tabs
 		# print("tab.tab_name: ", tab.tab_name)
 		b = Button(self, text=tab.tab_name, relief=BASE,	# basic button stuff
-			command=(lambda name=tab.tab_name: self.switch_tab(name)))	# set the command to switch tabs
+			command=(lambda name=tab.tab_name: self.switch_tab(name, self.testName)))	# set the command to switch tabs
 		b.pack(side=LEFT)												# pack the buttont to the left mose of self
 
 		if tab.tab_name == "Console":
-			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName][0], tkst.ScrolledText(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName] = [Functions.GUIdisplay.consoleTab[self.testName], tkst.ScrolledText(master=Functions.GUIdisplay.tabs[self.testName][tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight, wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
 			Functions.GUIdisplay.consoleTab[self.testName][1].focus()
 			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
 			# Functions.GUIdisplay.textConsole_Text.place(x=3, y=1)
 		elif tab.tab_name == "Evaluation":
-			Functions.GUIdisplay.consoleTab[self.testName] = [tkst.ScrolledText(master=self.tabs[tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD, state=DISABLED)]   # pack the buttont to the left mose of self
-			Functions.GUIdisplay.consoleTab[self.testName][0].focus()
-			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[self.testName] = tkst.ScrolledText(master=Functions.GUIdisplay.tabs[self.testName][tab.tab_name], width=Functions.GUIdisplay.consoleTextWidth, height=Functions.GUIdisplay.consoleTextHeight ,wrap=WORD, state=DISABLED)   # pack the buttont to the left mose of self
+			Functions.GUIdisplay.consoleTab[self.testName].focus()
+			Functions.GUIdisplay.consoleTab[self.testName].grid(sticky='w')
 			# Functions.GUIdisplay.textEvaluation_Text.place(x=3, y=1)
 
-		self.buttons[tab.tab_name] = b									# add it to the list of buttons
+		Functions.GUIdisplay.tabsButtons[self.testName][tab.tab_name] = b									# add it to the list of buttons
 
 	
 	def delete(self, tabname):
 		if tabname == self.current_tab:
 			self.current_tab = None
-			self.tabs[tabname].pack_forget()
-			del self.tabs[tabname]
+			Functions.GUIdisplay.tabs[self.testName][tabname].pack_forget()
+			del Functions.GUIdisplay.tabs[self.testName][tabname]
 
 			if tabname == "Console":
 				Functions.GUIdisplay.consoleTab[self.testName][1].grid_forget()
@@ -87,40 +94,47 @@ class TabBar(Frame):
 				Functions.GUIdisplay.consoleTab[self.testName][0].grid_forget()
 				del Functions.GUIdisplay.consoleTab[self.testName][0]
 
-			self.switch_tab(self.tabs.keys()[0])
+			self.switch_tab(Functions.GUIdisplay.tabs.keys()[0], self.testName)
 		
 		else:
-			del self.tabs[tabname]
+			del Functions.GUIdisplay.tabs[self.testName][tabname]
 			if tabname == "Console":
 				del Functions.GUIdisplay.consoleTab[self.testName][1]
 			elif tab_name == "Evaluation":
 				del Functions.GUIdisplay.consoleTab[self.testName][0]
 		
-		self.buttons[tabname].pack_forget()
-		del self.buttons[tabname] 
+		Functions.GUIdisplay.tabsButtons[self.testName][tabname].pack_forget()
+		del Functions.GUIdisplay.tabsButtons[self.testName][tabname] 
 		
 	
-	def switch_tab(self, name):
+	def switch_tab(self, name, testName):
+		print("\n")
+		print("switch_Tab TestName: ", testName)
+		print("self.current_tab: ", self.current_tab)
+		print("Functions.GUIdisplay.tabs: ", Functions.GUIdisplay.tabs)
+		# print("Functions.GUIdisplay.consoleTab: \n", Functions.GUIdisplay.consoleTab)
 		if self.current_tab:
-			self.buttons[self.current_tab].config(relief=BASE)
-			self.tabs[self.current_tab].grid_forget()			# hide the current tab
+			Functions.GUIdisplay.tabsButtons[testName][self.current_tab].config(relief=BASE)
+			Functions.GUIdisplay.tabs[testName][self.current_tab].grid_forget()			# hide the current tab
 			# self.tabs[self.current_tab].forget()
 			if name == "Console":
-				Functions.GUIdisplay.consoleTab[self.testName][1].grid_forget()
+				Functions.GUIdisplay.consoleTab[testName][1].grid_forget()
 			elif name == "Evaluation":
-				Functions.GUIdisplay.consoleTab[self.testName][0].grid_forget()
+				Functions.GUIdisplay.consoleTab[testName][0].grid_forget()
 
 		# self.tabs[name].pack(side=BOTTOM)							# add the new tab to the display
-		self.tabs[name].grid(sticky='w')
+		print("name: ", name)
+		print("Functions.GUIdisplay.tabs[testName][name]: ", Functions.GUIdisplay.tabs[testName][name])
+		Functions.GUIdisplay.tabs[testName][name].grid(sticky='w')
 
 		if name == "Console":
-			Functions.GUIdisplay.consoleTab[self.testName][1].grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[testName][1].grid(sticky='w')
 		elif name == "Evaluation":
-			Functions.GUIdisplay.consoleTab[self.testName][0].grid(sticky='w')
+			Functions.GUIdisplay.consoleTab[testName][0].grid(sticky='w')
 
 		self.current_tab = name									# set the current tab to itself
 		
-		self.buttons[name].config(relief=SELECTED)					# set it to the selected style
+		Functions.GUIdisplay.tabsButtons[testName][name].config(relief=SELECTED)					# set it to the selected style
 			
 # if __name__ == '__main__':
 # 	def write(x):

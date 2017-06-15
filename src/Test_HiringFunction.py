@@ -49,57 +49,57 @@ class Test_HiringFunction(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
 
-  # def test_HiringSomeone(self):
-  #   checkNumError = 0
-  #   testName = "Hire"
-  #   driver = Functions.Functions.hiringOPL(self, testName)
+  def test_HiringSomeone(self):
+    checkNumError = 0
+    testName = "Hire"
+    driver = Functions.Functions.hiringOPL(self, testName)
 
-  #   # filter by pending to only view pending assesseess
-  #   driver.find_element_by_xpath("//div[@id = 'hiringStatusContainer']/div[1]/div[1]/div[1]/div[1]/label[1]").click()
-  #   time1.sleep(2)
-  #   driver.find_element_by_xpath("//div[@class='btn-group']/a").click()
-  #   driver.find_element_by_xpath("//ul[@class='dropdown-menu']//a").click()
-  #   time1.sleep(1)
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[@class='modal-dialog']/div[@class='modal-content']/div[@class='modal-body']/div[@class='container-fluid']/div[2]/div[1]/div[2]/div[1]").click()
-  #   time1.sleep(1)
-  #   originalHiredAlert = "Once changed to Hired, Hiring Status cannot be reverted back to Not Hired. Proceed with this change?"
-  #   checkHiredAlert = driver.find_element_by_xpath("//div[@class='bootbox modal fade in']//div[@class='bootbox-body']").text
+    # filter by pending to only view pending assesseess
+    driver.find_element_by_xpath("//div[@id = 'hiringStatusContainer']/div[1]/div[1]/div[1]/div[1]/label[1]").click()
+    time1.sleep(2)
+    driver.find_element_by_xpath("//div[@class='btn-group']/a").click()
+    driver.find_element_by_xpath("//ul[@class='dropdown-menu']//a").click()
+    time1.sleep(1)
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[@class='modal-dialog']/div[@class='modal-content']/div[@class='modal-body']/div[@class='container-fluid']/div[2]/div[1]/div[2]/div[1]").click()
+    time1.sleep(1)
+    originalHiredAlert = "Once changed to Hired, Hiring Status cannot be reverted back to Not Hired. Proceed with this change?"
+    checkHiredAlert = driver.find_element_by_xpath("//div[@class='bootbox modal fade in']//div[@class='bootbox-body']").text
     
-  #   # check if hiredalert was given
-  #   if checkHiredAlert != originalHiredAlert:
-  #     checkNumError += 1
-  #     errorMessage = str("'Hired Alert' is different")
-  #     colorama.init(autoreset=True)
-  #     print(colorama.Fore.RED + errorMessage)
+    # check if hiredalert was given
+    if checkHiredAlert != originalHiredAlert:
+      checkNumError += 1
+      errorMessage = str("'Hired Alert' is different")
+      colorama.init(autoreset=True)
+      print(colorama.Fore.RED + errorMessage)
 
-  #   driver.find_element_by_xpath("//div[@class='bootbox modal fade in']//div[@class='modal-footer']/button[1]").click()
-  #   time1.sleep(2)
-  #   # click the calendar to put hired date
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[1]/div[1]/div[@class='modal-body']/div[2]/div[3]/div[1]/div[1]/div[1]").click()
-  #   # click the number on the first row
-  #   driver.find_element_by_xpath("//body/div[6]//table[@class='table-condensed']/tbody/tr[2]/td[2]").click()
-  #   # put the supervisor name
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys("Young Kim")
-  #   time1.sleep(1)
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys(Keys.ARROW_DOWN)
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys(Keys.ENTER)
-  #   # may we contact the supervisor? -> Yes
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[@class='modal-dialog']/div[@class='modal-content']/div[@class='modal-body']/div[@class='container-fluid']/div[12]/div[1]/label[1]/div[1]").click()
-  #   # Save it
-  #   driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//div[@class='modal-footer']/button[1]").click()
-  #   time1.sleep(2)
-  #   checkStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]").text
-  #   assesseeName = driver.find_element_by_xpath("//tbody/tr[1]/td[2]/div/div").text
-  #   # check if hired assesseename has been removed from the list (remember that I clicked the "Pending")
-  #   # if the assesseename is still on the list, it is the error
+    driver.find_element_by_xpath("//div[@class='bootbox modal fade in']//div[@class='modal-footer']/button[1]").click()
+    time1.sleep(2)
+    # click the calendar to put hired date
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[1]/div[1]/div[@class='modal-body']/div[2]/div[3]/div[1]/div[1]/div[1]").click()
+    # click the number on the first row
+    driver.find_element_by_xpath("//body/div[6]//table[@class='table-condensed']/tbody/tr[2]/td[2]").click()
+    # put the supervisor name
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys("Young Kim")
+    time1.sleep(1)
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys(Keys.ARROW_DOWN)
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//input[@id='supervising_contact_id-tokenfield']").send_keys(Keys.ENTER)
+    # may we contact the supervisor? -> Yes
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']/div[@class='modal-dialog']/div[@class='modal-content']/div[@class='modal-body']/div[@class='container-fluid']/div[12]/div[1]/label[1]/div[1]").click()
+    # Save it
+    driver.find_element_by_xpath("//div[@id='hiringStatusDlg']//div[@class='modal-footer']/button[1]").click()
+    time1.sleep(2)
+    checkStatus = driver.find_element_by_xpath("//tbody/tr[1]/td[4]").text
+    assesseeName = driver.find_element_by_xpath("//tbody/tr[1]/td[2]/div/div").text
+    # check if hired assesseename has been removed from the list (remember that I clicked the "Pending")
+    # if the assesseename is still on the list, it is the error
     
-  #   # if checkStatus != 'Hired':
-  #   #   checkNumError += 1
-  #   #   colorama.init(autoreset=True)
-  #   #   print(colorama.Fore.RED + 'Hired button does not work')
+    # if checkStatus != 'Hired':
+    #   checkNumError += 1
+    #   colorama.init(autoreset=True)
+    #   print(colorama.Fore.RED + 'Hired button does not work')
 
-  #   print("Check Hired data in Pivotal if " + assesseeName + " has been marked as 'Hired' or not.")
-  #   Functions.Functions.checkForError(checkNumError, testName)
+    print("Check Hired data in Pivotal if " + assesseeName + " has been marked as 'Hired' or not.")
+    Functions.Functions.checkForError(checkNumError, testName)
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

@@ -48,7 +48,7 @@ class Test_PasswordRecovery(unittest.TestCase):
 
   def test_password_recovery_reset(self):
       import Functions
-      import automatedApplicaitonGUI
+      import automatedSmokeTest
 
       testName = "Password Recovery"
       
@@ -71,7 +71,7 @@ class Test_PasswordRecovery(unittest.TestCase):
       check = driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[1]").text
       # print(check)
       if check != "You will receive an email with instructions about how to reset your password in a few minutes.":
-        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The confirmation message saying 'You will receive an email with instructions about how to reset your password in a few minutes.' is not displayed correctly" , testName, 's')
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("The confirmation message saying 'You will receive an email with instructions about how to reset your password in a few minutes.' is not displayed correctly" , testName, 's')
       time.sleep(2)
       # open | https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1 |
       driver.get(
@@ -83,7 +83,7 @@ class Test_PasswordRecovery(unittest.TestCase):
       driver.find_element_by_class_name("RveJvd.snByac").click()
       if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class='rFrNMe uIZQNc og3oZc sdJrJc Tyc9J CDELXb k0tWj IYewr']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
         driver.quit()
-        automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Email Address is invalid. Please enter the valid email address" , testName, 'ie')
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Address is invalid. Please enter the valid email address" , testName, 'ie')
       else:
         time.sleep(2)
         driver.find_element_by_xpath("//form[@class='RFjuSb bxPAYd k6Zj8d']/div[2]//div[@class='Xb9hP']/input[1]").send_keys(Functions.OPLInfo['Email Password'])
@@ -92,7 +92,7 @@ class Test_PasswordRecovery(unittest.TestCase):
         time.sleep(2)
         if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@id='password']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
           driver.quit()
-          automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Input Error: Email Password is invalid. Please enter the valid email Password" , testName, 'ie')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Password is invalid. Please enter the valid email Password" , testName, 'ie')
         else:
           # search "Request to reset password" on the gmail
           time.sleep(2)
@@ -122,21 +122,21 @@ class Test_PasswordRecovery(unittest.TestCase):
             # print(driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error alert-dismissable']").text)
 
             if Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-notice']"):
-              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password was succesfully resetted." , testName, 's')
+              automatedSmokeTest.GUIFunctions.outputDisplayConsole("Password was succesfully resetted." , testName, 's')
             elif Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error']"):
               # print('\n')
               # print("check: ", driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error]").text)
               driver.quit()
-              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password needed to be contain certain characters. Please re-write the password to change." , testName, 'ie')
+              automatedSmokeTest.GUIFunctions.outputDisplayConsole("Password needed to be contain certain characters. Please re-write the password to change." , testName, 'ie')
             else:
               driver.quit()
-              automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("Password did not get reset." , testName, 'se')
+              automatedSmokeTest.GUIFunctions.outputDisplayConsole("Password did not get reset." , testName, 'se')
           elif Test_PasswordRecovery.is_element_present(self, By.XPATH, "//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[@class='alert alert-error']"):
             driver.quit()
-            automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("The 'Reset Password' token is expired.", testName, 'se')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("The 'Reset Password' token is expired.", testName, 'se')
           else:
             driver.quit()
-            automatedApplicaitonGUI.GUIFunctions.outputDisplayConsole("'Reset Password' button from email is not working correctly." , testName, 'se')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("'Reset Password' button from email is not working correctly." , testName, 'se')
 
 
 
