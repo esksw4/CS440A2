@@ -1,0 +1,50 @@
+1493658869851	geckodriver	INFO	Listening on 127.0.0.1:52704
+1493658871909	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.MQrDORuIFWOu
+1493658871912	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1493658871932	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52714
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1493658875040 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+Performance warning: Async animation disabled because frame size (642, 1142) is bigger than the viewport (1607, 871) or the visual rectangle (642, 1142) is larger than the max allowable value (17895698) [div]
+1493658889380 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeSaveButton, tagName: BUTTON, className: btn btn-primary
+Performance warning: Async animation disabled because frame size (10553, 574) is bigger than the viewport (1607, 871) or the visual rectangle (10553, 574) is larger than the max allowable value (17895698) [div]
+1493658936140 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeGroupAssesseeSaveBtn, tagName: BUTTON, className: btn btn-primary
+1493659014509 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: okButton, tagName: BUTTON, className: btn btn-primary
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1493659020745 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
+1493659021895 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1493659026835 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1493659027997 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
+1493659029134 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: cancelOrderBtn, tagName: BUTTON, className: btn btn-primary
+1493659386127	geckodriver	INFO	Listening on 127.0.0.1:53740
+1493659388184	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.how3E6PyGKhh
+1493659388189	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1493659388207	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53748
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1493659391114 Marionette: Element does not have a correct accessibility role and may not be manipulated via the accessibility API -> id: user_password, tagName: INPUT, className: form-control
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+Performance warning: Async animation disabled because frame size (642, 1142) is bigger than the viewport (1607, 871) or the visual rectangle (642, 1142) is larger than the max allowable value (17895698) [div]
+1493659405254 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeSaveButton, tagName: BUTTON, className: btn btn-primary
+Performance warning: Async animation disabled because frame size (10553, 574) is bigger than the viewport (1607, 871) or the visual rectangle (10553, 574) is larger than the max allowable value (17895698) [div]
+1493659452030 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: assesseeGroupAssesseeSaveBtn, tagName: BUTTON, className: btn btn-primary
+1493659528437 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: okButton, tagName: BUTTON, className: btn btn-primary
+JavaScript warning: https://portal.caliperqaaws.com/assets/application-7fc77b6f544b5e9e24b7f53d4ccfc167.js, line 29: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+1493659534672 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
+1493659535949 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1493659540891 Marionette: Element does not have an accessible object -> id: , tagName: BODY, className: 
+1493659541999 Marionette: Element does not support any accessible actions -> id: , tagName: LI, className: 
+1493659543201 Marionette: Element is not currently visible via the accessibility API and may not be manipulated by it -> id: cancelOrderBtn, tagName: BUTTON, className: btn btn-primary
+1493661977302	geckodriver	INFO	Listening on 127.0.0.1:58273
+1493661979338	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.IHPzRjN4W93C
+1493661979341	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1493661979362	geckodriver::marionette	INFO	Connecting to Marionette on localhost:58281
+1493661981541	geckodriver	INFO	Listening on 127.0.0.1:58296
+1493661983549	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.UnsLZmjBKvWZ
+1493661983552	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1493661983565	geckodriver::marionette	INFO	Connecting to Marionette on localhost:58304
+1493661985637	geckodriver	INFO	Listening on 127.0.0.1:58321
+1493661987662	mozprofile::profile	INFO	Using profile path C:\Users\ekim\AppData\Local\Temp\rust_mozprofile.1sTUXxAFa8kh
+1493661987665	geckodriver::marionette	INFO	Starting browser C:\Program Files\Mozilla Firefox\firefox.exe
+1493661987679	geckodriver::marionette	INFO	Connecting to Marionette on localhost:58329
