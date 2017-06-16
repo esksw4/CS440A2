@@ -69,6 +69,13 @@ class GUIFunctions:
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="green")
 			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
+		elif displayType == 'display':
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_add("insert", "0.0", "100.0")
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].tag_config("insert", background="white", foreground ="blue")
+			Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 		elif displayType == 's':
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=NORMAL)
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "  " + text + "\n\n")
@@ -90,9 +97,25 @@ class GUIFunctions:
 				GUIFunctions.switchDifferentLanguageCheckThis()
 			elif Functions.GUIdisplay.testName == "Click Circles":
 				GUIFunctions.clickCirclesCheckThis()
+			elif Functions.GUIdisplay.testName == "Search For Assessee":
+				GUIFunctions.searchForAssesseeCheckThis()
+			elif Functions.GUIdisplay.testName == "Sorting Dropdown":
+				GUIFunctions.sortingCheckThis()
 			Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].config(state=DISABLED)
 
 			# Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation")
+	def sortingCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Sorting dropdown -> Name, Date, Supervisor \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Change number per page \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
+		
+	def searchForAssesseeCheckThis():
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
+		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Search for assessee \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def orderNewReportCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
@@ -104,43 +127,74 @@ class GUIFunctions:
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Search with assessee name \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Copy assessment URL \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Cancel Order \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def loginLogoutCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Login/Logout \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def passwordRecoveryCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Reset \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Password Recovery \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def passwordUnlockCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Resend email for unlock instruction \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def orderReportButtonCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Does Order a Report button work \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def viewReportCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- View a report \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def switchDifferentLanguageCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Switch to a different language \n")
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def clickCirclesCheckThis():
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "Following function(s) was(were) evaluated successfully: \n")
 		Functions.GUIdisplay.consoleTab[Functions.GUIdisplay.testName][0].insert(INSERT, "- Click a circle \n")
-		Functions.GUIdisplay.completedTests.append(Test_Circles.Test_Circles)
+		Functions.GUIdisplay.completedTests.append(Functions.GUIdisplay.checkBoxInfo[Functions.GUIdisplay.testName][1][0])
+		# print("\n*******************************************************")
+		# print(Functions.GUIdisplay.completedTests)
+		# print("*******************************************************")
 		Functions.GUIdisplay.bar_TabBar.switch_tab("Evaluation", Functions.GUIdisplay.testName)
 
 	def buttonPressCheck():
@@ -224,8 +278,6 @@ class GUItkinter:
 
 		self.allFieldError = None
 		self.current_Button = None
-
-		self.completedTests = []
 
 		self.GUIuserInputErrorRow_Frame = Frame()
 
@@ -330,9 +382,12 @@ class GUItkinter:
 		self.consoleFrame_PackSide = TOP
 		self.consoleFrame_PackFill = X
 		self.consoleFrame_PackExpand = YES
+		self.tabs = collections.OrderedDict()
+		self.tabsButtons = collections.OrderedDict()
 		# self.console_PlaceY = 0
 		# self.console_PlaceX = 10
 
+		self.completedTests = []
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
 		self.checkBoxInfo =collections.OrderedDict({"Login Logout": [["Portal Username", "Portal Password"],[Test_LoginLogout.Test_LoginLogout], [self.LS_LL_console_Frame]], \
@@ -415,6 +470,7 @@ class GUItkinter:
 		self.tabs = collections.OrderedDict()
 		self.tabsButtons = collections.OrderedDict()
 
+		self.completedTests = []
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
 		self.checkBoxInfo =collections.OrderedDict({"Click Circles": [["Portal Username", "Portal Password"],[Test_Circles.Test_Circles], [self.DB_CC_console_Frame]], \
@@ -507,7 +563,10 @@ class GUItkinter:
 		self.consoleFrame_PackSide = TOP
 		self.consoleFrame_PackFill = X
 		self.consoleFrame_PackExpand = YES
+		self.tabs = collections.OrderedDict()
+		self.tabsButtons = collections.OrderedDict()
 
+		self.completedTests = []
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame]
 
 		# self.HS_FBStatus_console_Frame = tkinter.Frame(self.myParent, relief=FLAT)#, highlightcolor="blue", highlightthickness=7)
@@ -595,9 +654,12 @@ class GUItkinter:
 		self.consoleFrame_PackFill = NONE
 		self.consoleFrame_Anchor = NE
 		self.consoleFrame_PackExpand = FALSE
+		self.tabs = collections.OrderedDict()
+		self.tabsButtons = collections.OrderedDict()
 		# self.console_PlaceY = 0
 		# self.console_PlaceX = 390
 
+		self.completedTests = []
 		self.testInfoFrames = [self.OPL_Input_Frame_Frame, self.Custom_Input_Frame_Frame]
 
 		self.checkBoxInfo = collections.OrderedDict({"Order Existing Title with New Assessee":[["Portal Username", "Portal Password"],[Test_Order1.Test_Order1],[self.ONR_GUIconsoleFrame]]})
@@ -730,15 +792,25 @@ class GUItkinter:
 
 	def GetUserInputSendFunction(self):
 		suite = unittest.TestSuite()
-		if self.current_Button == "Login_Security" or self.current_Button == "Dashboard":
+		if self.current_Button == "Login_Security" or self.current_Button == "Dashboard" or self.current_Button == "Hiring Status":
 			self.OPL_Input_Frame_Frame.config(relief=GROOVE)
 			self.OPLGetUserInputSendFunction()
 			if (self.OPL_Input_Frame_Frame.cget("relief") == RAISED and self.radioButtonCheck == True):
 				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
-				print("self.testToRun: ", self.testToRun)
+				# print("self.testToRun: ", self.testToRun)
+				# print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+				# print("Self.TESTTORUN: ", self.testToRun)
+				# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+				# print(self.completedTests)
 				for i in self.testToRun:
-					print("i: ", i)
-					suite.addTests(unittest.makeSuite(i))
+					# print("i: ", i)
+					# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+					# print("i :", i)
+					# print("i not in self.completedtest: ", i not in self.completedTests)
+					# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+					if i not in self.completedTests:
+						# print("i: ", i)
+						suite.addTests(unittest.makeSuite(i))
 				self.runTest(suite)
 		elif self.current_Button == "Order New Report":
 			self.OPL_Input_Frame_Frame.config(relief=GROOVE)
@@ -749,9 +821,18 @@ class GUItkinter:
 				self.OPL_Input_Frame_Frame.Error_Label.pack_forget()
 				self.Custom_Input_Frame_Frame.Error_Label.pack_forget()
 				# print("self.testToRun: ", self.testToRun)
+				# print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+				# print("Self.TESTTORUN: ", self.testToRun)
+				# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+				# print(self.completedTests)
 				for i in self.testToRun:
-					# print("i: ", i)
-					suite.addTests(unittest.makeSuite(i))
+					# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+					# print("i :", i)
+					# print("i not in self.completedtest: ", i not in self.completedTests)
+					# print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+					if i not in self.completedTests:
+						# print("i: ", i)
+						suite.addTests(unittest.makeSuite(i))
 				self.runTest(suite)
 
 
@@ -777,7 +858,7 @@ class GUItkinter:
 	def OPLGetUserInputSendFunction(self):
 		dictValue = []
 		# First, check if self.URL gets either QA or Production. If it did not get anything, self.radioButtonCheck is False
-		print("Which URL:", self.URL.get())
+		# print("Which URL:", self.URL.get())
 		if self.URL.get() == "empty":
 			self.radioButtonCheck = False
 		# If it got something, self.radioButtonCheck is True
@@ -794,7 +875,7 @@ class GUItkinter:
 
 		# Functions.OPLInfo collects the information and put it as ordred Dictionary
 		Functions.OPLInfo = collections.OrderedDict(zip(list(self.whichInfoOPL.keys()), dictValue))
-		print(Functions.OPLInfo)
+		# print(Functions.OPLInfo)
 		# Check if all fields are filled. If not, it returns FALSE
 		self.allFieldCheckAnswer = GUIFunctions.allFieldCheck(Functions.OPLInfo.values(), self.OPL_Input_Frame_Frame)
 		# Display the erorr message if OPL_Input_Frame_Frame did not collect all the inputs.
@@ -875,16 +956,16 @@ class GUItkinter:
 
 	def conSoleFrame(self, frames):
 		self.consoleTab = collections.OrderedDict()
-		print("\n")
-		print("frames: ", frames)
-		print("self.TestUserTestCases.keys(): ", self.testUserTestCases.keys())
-		print("\n")
+		# print("\n")
+		# print("frames: ", frames)
+		# print("self.TestUserTestCases.keys(): ", self.testUserTestCases.keys())
+		# print("\n")
 
 		for arg, i in zip(frames, self.testUserTestCases.keys()):
-			print("----------------------------------------------")
-			print("arg: ", arg)
-			print("i: ", i)
-			print("\n")
+			# print("----------------------------------------------")
+			# print("arg: ", arg)
+			# print("i: ", i)
+			# print("\n")
 
 			arg.config(bg=self.background_Color)#, highlightcolor="blue", highlightthickness=1)
 			arg.pack(padx=self.consolePack_padx, side=self.consoleFrame_PackSide, anchor=self.consoleFrame_Anchor, fill=self.consoleFrame_PackFill, expand=self.consoleFrame_PackExpand)
@@ -931,7 +1012,7 @@ class GUItkinter:
 	def runTest(self, suite):
 		for i in self.completedTests:
 			if i in suite:
-				self.result.remove(i)
+				suite.remove(i)
 
 		self.result = unittest.TextTestRunner(verbosity=2, failfast=True).run(suite)
 

@@ -49,15 +49,15 @@ class Test_ViewReport(unittest.TestCase):
         import Functions
         import automatedSmokeTest
 
-        testName = "View Report"
-        driver = Functions.Functions.OPL(self, testName)
+        Functions.GUIdisplay.testName = "View Report"
+        driver = Functions.Functions.OPL(self)
 
         time.sleep(1)
         driver.find_element_by_link_text("Reports").click()
         time.sleep(2)
         check = driver.title
         if check != "Caliper: Reports":
-          automatedSmokeTest.GUIFunctions.outputDisplayConsole("View Report Button DOES NOT directs you to Order page.", testName,'se')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("View Report Button DOES NOT directs you to Order page.", Functions.GUIdisplay.testName,'se')
         else:
           driver.find_element_by_link_text("Caliper").click()
           time.sleep(2)
@@ -73,9 +73,9 @@ class Test_ViewReport(unittest.TestCase):
           time.sleep(2)
           #check = driver.current_url
           if assesseeName not in driver.current_url:
-            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is not displayed properly." %assesseeName, testName,'se')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is not displayed properly." %assesseeName, Functions.GUIdisplay.testName,'se')
           else:
-            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is displayed properly." %assesseeName, testName,'s')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("%s's report is displayed properly." %assesseeName, Functions.GUIdisplay.testName,'s')
 
 
 if __name__ == "__main__":

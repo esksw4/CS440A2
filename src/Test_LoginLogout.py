@@ -50,8 +50,8 @@ class Test_LoginLogout(unittest.TestCase):
     import Functions
     import automatedSmokeTest
 
-    testName = "Login Logout"
-    driver = Functions.Functions.OPL(self, testName)
+    Functions.GUIdisplay.testName = "Login Logout"
+    driver = Functions.Functions.OPL(self)
     time1.sleep(2)
     # click | link=Log out |
     driver.find_element_by_xpath("//div[@id='main-content']/div[1]/div[1]/div[2]").click()
@@ -59,10 +59,10 @@ class Test_LoginLogout(unittest.TestCase):
     time1.sleep(2)
 
     if str(driver.current_url) == str(Functions.GUIdisplay.URL.get() +"users/sign_in"):
-      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout Successfully", testName,'s')
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout Successfully", Functions.GUIdisplay.testName,'s')
     else:
       driver.quit()
-      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout failed", testName, 'p')
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("Logout failed", Functions.GUIdisplay.testName, 'p')
 
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')

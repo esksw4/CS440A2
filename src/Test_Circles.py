@@ -48,7 +48,6 @@ class Test_Circles(unittest.TestCase):
         import Functions
         import automatedSmokeTest
 
-
         # checkNumError = 0
         Functions.GUIdisplay.testName = "Click Circles"
         driver = Functions.Functions.OPL(self)

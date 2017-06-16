@@ -49,7 +49,7 @@ class Test_PasswordUnlock(unittest.TestCase):
     import Functions
     import automatedSmokeTest
     # checkNumError = 0
-    testName = "Password Unlock"
+    Functions.GUIdisplay.testName = "Password Unlock"
     i = 0
     driver = self.driver
     originalLocked = "Your account is locked."
@@ -70,7 +70,7 @@ class Test_PasswordUnlock(unittest.TestCase):
           howManyLoop += 1
           if howManyLoop > 5:
             i = 1
-            automatedSmokeTest.GUIFunctions.outputDisplayConsole("According to Error message, the password does not get locked." , testName, 'se')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("According to Error message, the password does not get locked." , Functions.GUIdisplay.testName, 'se')
           else:
             time.sleep(2)
             driver.find_element_by_id("user_email").clear()
@@ -109,7 +109,7 @@ class Test_PasswordUnlock(unittest.TestCase):
         if Test_PasswordUnlock.is_element_present(self, By.XPATH, "//div[@class='rFrNMe uIZQNc og3oZc sdJrJc Tyc9J CDELXb k0tWj IYewr']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
           i = 100
           driver.quit()
-          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Address is invalid. Please enter the valid email address" , testName, 'ie')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Address is invalid. Please enter the valid email address" , Functions.GUIdisplay.testName, 'ie')
         # if there is no error during email address, process with email password
         else:
           # if i == 0 or i == 1:
@@ -121,7 +121,7 @@ class Test_PasswordUnlock(unittest.TestCase):
           if Test_PasswordUnlock.is_element_present(self, By.XPATH, "//div[@id='password']/div[@class='LXRPh']/div[@class='dEOOab RxsGPe']"):
             i = 100
             driver.quit()
-            automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Password is invalid. Please enter the valid email Password" , testName, 'ie')
+            automatedSmokeTest.GUIFunctions.outputDisplayConsole("Input Error: Email Password is invalid. Please enter the valid email Password" , Functions.GUIdisplay.testName, 'ie')
       # if gmail is logged in,
       # search the "unlock Instruction" email
       time.sleep(3)
@@ -137,7 +137,7 @@ class Test_PasswordUnlock(unittest.TestCase):
       # if this is first time testing (meaning i = 0), just check if email went through or not.
       if i == 0:
         if Test_PasswordUnlock.is_element_present(self, By.LINK_TEXT,"Unlock My Account") == False:
-          automatedSmokeTest.GUIFunctions.outputDisplayConsole("First email was not received on the email(%s). I'm checking for second time." %Functions.OPLInfo['Email Address'], testName, 'se')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("First email was not received on the email(%s). I'm checking for second time." %Functions.OPLInfo['Email Address'], Functions.GUIdisplay.testName, 'se')
         # driver.quit()
       i += 1 # now going back to very beginning. Need to check for 2nd time.
 
@@ -151,10 +151,10 @@ class Test_PasswordUnlock(unittest.TestCase):
       check = driver.find_element_by_xpath("//div[@class ='hidden-print']/div[@id='alertMsgContainer']/div[1]").text
       print("check: ", check)
 
-      if check != "Your account has been unlocked successfully. Please sign in to continue.":
-        automatedSmokeTest.GUIFunctions.outputDisplayConsole("Account is unlocked succesfully." , testName, 's')
+      if check == "Your account has been unlocked successfully. Please sign in to continue.":
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("Account is unlocked succesfully." , Functions.GUIdisplay.testName, 's')
       else:
-        automatedSmokeTest.GUIFunctions.outputDisplayConsole("Was not able to unlock the account. " , testName, 'se')
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("Was not able to unlock the account. " , Functions.GUIdisplay.testName, 'se')
         # if check != "Your account has been unlocked successfully. Please sign in to continue.":
         #   checkNumError += 1
 

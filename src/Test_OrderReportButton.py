@@ -56,10 +56,10 @@ class Test_OrderReportButton(unittest.TestCase):
         time.sleep(2)
         check = driver.title
         if check == "Caliper: Order Reports/Assessments":
-          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button successfully directs you to Order page.", testName,'s')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button successfully directs you to Order page.", Functions.GUIdisplay.testName,'s')
         # click | link=Caliper |
         else: 
-          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button DOES NOT directs you to Order page.", testName,'se')
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("Order Report Button DOES NOT directs you to Order page.", Functions.GUIdisplay.testName,'se')
           # driver.find_element_by_link_text("Caliper").click()
 
         # Functions.Functions.checkForError(checkNumError, testName)

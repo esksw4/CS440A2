@@ -55,9 +55,9 @@ class TabBar(Frame):
 	
 	def add(self, tab):
 		tab.grid_forget()									# hide the tab on init
-		print("add, tab: ", tab)
-		print("add, tab.tab_name: ", tab.tab_name)
-		print("self.tabs: ", Functions.GUIdisplay.tabs)
+		# print("add, tab: ", tab)
+		# print("add, tab.tab_name: ", tab.tab_name)
+		# print("self.tabs: ", Functions.GUIdisplay.tabs)
 		if len(Functions.GUIdisplay.tabs[self.testName]) == 0:
 			Functions.GUIdisplay.tabs[self.testName][tab.tab_name] = tab
 		else:
@@ -108,23 +108,29 @@ class TabBar(Frame):
 		
 	
 	def switch_tab(self, name, testName):
-		print("\n")
-		print("switch_Tab TestName: ", testName)
-		print("self.current_tab: ", self.current_tab)
-		print("Functions.GUIdisplay.tabs: ", Functions.GUIdisplay.tabs)
+		# print("\n")
+		# print("switch_Tab TestName: ", testName)
+		# print("self.current_tab: ", self.current_tab)
+		# print("Functions.GUIdisplay.tabs: ", Functions.GUIdisplay.tabs)
 		# print("Functions.GUIdisplay.consoleTab: \n", Functions.GUIdisplay.consoleTab)
 		if self.current_tab:
 			Functions.GUIdisplay.tabsButtons[testName][self.current_tab].config(relief=BASE)
 			Functions.GUIdisplay.tabs[testName][self.current_tab].grid_forget()			# hide the current tab
 			# self.tabs[self.current_tab].forget()
 			if name == "Console":
+				# print("####################################")
+				# print(Functions.GUIdisplay.consoleTab[testName][1])
+				# print("####################################")
 				Functions.GUIdisplay.consoleTab[testName][1].grid_forget()
 			elif name == "Evaluation":
+				# print("####################################")
+				# print(Functions.GUIdisplay.consoleTab[testName][0])
+				# print("####################################")
 				Functions.GUIdisplay.consoleTab[testName][0].grid_forget()
 
 		# self.tabs[name].pack(side=BOTTOM)							# add the new tab to the display
-		print("name: ", name)
-		print("Functions.GUIdisplay.tabs[testName][name]: ", Functions.GUIdisplay.tabs[testName][name])
+		# print("name: ", name)
+		# print("Functions.GUIdisplay.tabs[testName][name]: ", Functions.GUIdisplay.tabs[testName][name])
 		Functions.GUIdisplay.tabs[testName][name].grid(sticky='w')
 
 		if name == "Console":

@@ -49,61 +49,64 @@ class Test_SortingDropdown(unittest.TestCase):
     self.driver.quit()
     self.assertEqual([], self.verificationErrors)
 
-  # def test_sortingDropdown(self):
-  #   checkNumError = 0
-  #   testName = "Sorting Dropdown"
-  #   driver = Functions.Functions.hiringOPL(self, testName)
+  def test_sortingDropdown(self):
+    import Functions
+    import automatedSmokeTest
+    # checkNumError = 0
+    Functions.GUIdisplay.testName = "Sorting Dropdown"
+    driver = Functions.Functions.hiringOPL(self)
 
-  #   whatToSort = 'Name'
-  #   print('1. Sort by', whatToSort)
-  #   driver.find_element_by_class_name("data-grid-filter").click()
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ARROW_DOWN)
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
-  #   time1.sleep(5)
-  #   tableText = driver.find_element_by_id("table_info").text
-  #   systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
-  #   time1.sleep(2)
-  #   checkNumError = Functions.Functions.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
-  #   if checkNumError != 0:
-  #     colorama.init(autoreset=True)
-  #     print(colorama.Fore.RED + whatToSort + str(" button doesn't work"))
+    whatToSort = 'Name'
+    sortColumn = 2
+    # print('1. Sort by', whatToSort)
+    xpath = str("//table[@class='table cal-datagrid dataTable no-footer']/thead/tr/th[%d]" %sortColumn)
 
-  #   whatToSort = 'Date'
-  #   print('2. Sort by', whatToSort)
-  #   driver.find_element_by_class_name("data-grid-filter").click()
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ARROW_UP)
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
-  #   tableText = driver.find_element_by_id("table_info").text
-  #   systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
-  #   time1.sleep(2)
-  #   checkNumError = Functions.Functions.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
-  #   if checkNumError != 0:
-  #     colorama.init(autoreset=True)
-  #     print(colorama.Fore.RED + whatToSort + str(" button doesn't work"))
+    automatedSmokeTest.GUIFunctions.outputDisplayConsole("1. Sort by %s" %whatToSort, Functions.GUIdisplay.testName,'display')
 
-  #   whatToSort = 'Supervisor'
-  #   print('3. Sort by', whatToSort)
-  #   driver.find_element_by_class_name("data-grid-filter").click()
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ARROW_DOWN)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ARROW_DOWN)
-  #   time1.sleep(1)
-  #   driver.find_element_by_class_name("data-grid-filter").send_keys(Keys.ENTER)
-  #   time1.sleep(3)
-  #   tableText = driver.find_element_by_id("table_info").text
-  #   systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
-  #   time1.sleep(5)
-    
-  #   checkNumError = Functions.Functions.sortingCheck(driver, whatToSort, listAssessee, checkNumError)
-  #   if checkNumError != 0:
-  #     colorama.init(autoreset=True)
-  #     print(colorama.Fore.RED + whatToSort + str(" button doesn't work"))
+    driver.find_element_by_xpath(xpath).click()
+    time1.sleep(2)
+    tableText = driver.find_element_by_id("hiring-status-table_info").text
+    systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+    time1.sleep(2)
+    sortingWorks = Functions.Functions.sortingCheck(driver, whatToSort, sortColumn, listAssessee)
+    if sortingWorks == 0:
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("The %s button does not sort the list by %s." %(whatToSort, whatToSort), Functions.GUIdisplay.testName,'se')
+    else:
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("The %s button correctly sorts the list by %s." %(whatToSort, whatToSort), Functions.GUIdisplay.testName,'display')
+      whatToSort = 'Date'
+      sortColumn = 4
+      # print('2. Sort by', whatToSort)
+      xpath = str("//table[@class='table cal-datagrid dataTable no-footer']/thead/tr/th[%d]" %sortColumn)
 
-  #   Functions.Functions.checkForError(checkNumError, testName)
+      automatedSmokeTest.GUIFunctions.outputDisplayConsole("2. Sort by %s" %whatToSort, Functions.GUIdisplay.testName,'display')
 
+      driver.find_element_by_xpath(xpath).click()
+      time1.sleep(2)
+      tableText = driver.find_element_by_id("hiring-status-table_info").text
+      systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+      time1.sleep(2)
+      sortingWorks = Functions.Functions.sortingCheck(driver, whatToSort,  sortColumn, listAssessee)
+      if sortingWorks == 0:
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("The %s button does not sort the list by %s." %(whatToSort, whatToSort), Functions.GUIdisplay.testName,'se')
+      else:
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("The %s button correctly sorts the list by %s." %(whatToSort, whatToSort), Functions.GUIdisplay.testName,'display')
+        whatToSort = 'Supervisor'
+        sortColumn = 3
+        xpath = str("//table[@class='table cal-datagrid dataTable no-footer']/thead/tr/th[%d]" %sortColumn)
+
+        automatedSmokeTest.GUIFunctions.outputDisplayConsole("3. Sort by %s" %whatToSort, Functions.GUIdisplay.testName,'display')
+
+        driver.find_element_by_xpath(xpath).click()
+        time1.sleep(2)
+        tableText = driver.find_element_by_id("hiring-status-table_info").text
+        systemAssessee, listAssessee = Functions.Functions.howmanyAssesseeListSystem(tableText)
+        time1.sleep(5)
+        sortingWorks = Functions.Functions.sortingCheck(driver, whatToSort,  sortColumn, listAssessee)
+        if sortingWorks == 0:
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("The %s button does not sort the list by %s." %(whatToSort, whatToSort), Functions.GUIdisplay.testName,'se')
+        else:
+          automatedSmokeTest.GUIFunctions.outputDisplayConsole("The list is correctly sorted by the each button.", Functions.GUIdisplay.testName,'s')
 if __name__ == "__main__":
     unittest.main(warnings ='ignore')
+
+    str_element = str("//table[@class='table cal-datagrid dataTable no-footer']/tbody/tr[%d]/td[%d]" %(i,sortColumn))
